@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual environment
+venv/
+.venv/
+.env/
+.env.*
+
+# Django
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+staticfiles/
+*.mo
+*.coverage
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Pytest / coverage
+htmlcov/
+.coverage
+.pytest_cache/
+
+# IDE / Editor files
+*.swp
+*.swo
+.idea/
+
+# Backup / temp files
+*.bak
+*.tmp
+
+#TODO / planners
+TODO.md
+mixin_planner.md
+
+#unused folder
+core/templates/unused
+
+#docs
+.dics/
+users.md
+users.md
