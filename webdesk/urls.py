@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from crud.autocrud import urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', include('login.urls')),
     path('dashboard/', include('dashboard.urls')),
+    path("", include(urlpatterns))
 ]
