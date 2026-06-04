@@ -1,11 +1,16 @@
-# crud/autocrud.py
+from importlib import import_module
 
 from django.apps import apps
 from django.urls import path
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from importlib import import_module
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 
-urlpatterns = []
+crud_urlpatterns = []
 
 
 def load_app_configs():
@@ -15,50 +20,72 @@ def load_app_configs():
         try:
             module = import_module(f"{app.name}.app_config")
             configs[app.label] = module.APP_CONFIG
-        except Exception:
-            continue
+        except ImportError:
+            pass
 
     return configs
 
 
-def make_views(model, app_label, extra_context):
+def make_views(
+    *,
+    model,
+    app_label,
+    model_name,
+    extra_context=None,
+):
+    extra_context = extra_context or {}
 
-    class BaseMixin:
-        extra_context = extra_context or {}
+    class ContextMixin:
+        def get_context_data(self, **kwargs):
+            ctx = super().get_context_data(**kwargs)
+            ctx.update(extra_context)
+            ctx["app_label"] = app_label
+            ctx["model_name"] = model_name
+            return ctx
 
-    class L(BaseMixin, ListView):
-        model = model
+    class L(ContextMixin, ListView):
+        template_name = "list.html"
 
-    class D(BaseMixin, DetailView):
-        model = model
+    L.model = model
 
-    class C(BaseMixin, CreateView):
-        model = model
+    class D(ContextMixin, DetailView):
+        template_name = "detail.html"
+
+    D.model = model
+
+    class C(ContextMixin, CreateView):
         fields = "__all__"
+        template_name = "create.html"
 
         def get_success_url(self):
-            return f"/{app_label.lower()}/"
+            return f"/{app_label.lower()}/{model_name.lower()}/"
 
-    class U(BaseMixin, UpdateView):
-        model = model
+    C.model = model
+
+    class U(ContextMixin, UpdateView):
         fields = "__all__"
+        template_name = "update.html"
 
         def get_success_url(self):
-            return f"/{app_label.lower()}/"
+            return f"/{app_label.lower()}/{model_name.lower()}/"
 
-    class X(BaseMixin, DeleteView):
-        model = model
+    U.model = model
+
+    class X(ContextMixin, DeleteView):
+        template_name = "confirm_delete.html"
 
         def get_success_url(self):
-            return f"/{app_label.lower()}/"
+            return f"/{app_label.lower()}/{model_name.lower()}/"
+
+    X.model = model
 
     return L, D, C, U, X
 
 
 def generate():
-    configs = load_app_configs()
+    global crud_urlpatterns
 
-    global urlpatterns
+    configs = load_app_configs()
 
     for app_label, config in configs.items():
 
@@ -67,17 +94,40 @@ def generate():
             model = apps.get_model(app_label, model_name)
 
             ListV, DetailV, CreateV, UpdateV, DeleteV = make_views(
-                model,
-                app_label,
-                config.get("extra_context"),
+                model=model,
+                app_label=app_label,
+                model_name=model_name,
+                extra_context=config.get("extra_context"),
             )
 
             base = f"{app_label.lower()}/{model_name.lower()}"
 
-            urlpatterns += [
-                path(f"{base}/", ListV.as_view()),
-                path(f"{base}/<int:pk>/", DetailV.as_view()),
-                path(f"{base}/create/", CreateV.as_view()),
-                path(f"{base}/<int:pk>/update/", UpdateV.as_view()),
-                path(f"{base}/<int:pk>/delete/", DeleteV.as_view()),
-            ]
+            crud_urlpatterns.extend(
+                [
+                    path(
+                        f"{base}/",
+                        ListV.as_view(),
+                        name=f"{app_label}_{model_name}_list",
+                    ),
+                    path(
+                        f"{base}/create/",
+                        CreateV.as_view(),
+                        name=f"{app_label}_{model_name}_create",
+                    ),
+                    path(
+                        f"{base}/<int:pk>/",
+                        DetailV.as_view(),
+                        name=f"{app_label}_{model_name}_detail",
+                    ),
+                    path(
+                        f"{base}/<int:pk>/update/",
+                        UpdateV.as_view(),
+                        name=f"{app_label}_{model_name}_update",
+                    ),
+                    path(
+                        f"{base}/<int:pk>/delete/",
+                        DeleteV.as_view(),
+                        name=f"{app_label}_{model_name}_delete",
+                    ),
+                ]
+            )

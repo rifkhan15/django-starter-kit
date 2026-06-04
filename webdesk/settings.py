@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'login',
     'dashboard',
     'crud',
+    'customer',
 ]
 
 MIDDLEWARE = [
