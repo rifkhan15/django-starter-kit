@@ -1,0 +1,28 @@
+<nav>
+    <a href="{% url 'dashboard' %}">Dashboard</a> |
+    <a href="#">Orders</a> |
+    <a href="#">Quotations</a> |
+    <a href="#">Submissions</a> |
+    <a href="">Customers</a> |
+    <a href="">Brands</a> |
+    <a href="">Products</a> |
+    <a href="">Product Colors</a> | 
+    <a href="">Product Costs</a> |
+    <a href="">Product Categories</a> | 
+    <a href="">Product Namess</a> | 
+    <a href="">Dimensions</a> | 
+    <a href="">Cost Types</a> | 
+    <a href="">Product Units</a>
+</nav>
+
+<p>User: {{ user.username }} <button type="submit" form="login-form">Logout</button></p>
+<hr>
+
+<form id="login-form" method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+</form>
+
+{% block content %}
+{% endblock %}
+
+

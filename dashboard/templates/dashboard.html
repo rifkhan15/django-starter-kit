@@ -1,11 +1,7 @@
-<p>User: {{ user.username }} <button type="submit" form="login-form">Logout</button></p>
+{% extends 'base.html' %}
 
-<form id="login-form" method="post" action="{% url 'logout' %}">
-    {% csrf_token %}
-</form>
-
-<hr>
-
+{% block content %}
 <h2>Dashboard</h2>
 
 <p>Dashboard content</p>
+{% endblock %}
