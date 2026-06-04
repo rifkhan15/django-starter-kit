@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h3>Details of {{ view.model_verbose_name }} "{{ object }}"</h3>
+<h3>Details of {{ model_verbose_name }} "{{ object }}"</h3>
 <ul>
     {% for name, verbose_name, value in object.field_attrs %}
     <li>

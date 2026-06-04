@@ -31,16 +31,15 @@ def make_views(
     model,
     app_label,
     model_name,
-    extra_context=None,
 ):
-    extra_context = extra_context or {}
 
     class ContextMixin:
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
-            ctx.update(extra_context)
             ctx["app_label"] = app_label
             ctx["model_name"] = model_name
+            ctx["model_verbose_name"] = model._meta.verbose_name
+            ctx["model_title"] = model._meta.verbose_name_plural.title()
             return ctx
 
     class L(ContextMixin, ListView):
@@ -97,7 +96,6 @@ def generate():
                 model=model,
                 app_label=app_label,
                 model_name=model_name,
-                extra_context=config.get("extra_context"),
             )
 
             base = f"{app_label.lower()}/{model_name.lower()}"
@@ -131,3 +129,6 @@ def generate():
                     ),
                 ]
             )
+
+            for url in crud_urlpatterns:
+                print(url)

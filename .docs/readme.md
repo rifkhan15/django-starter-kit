@@ -1,9 +1,9 @@
-#make an app_config.py file for each new crud app and include the below code. define the app name, model names and extra view.context.
-
-APP_CONFIG = {
-    "model_names": ["Order", "Customer"],
-    "extra_context": {
-        "view.context_a": "value_a",
-        "view.context_b": "value_b",
-    }
-}
+- webdesk is a django template to build crud apps, and extinsibla for non-crud business logic.
+- it comes with these default apps: login, dashboard and crud.
+- crud app works as a fully automatic crud app and urlpattern generator.
+- once a new business app is started, make an app_config.py file and define the app name, model names and extra_context as follows.
+        APP_CONFIG = {
+            "model_names": ["Order", "Customer"]
+        }
+- user management must be prformed via django admin/ portal. the login app is a basic code for login, logout functionality.
+- dashboard app can be coded accroding to business requirement.
