@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>Editing {{ view.model_verbose_name }} "{{ object }}"</h3>
+
+{% include '_form.html' %}
+
+{% endblock %}
