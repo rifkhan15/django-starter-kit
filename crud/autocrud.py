@@ -129,6 +129,3 @@ def generate():
                     ),
                 ]
             )
-
-            for url in crud_urlpatterns:
-                print(url)

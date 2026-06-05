@@ -1,19 +1,10 @@
 <nav>
-    <a href="{% url 'dashboard' %}">Dashboard</a> |
-    <a href="#">Orders</a> |
-    <a href="#">Quotations</a> |
-    <a href="#">Submissions</a> |
-    <a href="{% url 'customer_Customer_list' %}">Customers</a> |
-    <a href="">Brands</a> |
-    <a href="">Products</a> |
-    <a href="">Product Colors</a> | 
-    <a href="">Product Costs</a> |
-    <a href="">Product Categories</a> | 
-    <a href="">Product Namess</a> | 
-    <a href="">Dimensions</a> | 
-    <a href="">Cost Types</a> | 
-    <a href="">Product Units</a>
+    <a href="{% url 'dashboard' %}">Dashboard</a>
+    {% for item in crud_menu %}
+    | <a href="{% url item.list_url %}">{{ item.model_title }}</a>
+    {% endfor %}
 </nav>
+
 
 <p>User: {{ user.username }} <button type="submit" form="login-form">Logout</button></p>
 <hr>
@@ -24,5 +15,3 @@
 
 {% block content %}
 {% endblock %}
-
-

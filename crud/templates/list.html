@@ -9,6 +9,6 @@
 <li><a href="{{ obj.get_detail_url }}">{{ obj }}</a></li>
 {% endfor %}
 </ol>
-<a href="{{ view.model.get_create_url }}"><strong>+</strong> new {{view.model_verbose_name }}</a>
+<a href="{{ view.model.get_create_url }}"><strong>+</strong> new {{ model_verbose_name }}</a>
 
 {% endblock %}
