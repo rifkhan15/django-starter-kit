@@ -36,10 +36,18 @@ def make_views(
     class ContextMixin:
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
+
             ctx["app_label"] = app_label
             ctx["model_name"] = model_name
             ctx["model_verbose_name"] = model._meta.verbose_name
             ctx["model_title"] = model._meta.verbose_name_plural.title()
+            
+            ctx["list_url"] = f"{app_label}_{model_name}_list"
+            ctx["create_url"] = f"{app_label}_{model_name}_create"
+            ctx["detail_url"] = f"{app_label}_{model_name}_detail"
+            ctx["update_url"] = f"{app_label}_{model_name}_update"
+            ctx["delete_url"] = f"{app_label}_{model_name}_delete"
+
             return ctx
 
     class L(ContextMixin, ListView):

@@ -3,5 +3,5 @@
 <form method="post">
     {% csrf_token %}
     <button type="submit">Yes</button>
-    <a href="{{ object.get_detail_url }}">Cancel</a>
+    <a href="javascript:history.back()">Cancel</a>
 </form>

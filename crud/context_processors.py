@@ -17,7 +17,7 @@ def crud_menu(request):
                 "app_name": app_name.title(),
                 "model_title": model._meta.verbose_name_plural.title(),
                 "list_url": f"{app_name}_{model_name}_list",
-                "create_url": f"{app_name}_{model_name}_create",
+                # "create_url": f"{app_name}_{model_name}_create",
             })
 
     return {"crud_menu": menu}

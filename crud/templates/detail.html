@@ -22,7 +22,7 @@
     {% endif %}
 </ul>
 
-<a href="{{ object.get_update_url }}">Edit</a>
-<a href="{{ object.get_delete_url }}">Delete</a>
-<a href="{{ object.get_list_url }}">Close</a>
+<a href="{% url update_url object.pk %}">Edit</a>
+<a href="{% url delete_url object.pk %}">Delete</a>
+<a href="{% url list_url %}">Close</a>
 {% endblock %}
