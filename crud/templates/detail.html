@@ -12,7 +12,7 @@
     {% endfor %}
 
     {% if object.object_set.all %}
-    <li><strong>{{ object.object_set_verbose_name }}</strong>:
+    <li><strong>{{ object.object_set_title }}</strong>:
         <ul>
             {% for obj in object.object_set.all %}
             <li>{{ obj }} <a href="{{ obj.get_detail_url }}"><small>more details</small></a></li>            
