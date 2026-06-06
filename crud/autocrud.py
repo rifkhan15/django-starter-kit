@@ -40,7 +40,7 @@ class ContextMixin:
             "app_label": self.app_label,
             "model_name": self.model_name,
             "model_verbose_name": model._meta.verbose_name,
-            "model_title": model._meta.verbose_name_plural.title(),
+            "model_title_plural": model._meta.verbose_name_plural.title(),
 
             "list_url": f"{self.app_label}_{self.model_name}_list",
             "create_url": f"{self.app_label}_{self.model_name}_create",

@@ -21,12 +21,11 @@ class Contact(BaseModel):
     designation = models.CharField(max_length=150, blank=True, null=True)
     
     def __str__(self):
-        if self.company:
-            return f"{self.name} - {self.company}"
         return self.name
     
 class Inquiry(BaseModel):
-    contact = models.ForeignKey(Contact, on_delete=models.PROTECT, related_name='inquiries', verbose_name='Inquired by (contact name)')
+    company = models.ForeignKey(Company, on_delete=models.PROTECT, null=True, blank=True)
+    contact = models.ForeignKey(Contact, on_delete=models.PROTECT, verbose_name='Inquired by (contact name)')
     inquiry_date = models.DateField()
     
     @property
@@ -40,7 +39,7 @@ class Inquiry(BaseModel):
         verbose_name_plural = 'Inquiries'
 
 class InquiryItem(BaseModel):
-    inquiry_number = models.ForeignKey(Inquiry, on_delete=models.PROTECT, related_name='line_items')
+    inquiry_number = models.ForeignKey(Inquiry, on_delete=models.PROTECT)
     item_description = models.CharField(max_length=255) 
     special_notes = models.TextField(blank=True, null=True)
 
