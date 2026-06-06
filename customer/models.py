@@ -40,7 +40,7 @@ class Inquiry(BaseModel):
         verbose_name_plural = 'Inquiries'
 
 class InquiryItem(BaseModel):
-    inquiry_number = models.ForeignKey(Inquiry, on_delete=models.PROTECT, related_name='object_set')
+    inquiry_number = models.ForeignKey(Inquiry, on_delete=models.PROTECT, related_name='line_items')
     item_description = models.CharField(max_length=255) 
     special_notes = models.TextField(blank=True, null=True)
 

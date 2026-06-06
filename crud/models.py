@@ -11,7 +11,7 @@ class BaseModel(models.Model):
     @property
     def field_attrs(self):
         return [
-            (f.name, f.verbose_name.capitalize, getattr(self, f.name))
+            (f.name, f.verbose_name, getattr(self, f.name))
             for f in self._meta.fields
         ]
     
