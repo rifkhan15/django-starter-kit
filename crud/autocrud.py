@@ -13,6 +13,9 @@ from django.views.generic import (
 crud_urlpatterns = []
 
 
+# ---------------------------
+# LOAD APP CONFIGS
+# ---------------------------
 def load_app_configs():
     configs = {}
 
@@ -26,69 +29,144 @@ def load_app_configs():
     return configs
 
 
-def make_views(
-    *,
-    model,
-    app_label,
-    model_name,
-):
+# ---------------------------
+# CONTEXT MIXIN
+# ---------------------------
+class ContextMixin:
+    def get_common_context(self):
+        model = self.model
 
-    class ContextMixin:
-        def get_context_data(self, **kwargs):
-            ctx = super().get_context_data(**kwargs)
+        return {
+            "app_label": self.app_label,
+            "model_name": self.model_name,
+            "model_verbose_name": model._meta.verbose_name,
+            "model_title": model._meta.verbose_name_plural.title(),
 
-            ctx["app_label"] = app_label
-            ctx["model_name"] = model_name
-            ctx["model_verbose_name"] = model._meta.verbose_name
-            ctx["model_title"] = model._meta.verbose_name_plural.title()
-            
-            ctx["list_url"] = f"{app_label}_{model_name}_list"
-            ctx["create_url"] = f"{app_label}_{model_name}_create"
-            ctx["detail_url"] = f"{app_label}_{model_name}_detail"
-            ctx["update_url"] = f"{app_label}_{model_name}_update"
-            ctx["delete_url"] = f"{app_label}_{model_name}_delete"
+            "list_url": f"{self.app_label}_{self.model_name}_list",
+            "create_url": f"{self.app_label}_{self.model_name}_create",
+            "detail_url": f"{self.app_label}_{self.model_name}_detail",
+            "update_url": f"{self.app_label}_{self.model_name}_update",
+            "delete_url": f"{self.app_label}_{self.model_name}_delete",
+        }
 
-            return ctx
 
+# ---------------------------
+# CHILDREN MIXIN
+# ---------------------------
+class ChildrenMixin:
+    def get_children(self, obj):
+        children = []
+
+        for rel in obj._meta.related_objects:
+            accessor = rel.get_accessor_name()
+
+            if not accessor:
+                continue
+
+            manager = getattr(obj, accessor, None)
+
+            if manager is None:
+                continue
+
+            children.append({
+                "related_name": accessor,
+                "verbose_name": rel.related_model._meta.verbose_name,
+                "verbose_name_plural": rel.related_model._meta.verbose_name_plural,
+                "items": manager.all(),
+            })
+
+        return children
+
+
+# ---------------------------
+# VIEW FACTORY
+# ---------------------------
+def make_views(*, model, app_label, model_name):
+
+    # ---------------- LIST VIEW ----------------
     class L(ContextMixin, ListView):
         template_name = "list.html"
 
-    L.model = model
+        def get_queryset(self):
+            return model.objects.all()
 
-    class D(ContextMixin, DetailView):
+        def get_context_data(self, **kwargs):
+            ctx = super().get_context_data(**kwargs)
+            ctx.update(self.get_common_context())
+            return ctx
+
+    # ---------------- DETAIL VIEW ----------------
+    class D(ChildrenMixin, ContextMixin, DetailView):
         template_name = "detail.html"
 
-    D.model = model
+        def get_queryset(self):
+            return model.objects.all()
 
+        def get_context_data(self, **kwargs):
+            ctx = super().get_context_data(**kwargs)
+            ctx.update(self.get_common_context())
+            ctx["children"] = self.get_children(self.object)
+            return ctx
+
+    # ---------------- CREATE VIEW ----------------
     class C(ContextMixin, CreateView):
-        fields = "__all__"
         template_name = "create.html"
-
-        def get_success_url(self):
-            return f"/{app_label.lower()}/{model_name.lower()}/"
-
-    C.model = model
-
-    class U(ContextMixin, UpdateView):
         fields = "__all__"
-        template_name = "update.html"
+
+        def get_queryset(self):
+            return model.objects.all()
 
         def get_success_url(self):
-            return f"/{app_label.lower()}/{model_name.lower()}/"
+            return f"/{self.app_label.lower()}/{self.model_name.lower()}/"
 
-    U.model = model
+        def get_context_data(self, **kwargs):
+            ctx = super().get_context_data(**kwargs)
+            ctx.update(self.get_common_context())
+            return ctx
 
+    # ---------------- UPDATE VIEW ----------------
+    class U(ContextMixin, UpdateView):
+        template_name = "update.html"
+        fields = "__all__"
+
+        def get_queryset(self):
+            return model.objects.all()
+
+        def get_success_url(self):
+            return f"/{self.app_label.lower()}/{self.model_name.lower()}/"
+
+        def get_context_data(self, **kwargs):
+            ctx = super().get_context_data(**kwargs)
+            ctx.update(self.get_common_context())
+            return ctx
+
+    # ---------------- DELETE VIEW ----------------
     class X(ContextMixin, DeleteView):
         template_name = "confirm_delete.html"
 
-        def get_success_url(self):
-            return f"/{app_label.lower()}/{model_name.lower()}/"
+        def get_queryset(self):
+            return model.objects.all()
 
-    X.model = model
+        def get_success_url(self):
+            return f"/{self.app_label.lower()}/{self.model_name.lower()}/"
+
+        def get_context_data(self, **kwargs):
+            ctx = super().get_context_data(**kwargs)
+            ctx.update(self.get_common_context())
+            return ctx
+
+    # ---------------- ATTACH CLASS ATTRIBUTES (IMPORTANT FIX) ----------------
+    for view in (L, D, C, U, X):
+        view.model = model
+        view.app_label = app_label
+        view.model_name = model_name
 
     return L, D, C, U, X
 
 
+# ---------------------------
+# URL GENERATION
+# ---------------------------
 def generate():
     global crud_urlpatterns
 
@@ -108,32 +186,19 @@ def generate():
 
             base = f"{app_label.lower()}/{model_name.lower()}"
 
-            crud_urlpatterns.extend(
-                [
-                    path(
-                        f"{base}/",
-                        ListV.as_view(),
-                        name=f"{app_label}_{model_name}_list",
-                    ),
-                    path(
-                        f"{base}/create/",
-                        CreateV.as_view(),
-                        name=f"{app_label}_{model_name}_create",
-                    ),
-                    path(
-                        f"{base}/<int:pk>/",
-                        DetailV.as_view(),
-                        name=f"{app_label}_{model_name}_detail",
-                    ),
-                    path(
-                        f"{base}/<int:pk>/update/",
-                        UpdateV.as_view(),
-                        name=f"{app_label}_{model_name}_update",
-                    ),
-                    path(
-                        f"{base}/<int:pk>/delete/",
-                        DeleteV.as_view(),
-                        name=f"{app_label}_{model_name}_delete",
-                    ),
-                ]
-            )
+            crud_urlpatterns += [
+                path(f"{base}/", ListV.as_view(),
+                     name=f"{app_label}_{model_name}_list"),
+
+                path(f"{base}/create/", CreateV.as_view(),
+                     name=f"{app_label}_{model_name}_create"),
+
+                path(f"{base}/<int:pk>/", DetailV.as_view(),
+                     name=f"{app_label}_{model_name}_detail"),
+
+                path(f"{base}/<int:pk>/update/", UpdateV.as_view(),
+                     name=f"{app_label}_{model_name}_update"),
+
+                path(f"{base}/<int:pk>/delete/", DeleteV.as_view(),
+                     name=f"{app_label}_{model_name}_delete"),
+            ]
