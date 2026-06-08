@@ -2,7 +2,7 @@
 from django.urls import path
 from django.apps import apps
 from crud.config_loader import load_app_configs
-from crud.autocrud import make_views
+from crud.views import make_views
 
 crud_urlpatterns = []
 

@@ -1,4 +1,4 @@
-from .autocrud import load_app_configs
+from .views import load_app_configs
 from django.apps import apps
 
 def crud_menu(request):
