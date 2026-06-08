@@ -9,24 +9,11 @@ from django.views.generic import (
     DeleteView,
 )
 from crud.mixins import ContextMixin, ChildrenMixin
-
+from crud.config_loader import load_app_configs
 
 crud_urlpatterns = []
 
-# ---------------------------
-# LOAD APP CONFIGS
-# ---------------------------
-def load_app_configs():
-    configs = {}
-
-    for app in apps.get_app_configs():
-        try:
-            module = import_module(f"{app.name}.app_config")
-            configs[app.label] = module.APP_CONFIG
-        except ImportError:
-            pass
-
-    return configs
+configs =  load_app_configs()
 
 # ---------------------------
 # VIEW FACTORY
