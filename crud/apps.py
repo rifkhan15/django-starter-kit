@@ -6,6 +6,6 @@ class CrudConfig(AppConfig):
     name = "crud"
 
     def ready(self):
-        from .autocrud import generate
+        from crud.urls import generate_crud_urls
 
-        generate()
+        generate_crud_urls()

@@ -1,6 +1,5 @@
 from importlib import import_module
 from django.apps import apps
-from django.urls import path
 from django.views.generic import (
     ListView,
     DetailView,
@@ -11,7 +10,6 @@ from django.views.generic import (
 from crud.mixins import ContextMixin, ChildrenMixin
 from crud.config_loader import load_app_configs
 
-crud_urlpatterns = []
 
 configs =  load_app_configs()
 
@@ -99,43 +97,3 @@ def make_views(*, model, app_label, model_name):
         view.model_name = model_name
 
     return L, D, C, U, X
-
-
-# ---------------------------
-# URL GENERATION
-# ---------------------------
-def generate():
-    global crud_urlpatterns
-
-    configs = load_app_configs()
-
-    for app_label, config in configs.items():
-
-        for model_name in config["model_names"]:
-
-            model = apps.get_model(app_label, model_name)
-
-            ListV, DetailV, CreateV, UpdateV, DeleteV = make_views(
-                model=model,
-                app_label=app_label,
-                model_name=model_name,
-            )
-
-            base = f"{app_label.lower()}/{model_name.lower()}"
-
-            crud_urlpatterns += [
-                path(f"{base}/", ListV.as_view(),
-                     name=f"{app_label}_{model_name}_list"),
-
-                path(f"{base}/create/", CreateV.as_view(),
-                     name=f"{app_label}_{model_name}_create"),
-
-                path(f"{base}/<int:pk>/", DetailV.as_view(),
-                     name=f"{app_label}_{model_name}_detail"),
-
-                path(f"{base}/<int:pk>/update/", UpdateV.as_view(),
-                     name=f"{app_label}_{model_name}_update"),
-
-                path(f"{base}/<int:pk>/delete/", DeleteV.as_view(),
-                     name=f"{app_label}_{model_name}_delete"),
-            ]
