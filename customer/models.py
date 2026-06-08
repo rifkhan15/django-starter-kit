@@ -24,9 +24,13 @@ class Contact(BaseModel):
         return self.name
     
 class Inquiry(BaseModel):
-    company = models.ForeignKey(Company, on_delete=models.PROTECT, null=True, blank=True)
     contact = models.ForeignKey(Contact, on_delete=models.PROTECT, verbose_name='Inquired by (contact name)')
+    company = models.ForeignKey(Company, on_delete=models.PROTECT, null=True, blank=True, editable=False)
     inquiry_date = models.DateField()
+
+    def save(self, *args, **kwargs):
+        self.company = self.contact.company
+        super().save(*args, **kwargs)
     
     @property
     def inquiry_number(self):
