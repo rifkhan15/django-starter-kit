@@ -17,7 +17,7 @@ class Contact(BaseModel):
     name = models.CharField(max_length=150, unique=True)
     contact_number = models.CharField(max_length=30, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
-    company = models.ForeignKey(Company, on_delete=models.PROTECT, blank=True, null=True, related_name='contacts')
+    company = models.ForeignKey(Company, on_delete=models.PROTECT, blank=True, null=True)
     designation = models.CharField(max_length=150, blank=True, null=True)
     
     def __str__(self):
