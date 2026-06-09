@@ -21,7 +21,7 @@ class Contact(BaseModel):
     designation = models.CharField(max_length=150, blank=True, null=True)
     
     def __str__(self):
-        return self.name
+        return  f"{self.name} - {self.company}" if self.company else self.name
     
 class Inquiry(BaseModel):
     contact = models.ForeignKey(Contact, on_delete=models.PROTECT, verbose_name='Inquired by (contact name)')

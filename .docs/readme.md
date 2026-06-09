@@ -6,5 +6,6 @@
             "model_names": ["Order", "Customer"]
         }
     - app_config is the main source for automatic creation of view and crud navs. crud navs are made in crud/context_processors.py.
+- defind inlineformset in indivual forms.py (e.g. customer/forms.py)
 - user management must be prformed via django admin/ portal. the login app is a basic code for login, logout functionality.
 - dashboard app can be coded accroding to business requirement.
