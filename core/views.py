@@ -8,8 +8,8 @@ from django.views.generic import (
     DeleteView,
 )
 
-from crud.mixins import ContextMixin, ChildrenMixin
-from crud.config_loader import load_app_configs
+from core.mixins import ContextMixin, ChildrenMixin
+from core.config_loader import load_app_configs
 
 
 configs = load_app_configs()

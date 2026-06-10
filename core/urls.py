@@ -1,13 +1,13 @@
 
 from django.urls import path
 from django.apps import apps
-from crud.config_loader import load_app_configs
-from crud.views import make_views
+from core.config_loader import load_app_configs
+from core.views import make_views
 
-crud_urlpatterns = []
+core_urlpatterns = []
 
-def generate_crud_urls():
-    global crud_urlpatterns
+def generate_core_urls():
+    global core_urlpatterns
 
     configs = load_app_configs()
 
@@ -25,7 +25,7 @@ def generate_crud_urls():
 
             base = f"{app_label.lower()}/{model_name.lower()}"
 
-            crud_urlpatterns += [
+            core_urlpatterns += [
                 path(f"{base}/", ListV.as_view(),
                      name=f"{app_label}_{model_name}_list"),
 

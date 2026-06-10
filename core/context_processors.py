@@ -53,7 +53,7 @@ def formset_labels(request):
     }
 
 #generate list of nav items using model list on app_configs.
-def crud_menu(request):
+def core_menu(request):
     menu = []
 
     configs = load_app_configs()
@@ -85,5 +85,5 @@ def crud_menu(request):
             })
 
     return {
-        "crud_menu": menu,
+        "core_menu": menu,
     }

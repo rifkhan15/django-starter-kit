@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'login',
     'dashboard',
-    'crud',
+    'core',
     'customer',
 ]
 
@@ -65,8 +65,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'crud.context_processors.crud_menu',
-                'crud.context_processors.formset_labels',
+                'core.context_processors.core_menu',
+                'core.context_processors.formset_labels',
             ],
         },
     },

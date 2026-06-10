@@ -1,5 +1,5 @@
 from django.db import models
-from crud.models import BaseModel
+from core.models import BaseModel
 
 class Company(BaseModel):
     company_name = models.CharField(max_length=200, unique=True)
