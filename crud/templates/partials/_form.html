@@ -11,7 +11,7 @@
     {% endfor %}
   {% endif %}
 
-  <button type="submit">{% if formset %}Save{% else %}Add items{% endif %}</button>
+  <button type="submit">{% if formset %}Save{% else %}Add {{ formset_verbose_name_plural }}{% endif %}</button>
 
   <a href="javascript:history.back()">Cancel</a>
 </form>
