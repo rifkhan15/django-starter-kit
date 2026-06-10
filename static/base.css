@@ -14,12 +14,7 @@ body {
   color: #ffffff;
 }
 
-.sidebar-header {
-    padding-left: 20px;
-}
-
-.user-name {
-    color: #b3b3b3;
+.user-info {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -88,20 +83,5 @@ body {
   flex: 1;
   /* height: 100vh; */
   overflow: auto;
-}
-
-.sidebar-footer {
-    padding-bottom: 20px;
-    margin-top: auto;
-}
-
-.sidebar-footer p {
-    margin: 0 0 0 20px;
-    font-weight: lighter;
-    font-size: small;
-    color: #b3b3b3;
-}
-
-.main {
     margin-left: 15px;
 }

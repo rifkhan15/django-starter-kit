@@ -11,19 +11,16 @@
 
 <body>
     <div class="sidebar">
-        <div class="sidebar-header">
-            <div class="user-name">
-                <p>{% if user.username %}User: {{ user.username }}{% else %}John Walter{% endif %}</p>
-                <button type="submit" class="logout-button" form="login-form">Logout</button>
-                <form id="login-form" method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                </form>
-            </div>
+
+        <div class="user-info">
+            <p>{% if user.username %}User: {{ user.username }}{% else %}Tom Walter{% endif %}</p>
+            <button type="submit" class="logout-button" form="login-form">Logout</button>
+        </div>
+        <div class="clinet-branding">
             <h1>your brand</h1>
             <h2>Client and Inquiry Management Portal</h2>
             <hr>
         </div>
-
         <nav>
             <ul>
                 <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
@@ -33,19 +30,20 @@
             </ul>
         </nav>
 
-
         <div class="sidebar-footer">
             <hr>
             <p>Powerd by WEBDESK</p>
             <p>Operations Management Solution</p>
         </div>
+    </div>
+
+        <div class="main">
+            {% block content %}
+            {% endblock %}
+        </div>
 
     </div>
 
-    <div class="main">
-        {% block content %}
-        {% endblock %}
-    </div>
 </body>
 
 </html>
