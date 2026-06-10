@@ -5,7 +5,7 @@ body {
 }
 
 .sidebar {
-  width: 250px;
+  width: 260px;
   /* height: 100vh; */
   display: flex;
   flex-direction: column;
@@ -15,48 +15,44 @@ body {
 }
 
 .user-info {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.user-name button {
-  background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
-}
-
-/* .sidebar-header p {
-    margin-top: 5px;
     color: #b3b3b3;
     display: flex;
     align-items: center;
     justify-content: space-between;
-} */
-
-.user-name button {
-  padding: 0 3px;
-  margin: 0;
-  font-size: smaller;
+    margin: 4px 8px;
 }
 
-.sidebar-header h1 {
-    margin-top: 0;
+.user-info p {
+    margin: 0;
+}
+
+.user-info button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: small;
+  color: inherit;
+  cursor: pointer;
+}
+
+.client-branding {
+    margin-left: 25px;
+}
+
+.client-branding h1{
     margin-bottom: 0;
 }
 
-.sidebar-header h2 {
-    font-size: small;
+.client-branding h2{
+    font-size: smaller;
     font-weight: lighter;
-    margin-top: 10px;
+    margin-top: 4px;
     margin-bottom: 0;
 }
 
-.sidebar hr {
-    margin-top: 5px;
+.client-branding hr {
+    margin-top: 2px;
 }
 
 .sidebar nav {
@@ -77,6 +73,20 @@ body {
 .sidebar nav a {
     text-decoration: none;
     color: inherit;
+}
+
+.sidebar-footer {
+    margin: auto 0 20px 0;
+    color: #b3b3b3;
+    font-size: small;
+}
+
+.sidebar-footer hr {
+    margin-bottom: 2px;
+}
+
+.sidebar-footer p {
+    margin: 0 8px;
 }
 
 .main {
