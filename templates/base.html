@@ -1,17 +1,51 @@
-<nav>
-    <a href="{% url 'dashboard' %}">Dashboard</a>
-    {% for item in crud_menu %}
-    | <a href="{% url item.list_url %}">{{ item.model_title }}</a>
-    {% endfor %}
-</nav>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>webdesk</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="user-name">
+                <p>{% if user.username %}User: {{ user.username }}{% else %}John Walter{% endif %}</p>
+                <button type="submit" class="logout-button" form="login-form">Logout</button>
+                <form id="login-form" method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                </form>
+            </div>
+            <h1>your brand</h1>
+            <h2>Client and Inquiry Management Portal</h2>
+            <hr>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                {% for item in crud_menu %}
+                <li><a href="{% url item.list_url %}">{{ item.model_title }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
 
 
-<p>User: {{ user.username }} <button type="submit" form="login-form">Logout</button></p>
-<hr>
+        <div class="sidebar-footer">
+            <hr>
+            <p>Powerd by WEBDESK</p>
+            <p>Operations Management Solution</p>
+        </div>
 
-<form id="login-form" method="post" action="{% url 'logout' %}">
-    {% csrf_token %}
-</form>
+    </div>
 
-{% block content %}
-{% endblock %}
+    <div class="main">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+
+</html>

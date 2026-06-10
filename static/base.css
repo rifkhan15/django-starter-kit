@@ -1,0 +1,107 @@
+body {
+  display: flex;
+  height: 100vh;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.sidebar {
+  width: 250px;
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.sidebar-header {
+    padding-left: 20px;
+}
+
+.user-name {
+    color: #b3b3b3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-name button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* .sidebar-header p {
+    margin-top: 5px;
+    color: #b3b3b3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+} */
+
+.user-name button {
+  padding: 0 3px;
+  margin: 0;
+  font-size: smaller;
+}
+
+.sidebar-header h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.sidebar-header h2 {
+    font-size: small;
+    font-weight: lighter;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.sidebar hr {
+    margin-top: 5px;
+}
+
+.sidebar nav {
+    margin: 30px 0 10px 40px;
+}
+
+.sidebar nav ul {
+  /* display: flex; */
+  list-style: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar nav ul li {
+    margin-bottom: 10px;
+}
+.sidebar nav a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.main {
+  flex: 1;
+  /* height: 100vh; */
+  overflow: auto;
+}
+
+.sidebar-footer {
+    padding-bottom: 20px;
+    margin-top: auto;
+}
+
+.sidebar-footer p {
+    margin: 0 0 0 20px;
+    font-weight: lighter;
+    font-size: small;
+    color: #b3b3b3;
+}
+
+.main {
+    margin-left: 15px;
+}
