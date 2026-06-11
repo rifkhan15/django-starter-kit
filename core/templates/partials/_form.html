@@ -1,14 +1,27 @@
 <form method="post">
   {% csrf_token %}
 
-  {{ form.as_p }}
+
+  {% for field in form %}
+  <p>
+    {{ field.label_tag }}
+    {{ field }}
+    {% if app_label == 'customer' and field.label == 'Company name' %}
+    Not a company? <a href="{% url 'customer_Contact_create' %}">click here</a> to add individual contact
+    {% endif %}
+    {{ field.errors }}
+  </p>
+  {% endfor %}
+
+
+  <!-- {{ form.as_p }} -->
 
   {% if formset %}
-    {{ formset.management_form }}
+  {{ formset.management_form }}
 
-    {% for f in formset %}
-      {{ f.as_p }}
-    {% endfor %}
+  {% for f in formset %}
+  {{ f.as_p }}
+  {% endfor %}
   {% endif %}
 
   <button type="submit">{% if formset %}Save{% else %}Add {{ formset_verbose_name_plural }}{% endif %}</button>
