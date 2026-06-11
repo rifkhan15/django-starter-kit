@@ -1,13 +1,12 @@
 <form method="post">
   {% csrf_token %}
 
-
   {% for field in form %}
-  <p>
+  <p class="{% if model_name == 'Contact' and field.label == 'Company' %}{{ request.GET.hide_company }}{% endif %}">
     {{ field.label_tag }}
     {{ field }}
     {% if app_label == 'customer' and field.label == 'Company name' %}
-    Not a company? <a href="{% url 'customer_Contact_create' %}">click here</a> to add individual contact
+    <span class="info-text">Not a company? <a href="{% url 'customer_Contact_create' %}?hide_company=no-display">click here</a> to add individual contact.</span
     {% endif %}
     {{ field.errors }}
   </p>

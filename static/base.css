@@ -96,3 +96,11 @@ body {
   overflow: auto;
   margin-left: 16px;
 }
+
+.no-display {
+    display: none;
+}
+
+.info-text {
+    color: darkmagenta;
+}
