@@ -4,10 +4,13 @@
 
 <h3>{{ model_title_plural }}</h3>
 
+{% include 'partials/_search_form.html' %}
+{% include 'partials/_pagination.html' %}
+
 <ol>
-{% for obj in object_list %}
-<li><a href="{% url detail_url obj.pk %}">{{ obj }}</a></li>
-{% endfor %}
+    {% for obj in object_list %}
+    <li><a href="{% url detail_url obj.pk %}">{{ obj }}</a></li>
+    {% endfor %}
 </ol>
 <a href="{% url create_url %}"><strong>+</strong> new {{ model_verbose_name }}</a>
 

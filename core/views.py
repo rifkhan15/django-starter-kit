@@ -1,5 +1,6 @@
 from importlib import import_module
 
+from django.db.models import Q
 from django.views.generic import (
     ListView,
     DetailView,
@@ -24,28 +25,64 @@ def get_formset_class(app_label, model_name):
 
 
 # ---------------------------
+# BASE VIEW
+# ---------------------------
+class BaseView:
+    paginate_by = 25
+
+    def get_queryset(self):
+        return self.model.objects.all()
+
+    def get_search_fields(self):
+        return getattr(self.model, "SEARCH_FIELDS", [])
+
+    def apply_search(self, queryset):
+
+        q = self.request.GET.get("q", "").strip()
+
+        if not q:
+            return queryset
+
+        search_fields = self.get_search_fields()
+
+        if not search_fields:
+            return queryset
+
+        filters = Q()
+
+        for field in search_fields:
+            filters |= Q(**{f"{field}__icontains": q})
+
+        return queryset.filter(filters)
+
+    def get_common_context_data(self):
+        return {
+            "search_query": self.request.GET.get("q", ""),
+        }
+
+
+# ---------------------------
 # VIEW FACTORY
 # ---------------------------
 def make_views(*, model, app_label, model_name):
 
     # ---------------- LIST VIEW ----------------
-    class L(ContextMixin, ListView):
+    class L(BaseView, ContextMixin, ListView):
         template_name = "list.html"
 
         def get_queryset(self):
-            return model.objects.all()
+            qs = super().get_queryset()
+            return self.apply_search(qs)
 
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
             ctx.update(self.get_common_context())
+            ctx.update(self.get_common_context_data())
             return ctx
 
     # ---------------- DETAIL VIEW ----------------
-    class D(ChildrenMixin, ContextMixin, DetailView):
+    class D(BaseView, ChildrenMixin, ContextMixin, DetailView):
         template_name = "detail.html"
-
-        def get_queryset(self):
-            return model.objects.all()
 
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
@@ -54,12 +91,9 @@ def make_views(*, model, app_label, model_name):
             return ctx
 
     # ---------------- CREATE VIEW ----------------
-    class C(ContextMixin, CreateView):
+    class C(BaseView, ContextMixin, CreateView):
         template_name = "create.html"
         fields = "__all__"
-
-        def get_queryset(self):
-            return model.objects.all()
 
         def get_success_url(self):
 
@@ -78,12 +112,9 @@ def make_views(*, model, app_label, model_name):
             return ctx
 
     # ---------------- UPDATE VIEW ----------------
-    class U(ContextMixin, UpdateView):
+    class U(BaseView, ContextMixin, UpdateView):
         template_name = "update.html"
         fields = "__all__"
-
-        def get_queryset(self):
-            return model.objects.all()
 
         def get_success_url(self):
             return f"/{self.app_label.lower()}/{self.model_name.lower()}/"
@@ -136,11 +167,8 @@ def make_views(*, model, app_label, model_name):
             )
 
     # ---------------- DELETE VIEW ----------------
-    class X(ContextMixin, DeleteView):
+    class X(BaseView, ContextMixin, DeleteView):
         template_name = "confirm_delete.html"
-
-        def get_queryset(self):
-            return model.objects.all()
 
         def get_success_url(self):
             return f"/{self.app_label.lower()}/{self.model_name.lower()}/"
