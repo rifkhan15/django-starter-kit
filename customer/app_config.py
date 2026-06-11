@@ -1,6 +1,6 @@
 APP_CONFIG = {
     "model_names": [
-        "Company",
+        "Customer",
         "Contact",
         "Inquiry",
         "InquiryItem",

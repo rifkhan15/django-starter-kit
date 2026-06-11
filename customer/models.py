@@ -1,7 +1,7 @@
 from django.db import models
 from core.models import BaseModel
 
-class Company(BaseModel):
+class Customer(BaseModel):
     company_name = models.CharField(max_length=200, unique=True)
     company_type = models.CharField(max_length=250, blank=True, null=True)
     contact_number = models.CharField(max_length=30, blank=True, null=True)
@@ -9,15 +9,12 @@ class Company(BaseModel):
 
     def __str__(self):
         return self.company_name
-    
-    class Meta:
-        verbose_name_plural = 'Companies'
 
 class Contact(BaseModel):
     name = models.CharField(max_length=150, unique=True)
     contact_number = models.CharField(max_length=30, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
-    company = models.ForeignKey(Company, on_delete=models.PROTECT, blank=True, null=True)
+    company = models.ForeignKey(Customer, on_delete=models.PROTECT, blank=True, null=True)
     designation = models.CharField(max_length=150, blank=True, null=True)
     
     def __str__(self):
@@ -25,7 +22,7 @@ class Contact(BaseModel):
     
 class Inquiry(BaseModel):
     contact = models.ForeignKey(Contact, on_delete=models.PROTECT, verbose_name='Inquired by (contact name)')
-    company = models.ForeignKey(Company, on_delete=models.PROTECT, null=True, blank=True, editable=False)
+    company = models.ForeignKey(Customer, on_delete=models.PROTECT, null=True, blank=True, editable=False)
     inquiry_date = models.DateField()
 
     def save(self, *args, **kwargs):
