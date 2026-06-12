@@ -2,7 +2,7 @@
   {% csrf_token %}
 
   {% for field in form %}
-  <p class="{% if model_name == 'Contact' and field.label == 'Company' %}{{ request.GET.hide_company }}{% endif %}">
+  <p class="{% if field.label == 'Company' %}{{ request.GET.hide_company }}{% endif %}">
     {{ field.label_tag }}
     {{ field }}
     {% if app_label == 'customer' and field.label == 'Company name' %}
@@ -12,7 +12,6 @@
   </p>
   {% endfor %}
 
-customer form
   <!-- {{ form.as_p }} --> 
 
   {% if formset %}

@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
+{% load template_utils %}
 
 {% block content %}
 
 <h3>Creating new {{ model_verbose_name }}</h3>
 
-{% include app_form|default:core_form %}
+{% existing_template app_form core_form as partial %}
+
+{% include partial %}
 
 {% endblock %}
