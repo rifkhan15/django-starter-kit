@@ -23,21 +23,22 @@ def generate_core_urls():
                 model_name=model_name,
             )
 
-            base = f"{app_label.lower()}/{model_name.lower()}"
+            basepath = f"{app_label.lower()}/{model_name.lower()}"
+            basename = f"{app_label.lower()}_{model_name.lower()}"
 
             core_urlpatterns += [
-                path(f"{base}/", ListV.as_view(),
-                     name=f"{app_label}_{model_name}_list"),
+                path(f"{basepath}/", ListV.as_view(),
+                     name=f"{basename}_list"),
 
-                path(f"{base}/create/", CreateV.as_view(),
-                     name=f"{app_label}_{model_name}_create"),
+                path(f"{basepath}/create/", CreateV.as_view(),
+                     name=f"{basename}_create"),
 
-                path(f"{base}/<int:pk>/", DetailV.as_view(),
-                     name=f"{app_label}_{model_name}_detail"),
+                path(f"{basepath}/<int:pk>/", DetailV.as_view(),
+                     name=f"{basename}_detail"),
 
-                path(f"{base}/<int:pk>/update/", UpdateV.as_view(),
-                     name=f"{app_label}_{model_name}_update"),
+                path(f"{basepath}/<int:pk>/update/", UpdateV.as_view(),
+                     name=f"{basename}_update"),
 
-                path(f"{base}/<int:pk>/delete/", DeleteV.as_view(),
-                     name=f"{app_label}_{model_name}_delete"),
+                path(f"{basepath}/<int:pk>/delete/", DeleteV.as_view(),
+                     name=f"{basename}_delete"),
             ]

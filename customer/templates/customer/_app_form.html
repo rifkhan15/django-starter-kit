@@ -6,7 +6,7 @@
     {{ field.label_tag }}
     {{ field }}
     {% if app_label == 'customer' and field.label == 'Company name' %}
-    <span class="info-text">Not a company? <a href="{% url 'customer_Contact_create' %}?hide_company=no-display">click here</a> to add individual contact.</span>
+    <span class="info-text">Not a company? <a href="{% url 'customer_contact_create' %}?hide_company=no-display">click here</a> to add individual contact.</span>
     {% endif %}
     {{ field.errors }}
   </p>

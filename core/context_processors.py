@@ -27,7 +27,7 @@ def get_inline_formset_models(app_label):
 
     return result
 
-#expose th module name of inlineformset (child model) which was got from code abov
+#expose the module name of inlineformset (child model) which was got from code abov
 def formset_labels(request):
 
     resolver = getattr(request, "resolver_match", None)
@@ -72,7 +72,7 @@ def core_menu(request):
     for app_name, config in configs.items():
 
         for model_name in config["model_names"]:
-
+            model_name_lower = model_name.lower()
             if model_name in excluded_models:
                 continue
 
@@ -81,7 +81,7 @@ def core_menu(request):
             menu.append({
                 "app_name": app_name.title(),
                 "model_title": model._meta.verbose_name_plural.title(),
-                "list_url": f"{app_name}_{model_name}_list",
+                "list_url": f"{app_name}_{model_name_lower}_list",
             })
 
     return {

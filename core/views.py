@@ -109,8 +109,8 @@ def make_views(*, model, app_label, model_name):
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
             ctx.update(self.get_common_context())
-            ctx["form_partial_base"] = "partials/_form.html"
-            ctx["form_partial_app"] = f"{self.app_label.lower()}/_app_form.html"
+            ctx["core_form"] = "core/partials/_core_form.html"
+            ctx["app_form"] = f"{self.app_label.lower()}/_app_form.html"
             return ctx
 
     # ---------------- UPDATE VIEW ----------------
