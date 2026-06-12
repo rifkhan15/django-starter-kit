@@ -101,6 +101,14 @@ body {
     display: none;
 }
 
-.info-text {
-    color: darkmagenta;
+.spcl-txt-clr {
+    color: darkviolet;
+}
+
+.sml-txt {
+    font-size: small;
+}
+
+.mute-clr, .mute-clr a {
+    color: #666666;
 }

@@ -4,14 +4,25 @@
 
 <h3>{{ model_title_plural }}</h3>
 
+
 {% include 'partials/_search_form.html' %}
 {% include 'partials/_pagination.html' %}
 
-<ol>
+{% if not search_query %}
+<p><a href="{% url create_url %}"><strong>+</strong> new {{ model_verbose_name }}</a></p>
+{% endif %}
+<ol class="{% if search_query %}spcl-txt-clr{% endif %}">
     {% for obj in object_list %}
     <li><a href="{% url detail_url obj.pk %}">{{ obj }}</a></li>
     {% endfor %}
 </ol>
-<a href="{% url create_url %}"><strong>+</strong> new {{ model_verbose_name }}</a>
+
+{% for obj in object_list %}
+    {% if obj.company_name == None %}
+    {% for contact in obj.contact_set.all %}
+        {{ contact }} 
+    {% endfor %}
+    {% endif %}
+{% endfor %}
 
 {% endblock %}

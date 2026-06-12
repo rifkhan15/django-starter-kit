@@ -55,7 +55,7 @@ class BaseView:
 
         return queryset.filter(filters)
 
-    def get_common_context_data(self):
+    def get_search_context(self):
         return {
             "search_query": self.request.GET.get("q", ""),
         }
@@ -77,7 +77,7 @@ def make_views(*, model, app_label, model_name):
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
             ctx.update(self.get_common_context())
-            ctx.update(self.get_common_context_data())
+            ctx.update(self.get_search_context())
             return ctx
 
     # ---------------- DETAIL VIEW ----------------
