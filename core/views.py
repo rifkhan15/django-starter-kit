@@ -68,7 +68,7 @@ def make_views(*, model, app_label, model_name):
 
     # ---------------- LIST VIEW ----------------
     class L(BaseView, ContextMixin, ListView):
-        template_name = "list.html"
+        template_name = "core/list.html"
 
         def get_queryset(self):
             qs = super().get_queryset()
@@ -82,7 +82,7 @@ def make_views(*, model, app_label, model_name):
 
     # ---------------- DETAIL VIEW ----------------
     class D(BaseView, ChildrenMixin, ContextMixin, DetailView):
-        template_name = "detail.html"
+        template_name = "core/detail.html"
 
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
@@ -92,7 +92,7 @@ def make_views(*, model, app_label, model_name):
 
     # ---------------- CREATE VIEW ----------------
     class C(BaseView, ContextMixin, CreateView):
-        template_name = "create.html"
+        template_name = "core/create.html"
         fields = "__all__"
 
         def get_success_url(self):
@@ -109,11 +109,13 @@ def make_views(*, model, app_label, model_name):
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
             ctx.update(self.get_common_context())
+            ctx["form_partial_base"] = "partials/_form.html"
+            ctx["form_partial_app"] = f"{self.app_label.lower()}/_app_form.html"
             return ctx
 
     # ---------------- UPDATE VIEW ----------------
     class U(BaseView, ContextMixin, UpdateView):
-        template_name = "update.html"
+        template_name = "core/update.html"
         fields = "__all__"
 
         def get_success_url(self):
@@ -168,7 +170,7 @@ def make_views(*, model, app_label, model_name):
 
     # ---------------- DELETE VIEW ----------------
     class X(BaseView, ContextMixin, DeleteView):
-        template_name = "confirm_delete.html"
+        template_name = "core/confirm_delete.html"
 
         def get_success_url(self):
             return f"/{self.app_label.lower()}/{self.model_name.lower()}/"

@@ -1,0 +1,17 @@
+<form method="post">
+  {% csrf_token %}
+
+  {{ form.as_p }} 
+
+  {% if formset %}
+  {{ formset.management_form }}
+
+  {% for f in formset %}
+  {{ f.as_p }}
+  {% endfor %}
+  {% endif %}
+
+  <button type="submit">{% if formset %}Save{% else %}Add {{ formset_verbose_name_plural }}{% endif %}</button>
+
+  <a href="javascript:history.back()">Cancel</a>
+</form>
