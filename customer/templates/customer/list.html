@@ -16,6 +16,11 @@
     {% for obj in object_list %}
     <li><a href="{% url detail_url obj.pk %}">{{ obj }}</a></li>
     {% endfor %}
+    {% if model_name == 'Customer' %}
+    {% for contact in contacts_no_company %}
+    <li><a href="{% url 'customer_contact_detail' contact.pk %}">{{ contact }}</a></li>
+    {% endfor %}
+    {% endif %}
 </ol>
 
 {% endblock %}

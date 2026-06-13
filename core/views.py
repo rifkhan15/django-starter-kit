@@ -9,7 +9,7 @@ from django.views.generic import (
     DeleteView,
 )
 
-from core.mixins import ChildrenMixin
+from core.mixins import ChildrenMixin, ListContextMixin
 from core.config_loader import load_app_configs
 
 
@@ -85,7 +85,7 @@ class BaseView:
 def make_views(*, model, app_label, model_name):
 
     # ---------------- LIST VIEW ----------------
-    class L(BaseView, ListView):
+    class L(BaseView, ListContextMixin, ListView):
         paginate_by = 15
 
         def get_template_names(self):
@@ -101,6 +101,7 @@ def make_views(*, model, app_label, model_name):
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
             ctx.update(self.get_search_context())
+            ctx.update(self.get_contact_context())
             return ctx
 
     # ---------------- DETAIL VIEW ----------------

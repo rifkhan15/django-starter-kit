@@ -1,3 +1,4 @@
+from customer.models import Contact
 # ---------------------------
 # CHILDREN MIXIN
 # ---------------------------
@@ -24,3 +25,14 @@ class ChildrenMixin:
             })
 
         return children
+
+# ---------------------------
+# EXTRA CONTENT MIXIN
+# ---------------------------
+class ListContextMixin:
+    def get_contact_context(self):
+        return {
+            "contacts_no_company": Contact.objects.filter(
+                company__isnull=True
+            )
+        }

@@ -3,6 +3,11 @@
 {% block content %}
 
 <h3>{{ object }}</h3>
+
+<a href="{% url update_url object.pk %}">Edit</a>
+<a href="{% url delete_url object.pk %}">Delete</a>
+<a href="javascript:history.back()">Close</a>
+
 <ul>
     {% for field_name, verbose_name, value in object.field_attrs %}
     <li>
@@ -26,7 +31,5 @@
 
 </ul>
 
-<a href="{% url update_url object.pk %}">Edit</a>
-<a href="{% url delete_url object.pk %}">Delete</a>
-<a href="{% url list_url %}">Close</a>
+
 {% endblock %}
