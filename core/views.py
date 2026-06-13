@@ -105,7 +105,12 @@ def make_views(*, model, app_label, model_name):
 
     # ---------------- DETAIL VIEW ----------------
     class D(BaseView, ChildrenMixin, DetailView):
-        template_name = "core/detail.html"
+
+        def get_template_names(self):
+            return [
+                f"{self.app_label}/detail.html",
+                "core/detail.html",
+            ]
 
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
@@ -114,8 +119,13 @@ def make_views(*, model, app_label, model_name):
 
     # ---------------- CREATE VIEW ----------------
     class C(BaseView,  CreateView):
-        template_name = "core/create.html"
         fields = "__all__"
+
+        def get_template_names(self):
+            return [
+                f"{self.app_label}/create.html",
+                "core/create.html",
+            ]
 
         def get_success_url(self):
 
@@ -130,8 +140,13 @@ def make_views(*, model, app_label, model_name):
 
     # ---------------- UPDATE VIEW ----------------
     class U(BaseView, UpdateView):
-        template_name = "core/update.html"
         fields = "__all__"
+
+        def get_template_names(self):
+            return [
+                f"{self.app_label}/update.html",
+                "core/update.html",
+            ]
 
         def get_success_url(self):
             return f"/{self.app_label.lower()}/{self.model_name.lower()}/"
@@ -184,7 +199,12 @@ def make_views(*, model, app_label, model_name):
 
     # ---------------- DELETE VIEW ----------------
     class X(BaseView, DeleteView):
-        template_name = "core/confirm_delete.html"
+
+        def get_template_names(self):
+            return [
+                f"{self.app_label}/confirm_delete.html",
+                "core/confirm_delete.html",
+            ]
 
         def get_success_url(self):
             return f"/{self.app_label.lower()}/{self.model_name.lower()}/"
