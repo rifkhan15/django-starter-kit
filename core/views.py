@@ -9,12 +9,11 @@ from django.views.generic import (
     DeleteView,
 )
 
-from core.mixins import ChildrenMixin
+from core.mixins import TemplateMixin, ChildrenMixin
 from core.config_loader import load_app_configs
 
 
 configs = load_app_configs()
-
 
 def get_formset_class(app_label, model_name):
     try:
@@ -23,10 +22,6 @@ def get_formset_class(app_label, model_name):
     except (ModuleNotFoundError, AttributeError):
         return None
 
-
-# ---------------------------
-# BASE VIEW
-# ---------------------------
 class BaseView:
     def get_common_context(self):
             model = self.model
@@ -47,8 +42,11 @@ class BaseView:
                 "delete_url": f"{self.app_label}_{model_name_lower}_delete",
             }
 
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx.update(self.get_common_context())
+        return ctx
 
-    paginate_by = 25
 
     def get_queryset(self):
         return self.model.objects.all()
@@ -89,6 +87,7 @@ def make_views(*, model, app_label, model_name):
     # ---------------- LIST VIEW ----------------
     class L(BaseView, ListView):
         template_name = "core/list.html"
+        paginate_by = 15
 
         def get_queryset(self):
             qs = super().get_queryset()
@@ -96,7 +95,6 @@ def make_views(*, model, app_label, model_name):
 
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
-            ctx.update(self.get_common_context())
             ctx.update(self.get_search_context())
             return ctx
 
@@ -106,12 +104,11 @@ def make_views(*, model, app_label, model_name):
 
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
-            ctx.update(self.get_common_context())
             ctx["children"] = self.get_children(self.object)
             return ctx
 
     # ---------------- CREATE VIEW ----------------
-    class C(BaseView, CreateView):
+    class C(BaseView, TemplateMixin, CreateView):
         template_name = "core/create.html"
         fields = "__all__"
 
@@ -125,13 +122,6 @@ def make_views(*, model, app_label, model_name):
                 )
 
             return f"/{self.app_label.lower()}/{self.model_name.lower()}/"
-
-        def get_context_data(self, **kwargs):
-            ctx = super().get_context_data(**kwargs)
-            ctx.update(self.get_common_context())
-            ctx["core_form"] = "core/partials/_form.html"
-            ctx["app_form"] = f"{self.app_label.lower()}/partials/_form.html"
-            return ctx
 
     # ---------------- UPDATE VIEW ----------------
     class U(BaseView, UpdateView):
@@ -160,7 +150,6 @@ def make_views(*, model, app_label, model_name):
                         instance=self.object,
                     )
 
-            ctx.update(self.get_common_context())
             return ctx
 
         def form_valid(self, form):
@@ -194,11 +183,6 @@ def make_views(*, model, app_label, model_name):
 
         def get_success_url(self):
             return f"/{self.app_label.lower()}/{self.model_name.lower()}/"
-
-        def get_context_data(self, **kwargs):
-            ctx = super().get_context_data(**kwargs)
-            ctx.update(self.get_common_context())
-            return ctx
 
     # ---------------- ATTACH CLASS ATTRIBUTES ----------------
     for view in (L, D, C, U, X):
