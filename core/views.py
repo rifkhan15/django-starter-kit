@@ -9,7 +9,7 @@ from django.views.generic import (
     DeleteView,
 )
 
-from core.mixins import ContextMixin, ChildrenMixin
+from core.mixins import ChildrenMixin
 from core.config_loader import load_app_configs
 
 
@@ -28,6 +28,26 @@ def get_formset_class(app_label, model_name):
 # BASE VIEW
 # ---------------------------
 class BaseView:
+    def get_common_context(self):
+            model = self.model
+
+            model_name_lower = self.model_name.lower()
+
+            return {
+                "app_label": self.app_label,
+                "model_name": self.model_name,
+                "model_name_lower": model_name_lower,
+                "model_verbose_name": model._meta.verbose_name,
+                "model_title_plural": model._meta.verbose_name_plural.title(),
+
+                "list_url": f"{self.app_label}_{model_name_lower}_list",
+                "create_url": f"{self.app_label}_{model_name_lower}_create",
+                "detail_url": f"{self.app_label}_{model_name_lower}_detail",
+                "update_url": f"{self.app_label}_{model_name_lower}_update",
+                "delete_url": f"{self.app_label}_{model_name_lower}_delete",
+            }
+
+
     paginate_by = 25
 
     def get_queryset(self):
@@ -67,7 +87,7 @@ class BaseView:
 def make_views(*, model, app_label, model_name):
 
     # ---------------- LIST VIEW ----------------
-    class L(BaseView, ContextMixin, ListView):
+    class L(BaseView, ListView):
         template_name = "core/list.html"
 
         def get_queryset(self):
@@ -81,7 +101,7 @@ def make_views(*, model, app_label, model_name):
             return ctx
 
     # ---------------- DETAIL VIEW ----------------
-    class D(BaseView, ChildrenMixin, ContextMixin, DetailView):
+    class D(BaseView, ChildrenMixin, DetailView):
         template_name = "core/detail.html"
 
         def get_context_data(self, **kwargs):
@@ -91,7 +111,7 @@ def make_views(*, model, app_label, model_name):
             return ctx
 
     # ---------------- CREATE VIEW ----------------
-    class C(BaseView, ContextMixin, CreateView):
+    class C(BaseView, CreateView):
         template_name = "core/create.html"
         fields = "__all__"
 
@@ -114,7 +134,7 @@ def make_views(*, model, app_label, model_name):
             return ctx
 
     # ---------------- UPDATE VIEW ----------------
-    class U(BaseView, ContextMixin, UpdateView):
+    class U(BaseView, UpdateView):
         template_name = "core/update.html"
         fields = "__all__"
 
@@ -169,7 +189,7 @@ def make_views(*, model, app_label, model_name):
             )
 
     # ---------------- DELETE VIEW ----------------
-    class X(BaseView, ContextMixin, DeleteView):
+    class X(BaseView, DeleteView):
         template_name = "core/confirm_delete.html"
 
         def get_success_url(self):
