@@ -23,8 +23,8 @@ def get_inline_formset_models(app_label):
             parent_model = obj.fk.remote_field.model
             child_model = obj.model
 
-            result[parent_model.__name__] = child_model
-
+            result[parent_model._meta.model_name] = child_model
+            
     return result
 
 #expose the module name of inlineformset (child model) which was got from code abov

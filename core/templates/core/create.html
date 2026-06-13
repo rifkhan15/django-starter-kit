@@ -5,7 +5,10 @@
 <h3>Creating new {{ model_verbose_name }}</h3>
 
 <form method="post">
-  {% csrf_token %}
+{% csrf_token %}
+
+<button type="submit">{% if formset %}Save{% else %}Add {{ formset_verbose_name_plural }}{% endif %}</button>
+<a href="{% url list_url %}">Cancel</a>
 
   {{ form.as_p }} 
 
@@ -17,9 +20,6 @@
   {% endfor %}
   {% endif %}
 
-  <button type="submit">{% if formset %}Save{% else %}Add {{ formset_verbose_name_plural }}{% endif %}</button>
-
-  <a href="javascript:history.back()">Cancel</a>
 </form>
 
 {% endblock %}
