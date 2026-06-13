@@ -9,7 +9,7 @@ from django.views.generic import (
     DeleteView,
 )
 
-from core.mixins import TemplateMixin, ChildrenMixin
+from core.mixins import ChildrenMixin
 from core.config_loader import load_app_configs
 
 
@@ -86,8 +86,13 @@ def make_views(*, model, app_label, model_name):
 
     # ---------------- LIST VIEW ----------------
     class L(BaseView, ListView):
-        template_name = "core/list.html"
         paginate_by = 15
+
+        def get_template_names(self):
+            return [
+                f"{self.app_label}/list.html",
+                "core/list.html",
+            ]
 
         def get_queryset(self):
             qs = super().get_queryset()
@@ -108,7 +113,7 @@ def make_views(*, model, app_label, model_name):
             return ctx
 
     # ---------------- CREATE VIEW ----------------
-    class C(BaseView, TemplateMixin, CreateView):
+    class C(BaseView,  CreateView):
         template_name = "core/create.html"
         fields = "__all__"
 

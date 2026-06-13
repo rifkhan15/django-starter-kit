@@ -1,15 +1,3 @@
-
-# ---------------------------
-# CONTEXT MIXIN
-# ---------------------------
-
-class TemplateMixin:
-    def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs)
-        ctx["core_form"] = "core/partials/_form.html"
-        ctx["app_form"] = f"{self.app_label.lower()}/partials/_form.html"
-        return ctx
-
 # ---------------------------
 # CHILDREN MIXIN
 # ---------------------------
