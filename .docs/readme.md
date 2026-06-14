@@ -3,7 +3,7 @@
 - core app works as a fully automatic views and urlpattern generator.
 - once a new app is started, make an app_config.py file and define the app label, model names and extra_context as follows. 
         APP_CONFIG = {
-            "model_names": ["Order", "Customer"]
+            "modelclass_names": ["Order", "Customer"]
         }
     - app_config is the main source for automatic creation of view and core navs. core navs are made in core/context_processors.py.
 - default templates are in core/tempaltes/core. custom templates must be saved in same file name in app/templates/app_label. core/views will handle.

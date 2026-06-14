@@ -13,9 +13,11 @@ def generate_core_urls():
 
     for app_label, config in configs.items():
 
-        for model_name in config["model_names"]:
+        for mc_name in config["modelclass_names"]:
 
-            model = apps.get_model(app_label, model_name)
+            model = apps.get_model(app_label, mc_name)
+
+            model_name = model._meta.model_name  # ✅ correct Django source
 
             ListV, DetailV, CreateV, UpdateV, DeleteV = make_views(
                 model=model,
@@ -23,22 +25,13 @@ def generate_core_urls():
                 model_name=model_name,
             )
 
-            basepath = f"{app_label.lower()}/{model_name.lower()}"
-            basename = f"{app_label.lower()}_{model_name.lower()}"
+            basepath = f"{app_label.lower()}/{model_name}"
+            basename = f"{app_label.lower()}_{model_name}"
 
             core_urlpatterns += [
-                path(f"{basepath}/", ListV.as_view(),
-                     name=f"{basename}_list"),
-
-                path(f"{basepath}/create/", CreateV.as_view(),
-                     name=f"{basename}_create"),
-
-                path(f"{basepath}/<int:pk>/", DetailV.as_view(),
-                     name=f"{basename}_detail"),
-
-                path(f"{basepath}/<int:pk>/update/", UpdateV.as_view(),
-                     name=f"{basename}_update"),
-
-                path(f"{basepath}/<int:pk>/delete/", DeleteV.as_view(),
-                     name=f"{basename}_delete"),
+                path(f"{basepath}/", ListV.as_view(), name=f"{basename}_list"),
+                path(f"{basepath}/create/", CreateV.as_view(), name=f"{basename}_create"),
+                path(f"{basepath}/<int:pk>/", DetailV.as_view(), name=f"{basename}_detail"),
+                path(f"{basepath}/<int:pk>/update/", UpdateV.as_view(), name=f"{basename}_update"),
+                path(f"{basepath}/<int:pk>/delete/", DeleteV.as_view(), name=f"{basename}_delete"),
             ]

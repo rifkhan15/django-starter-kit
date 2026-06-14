@@ -71,8 +71,8 @@ def core_menu(request):
     # build menu
     for app_name, config in configs.items():
 
-        for model_name in config["model_names"]:
-            model_name_lower = model_name.lower()
+        for mc_name in config["modelclass_names"]:
+            model_name = mc_name.lower()
             if model_name in excluded_models:
                 continue
 
@@ -81,7 +81,7 @@ def core_menu(request):
             menu.append({
                 "app_name": app_name.title(),
                 "model_title": model._meta.verbose_name_plural.title(),
-                "list_url": f"{app_name}_{model_name_lower}_list",
+                "list_url": f"{app_name}_{model_name}_list",
             })
 
     return {
