@@ -9,7 +9,7 @@ from django.views.generic import (
     DeleteView,
 )
 
-from core.mixins import ChildrenMixin
+from core.mixins import ChildrenMixin, InlineFormsetLabelsMixin
 from core.config_loader import load_app_configs
 
 configs = load_app_configs()
@@ -117,7 +117,7 @@ def make_views(*, model, app_label, model_name):
             return ctx
 
     # ---------------- CREATE VIEW ----------------
-    class C(BaseView, CreateView):
+    class C(BaseView, InlineFormsetLabelsMixin, CreateView):
         fields = "__all__"
 
         def get_template_names(self):
@@ -127,12 +127,12 @@ def make_views(*, model, app_label, model_name):
             ]
 
         def get_success_url(self): 
-            if model_name == "inquiry": 
+            if self.has_formset: 
                 return (f"/{app_label}/" f"{model_name}/" f"{self.object.pk}/update/")
             return f"/{app_label}/{model_name}/"
 
     # ---------------- UPDATE VIEW ----------------
-    class U(BaseView, UpdateView):
+    class U(BaseView,InlineFormsetLabelsMixin, UpdateView):
         fields = "__all__"
 
         def get_template_names(self):
