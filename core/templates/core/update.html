@@ -5,10 +5,9 @@
 <h3>Editing {{ view.model_verbose_name }} "{{ object }}"</h3>
 
 <form method="post">
-   <button type="submit">{% if formset %}Save{% else %}Add {{ formset_verbose_name_plural }}{% endif %}</button>
-  <a href="javascript:history.back()">Cancel</a>
+  <button type="submit">Save</button>
 
-  {% csrf_token %}
+<a href="{% url list_url %}">Cancel</a>
 
   {{ form.as_p }} 
 
@@ -19,7 +18,7 @@
   {{ f.as_p }}
   {% endfor %}
   {% endif %}
- 
+
 </form>
 
 {% endblock %}

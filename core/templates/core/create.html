@@ -7,7 +7,14 @@
 <form method="post">
 {% csrf_token %}
 
-<button type="submit">{% if formset %}Save{% else %}Add {{ formset_verbose_name_plural }}{% endif %}</button>
+<button type="submit">
+  {% if has_formset %}
+  Save & Add {{ formset_verbose_name_plural }}
+  {% else %}
+  Save
+  {% endif %}
+</button>
+
 <a href="{% url list_url %}">Cancel</a>
 
   {{ form.as_p }} 

@@ -62,3 +62,8 @@ class InlineFormsetLabelsMixin:
 
     def has_formset(self):
         return self.get_inline_formset() is not None
+    
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx.update(self.get_formset_labels())
+        return ctx
