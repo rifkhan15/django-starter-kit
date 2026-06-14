@@ -127,12 +127,9 @@ def make_views(*, model, app_label, model_name):
             ]
 
         def get_success_url(self):
-            model_name = self.model._meta.model_name
-
             if self.has_formset():
-                return f"/{self.app_label}/{model_name}/{self.object.pk}/update/"
-
-            return f"/{self.app_label}/{model_name}/"
+                return f"/{app_label}/{model_name}/{self.object.pk}/update/"
+            return f"/{app_label}/{model_name}/"
 
     # ---------------- UPDATE VIEW ----------------
     class U(BaseView,InlineFormsetLabelsMixin, UpdateView):

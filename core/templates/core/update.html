@@ -5,7 +5,9 @@
 <h3>Editing {{ view.model_verbose_name }} "{{ object }}"</h3>
 
 <form method="post">
-  <button type="submit">Save</button>
+{% csrf_token %}
+
+<button type="submit">Save</button>
 
 <a href="{% url list_url %}">Cancel</a>
 
@@ -20,5 +22,6 @@
   {% endif %}
 
 </form>
+
 
 {% endblock %}
