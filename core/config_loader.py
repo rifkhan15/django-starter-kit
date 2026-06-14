@@ -13,5 +13,5 @@ def load_app_configs():
             configs[app.label] = module.APP_CONFIG
         except ImportError:
             pass
-
+    print(configs)
     return configs

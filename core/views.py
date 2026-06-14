@@ -7,7 +7,7 @@ from django.views.generic import (
     DeleteView,
 )
 
-from core.mixins import ChildrenMixin, InlineFormsetLabelsMixin
+from core.mixins import CommonLabelsMixin, ChildrenMixin, InlineFormsetLabelsMixin
 from core.config_loader import load_app_configs
 
 configs = load_app_configs()
@@ -15,28 +15,7 @@ configs = load_app_configs()
 # ---------------------------
 # BASE VIEW
 # ---------------------------
-class BaseView:
-    def get_common_context(self):
-        model = self.model
-        model_name = model._meta.model_name
-
-        return {
-            "app_label": self.app_label,
-            "model_name": model_name,
-            "model_verbose_name": model._meta.verbose_name,
-            "model_title_plural": model._meta.verbose_name_plural.title(),
-
-            "list_url": f"{self.app_label}_{model_name}_list",
-            "create_url": f"{self.app_label}_{model_name}_create",
-            "detail_url": f"{self.app_label}_{model_name}_detail",
-            "update_url": f"{self.app_label}_{model_name}_update",
-            "delete_url": f"{self.app_label}_{model_name}_delete",
-        }
-
-    def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs)
-        ctx.update(self.get_common_context())
-        return ctx
+class BaseView(CommonLabelsMixin):
 
     def get_queryset(self):
         return self.model.objects.all()
