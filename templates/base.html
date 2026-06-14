@@ -24,8 +24,8 @@
         <nav>
             <ul>
                 <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-                {% for item in core_menu %}
-                <li><a href="{% url item.list_url %}">{{ item.model_title }}</a></li>
+                {% for menu_item in crud_menu %}
+                <li><a href="{% url menu_item.url %}">{{ menu_item.label }}</a></li>
                 {% endfor %}
             </ul>
         </nav>

@@ -1,89 +1,20 @@
-from importlib import import_module
 from django.apps import apps
-from django.forms.models import BaseInlineFormSet
-from .views import load_app_configs
+from core.config_loader import load_app_configs
 
-#get module name of inlineformset (child model)
-def get_inline_formset_models(app_label):
-    result = {}
+def crud_menu(request):
+    crud_menu = []
 
-    try:
-        forms_module = import_module(f"{app_label}.forms")
-    except ModuleNotFoundError:
-        return result
+    for app_label, config in load_app_configs().items():
 
-    for obj in vars(forms_module).values():
+        for modelclass_name in config["modelclass_names"]:
 
-        if (
-            isinstance(obj, type)
-            and issubclass(obj, BaseInlineFormSet)
-            and hasattr(obj, "fk")
-            and hasattr(obj, "model")
-        ):
-            parent_model = obj.fk.remote_field.model
-            child_model = obj.model
+            model = apps.get_model(app_label, modelclass_name)
 
-            result[parent_model._meta.model_name] = child_model
-            
-    return result
-
-#expose the module name of inlineformset (child model) which was got from code abov
-def formset_labels(request):
-
-    resolver = getattr(request, "resolver_match", None)
-
-    if not resolver:
-        return {}
-
-    try:
-        app_label, model_name, _ = resolver.url_name.split("_")
-    except (AttributeError, ValueError):
-        return {}
-
-    formsets = get_inline_formset_models(app_label)
-
-    child_model = formsets.get(model_name)
-
-    if not child_model:
-        return {}
-
-    return {
-        "formset_verbose_name": child_model._meta.verbose_name,
-        "formset_verbose_name_plural": child_model._meta.verbose_name_plural,
-    }
-
-#generate list of nav items using model list on app_configs.
-def core_menu(request):
-    menu = []
-
-    configs = load_app_configs()
-
-    excluded_models = set()
-
-    # collect child models managed by inline formsets
-    for app_name in configs.keys():
-
-        formsets = get_inline_formset_models(app_name)
-
-        for child_model in formsets.values():
-            excluded_models.add(child_model.__name__)
-
-    # build menu
-    for app_name, config in configs.items():
-
-        for mc_name in config["modelclass_names"]:
-            model_name = mc_name.lower()
-            if model_name in excluded_models:
-                continue
-
-            model = apps.get_model(app_name, model_name)
-
-            menu.append({
-                "app_name": app_name.title(),
-                "model_title": model._meta.verbose_name_plural.title(),
-                "list_url": f"{app_name}_{model_name}_list",
+            crud_menu.append({
+                "label": model._meta.verbose_name_plural.title(),
+                "url": f"{app_label}_{model._meta.model_name}_list",
             })
 
     return {
-        "core_menu": menu,
+        "crud_menu": crud_menu
     }
