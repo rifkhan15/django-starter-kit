@@ -19,14 +19,6 @@
 
   {{ form.as_p }} 
 
-  {% if formset %}
-  {{ formset.management_form }}
-
-  {% for f in formset %}
-  {{ f.as_p }}
-  {% endfor %}
-  {% endif %}
-
 </form>
 
 {% endblock %}

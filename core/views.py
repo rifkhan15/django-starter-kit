@@ -1,5 +1,3 @@
-from importlib import import_module
-
 from django.db.models import Q
 from django.views.generic import (
     ListView,
@@ -13,18 +11,6 @@ from core.mixins import ChildrenMixin, InlineFormsetLabelsMixin
 from core.config_loader import load_app_configs
 
 configs = load_app_configs()
-
-
-# ---------------------------
-# FORMSET LOADER
-# ---------------------------
-def get_formset_class(app_label, model_name):
-    try:
-        forms_module = import_module(f"{app_label}.forms")
-        return getattr(forms_module, f"{model_name.title()}FormSet", None)
-    except (ModuleNotFoundError, AttributeError):
-        return None
-
 
 # ---------------------------
 # BASE VIEW
@@ -122,17 +108,20 @@ def make_views(*, model, app_label, model_name):
 
         def get_template_names(self):
             return [
-                f"{self.app_label}/create.html",
+                f"{app_label}/create.html",
                 "core/create.html",
             ]
 
         def get_success_url(self):
+            model_name = self.model._meta.model_name
+
             if self.has_formset():
                 return f"/{app_label}/{model_name}/{self.object.pk}/update/"
+
             return f"/{app_label}/{model_name}/"
 
     # ---------------- UPDATE VIEW ----------------
-    class U(BaseView,InlineFormsetLabelsMixin, UpdateView):
+    class U(BaseView, InlineFormsetLabelsMixin, UpdateView):
         fields = "__all__"
 
         def get_template_names(self):
@@ -147,10 +136,10 @@ def make_views(*, model, app_label, model_name):
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
 
-            formset_class = get_formset_class(app_label, model_name)
+            formset = self.get_inline_formset()
 
-            if formset_class:
-                ctx["formset"] = formset_class(
+            if formset:
+                ctx["formset"] = formset(
                     self.request.POST or None,
                     instance=self.object,
                 )
@@ -158,15 +147,15 @@ def make_views(*, model, app_label, model_name):
             return ctx
 
         def form_valid(self, form):
-            formset_class = get_formset_class(app_label, model_name)
-
             self.object = form.save()
 
-            if formset_class:
-                formset = formset_class(self.request.POST, instance=self.object)
+            formset = self.get_inline_formset()
 
-                if formset.is_valid():
-                    formset.save()
+            if formset:
+                fs = formset(self.request.POST, instance=self.object)
+
+                if fs.is_valid():
+                    fs.save()
                 else:
                     return self.render_to_response(
                         self.get_context_data(form=form)
@@ -186,7 +175,7 @@ def make_views(*, model, app_label, model_name):
         def get_success_url(self):
             return f"/{app_label}/{model_name}/"
 
-    # ---------------- ATTACH ATTRIBUTES ----------------
+    # ---------------- ATTACH ----------------
     for view in (L, D, C, U, X):
         view.model = model
         view.app_label = app_label

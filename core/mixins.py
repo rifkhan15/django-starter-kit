@@ -1,3 +1,4 @@
+from importlib import import_module
 from django.forms.models import BaseInlineFormSet
 
 #child context for accessing children in detail template
@@ -30,7 +31,6 @@ class InlineFormsetLabelsMixin:
         model = self.model
 
         try:
-            from importlib import import_module
             forms_module = import_module(f"{self.app_label}.forms")
         except Exception:
             return None
@@ -40,6 +40,7 @@ class InlineFormsetLabelsMixin:
             if (
                 isinstance(obj, type)
                 and issubclass(obj, BaseInlineFormSet)
+                and getattr(obj, "fk", None)
                 and obj.fk.remote_field.model == model
             ):
                 return obj
@@ -56,13 +57,14 @@ class InlineFormsetLabelsMixin:
 
         return {
             "has_formset": True,
+            "formset": formset,
             "formset_verbose_name": child._meta.verbose_name,
             "formset_verbose_name_plural": child._meta.verbose_name_plural,
         }
 
     def has_formset(self):
         return self.get_inline_formset() is not None
-    
+
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         ctx.update(self.get_formset_labels())
