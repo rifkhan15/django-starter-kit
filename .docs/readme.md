@@ -6,7 +6,7 @@
   base templates are in webdesk/templates
 
 - login
-  user management must be prformed via django admin/ portal. 
+  user management to be prformed via django admin/ portal. 
   the login app is a basic design for login/logout functionality.
 
 - dashboard

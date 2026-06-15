@@ -32,6 +32,7 @@ class Customer(BaseModel):
         return  f"{self.name} - {self.company}" if self.company else self.name
     
 class Inquiry(BaseModel):
+    inquiry_number = models.CharField(max_length=20, unique=True, blank=True)
     customer = models.ForeignKey(Customer, on_delete=models.PROTECT, verbose_name='Inquired by')
     company = models.ForeignKey(Company, on_delete=models.PROTECT, null=True, blank=True, editable=False)
     inquiry_date = models.DateField()
@@ -40,9 +41,10 @@ class Inquiry(BaseModel):
         self.company = self.customer.company
         super().save(*args, **kwargs)
 
-    @property
-    def inquiry_number(self):
-        return f"INQ-{self.pk:03d}"
+    def save(self, *args, **kwargs):
+        if not self.inquiry_number and self.pk:
+            self.inquiry_number = f"INQ-{self.pk:03d}"
+        super().save(*args, **kwargs)
     
     SEARCH_FIELDS = [
         'inquiry_number',
