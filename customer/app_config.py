@@ -4,5 +4,8 @@ APP_CONFIG = {
         "Company",
         "Inquiry",
         "InquiryItem",
+    ],
+    "nav_exclude": [
+        "InquiryItem",
     ]
 }

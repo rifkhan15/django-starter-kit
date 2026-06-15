@@ -5,8 +5,11 @@ def crud_menu(request):
     crud_menu = []
 
     for app_label, config in load_app_configs().items():
+        nav_exclude = config.get("nav_exclude", [])
 
         for modelclass_name in config["modelclass_names"]:
+            if modelclass_name in nav_exclude:
+                continue
 
             model = apps.get_model(app_label, modelclass_name)
 

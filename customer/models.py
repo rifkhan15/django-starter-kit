@@ -32,7 +32,7 @@ class Customer(BaseModel):
         return  f"{self.name} - {self.company}" if self.company else self.name
     
 class Inquiry(BaseModel):
-    customer = models.ForeignKey(Customer, on_delete=models.PROTECT, verbose_name='Inquired by (customer name)')
+    customer = models.ForeignKey(Customer, on_delete=models.PROTECT, verbose_name='Inquired by')
     company = models.ForeignKey(Company, on_delete=models.PROTECT, null=True, blank=True, editable=False)
     inquiry_date = models.DateField()
 

@@ -33,6 +33,8 @@
   if a formset is needed, define it inindivual forms.py (e.g. customer/forms.py)
   create success url of models with inlineformset set to udaate_url so after saving parent, the formset will render. 
 
+- sidemenu items
+  menu items are dynamically generated using the contextprocessor.crud_menu(). if a model class need excluding from menu, defin it in app_config.py.
 
 
 # 🚀 Dynamic Django Business Application Framework
