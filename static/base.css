@@ -1,17 +1,20 @@
 body {
-  display: flex;
-  height: 100vh;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background-color: #ebebeb;
 }
 
 .sidebar {
-  width: 260px;
-  /* height: 100vh; */
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  background-color: #121212;
-  color: #ffffff;
+    width: 260px;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    background-color: #121212;
+    color: #ffffff;
 }
 
 .user-info {
@@ -27,14 +30,14 @@ body {
 }
 
 .user-info button {
-  background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
-  font-size: small;
-  color: inherit;
-  cursor: pointer;
-  margin-right: 2px;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    font-size: small;
+    color: inherit;
+    cursor: pointer;
+    margin-right: 2px;
 }
 
 .client-branding {
@@ -61,11 +64,11 @@ body {
 }
 
 .sidebar nav ul {
-  /* display: flex; */
-  list-style: none;
-  text-decoration: none;
-  margin: 0;
-  padding: 0;
+    /* display: flex; */
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
 }
 
 .sidebar nav ul li {
@@ -90,13 +93,6 @@ body {
     margin: 0 10px;
 }
 
-.main {
-  flex: 1;
-  /* height: 100vh; */
-  overflow: auto;
-  margin-left: 20px;
-}
-
 .no-display {
     display: none;
 }
@@ -111,4 +107,30 @@ body {
 
 .mute-clr, .mute-clr a {
     color: #666666;
+}
+
+.main {
+    flex: 1;
+    /* height: 100vh; */
+    overflow: auto;
+    margin-left: 260px;
+}
+
+.content-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #121212;
+    color: #ffffff;
+    margin-right: 10px;
+}
+
+.content-header h3 {
+    padding: 6px 0 10px 30px;
+    margin: 0;
+}
+
+.main-content {
+    margin-top: 50px;
+    margin-left: 30px;
 }
