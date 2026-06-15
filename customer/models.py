@@ -45,8 +45,7 @@ class Inquiry(BaseModel):
         return f"INQ-{self.pk:03d}"
     
     SEARCH_FIELDS = [
-        'company'
-        'item_description',
+        'inquiry_number',
     ]
     
     def __str__(self):

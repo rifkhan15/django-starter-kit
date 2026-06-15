@@ -51,7 +51,7 @@ def make_views(*, model, app_label, model_name):
 
     # ---------------- LIST VIEW ----------------
     class L(BaseView, ListView):
-        paginate_by = 35
+        paginate_by = 25
 
         def get_template_names(self):
             return [

@@ -1,6 +1,6 @@
 body {
     display: flex;
-    height: 100vh;
+    /* height: 100vh; */
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     background-color: #ebebeb;
 }
@@ -17,35 +17,13 @@ body {
     color: #ffffff;
 }
 
-.user-info {
-    color: #b3b3b3;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 4px 10px;
-}
-
-.user-info p {
-    margin: 0;
-}
-
-.user-info button {
-    background: none;
-    border: none;
-    padding: 0;
-    font: inherit;
-    font-size: small;
-    color: inherit;
-    cursor: pointer;
-    margin-right: 2px;
-}
-
 .client-branding {
     margin-left: 30px;
 }
 
 .client-branding h1{
     margin-bottom: 0;
+    margin-top: 14px;
 }
 
 .client-branding h2{
@@ -110,16 +88,21 @@ body {
 }
 
 .main {
-    flex: 1;
+    /* flex: 1; */
     /* height: 100vh; */
-    overflow: auto;
+    /* overflow: auto; */
     margin-left: 260px;
 }
 
 .content-header {
     position: fixed;
     top: 0;
-    width: 100%;
+    left: 260px;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* width: 100%; */
     background-color: #121212;
     color: #ffffff;
     margin-right: 10px;
@@ -129,6 +112,29 @@ body {
     padding: 6px 0 10px 30px;
     margin: 0;
 }
+
+.user-info {
+    color: #b3b3b3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 4px 10px;
+    gap: 10px;
+}
+
+.user-info p {
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: 4px;
+}
+
+.user-info button {
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0 5px 2px;
+}
+
 
 .main-content {
     margin-top: 50px;
