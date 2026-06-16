@@ -11,17 +11,15 @@
 
 <h4 class="mute-clr">Search results for "{{ search_query }}"</h4>
 <a href="?">Clear Search</a>
-    {% if not object_list %}
+{% if not object_list %}
 
-    <p>
-        No records found.
-    </p>
+<p>
+    No records found.
+</p>
 
-    {% endif %}
+{% endif %}
 
 {% else %}
-
-<p><a href="{% url create_url %}"><strong>+</strong> new {{ model_verbose_name }}</a></p>
 
 {% endif %}
 
