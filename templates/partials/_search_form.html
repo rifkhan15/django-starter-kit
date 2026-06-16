@@ -1,20 +1,4 @@
-{% if search_query %}
-
-<h4 class="mute-clr">Search results for "{{ search_query }}"</h4>
-<a href="?">Clear Search</a>
-    {% if not object_list %}
-
-    <p>
-        No records found.
-    </p>
-
-    {% endif %}
-
-{% else %}
-
-<form method="get">
+<form class="list-search" method="get">
     <input type="text" name="q" value="{{ search_query }}" placeholder="Search">
     <button type="submit">Search</button>
 </form>
-
-{% endif %}

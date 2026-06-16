@@ -130,3 +130,7 @@ body {
     margin-left: 260px;
     padding-left: 30px;
 }
+
+.list-search input, button {
+    padding: 2px;
+}
