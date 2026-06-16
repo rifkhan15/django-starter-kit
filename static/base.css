@@ -88,33 +88,26 @@ body {
     color: #666666;
 }
 
-.main {
-    /* flex: 1; */
-    /* height: 100vh; */
-    /* overflow: auto; */
-    margin-left: 260px;
-}
-
 .content-header {
     position: fixed;
     top: 0;
     left: 260px;
     right: 0;
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
     background-color: #ebebeb;
-    padding: 20px 10px 10px 30px;
+    padding: 0;
+    margin: 2px 0;
 }
 
 .content-header h3 {
     font-size: xx-large;
-    padding: 0;
+    padding: 16px 0 10px 32px;
     margin: 0;
 }
 
 .user-info {
-    /* color: #b3b3b3; */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -123,7 +116,6 @@ body {
 }
 
 .user-info p {
-    /* font-weight: bold; */
     margin: 0;
     padding-bottom: 4px;
 }
@@ -137,5 +129,6 @@ body {
 
 .main-content {
     margin-top: 80px;
-    margin-left: 30px;
+    margin-left: 260px;
+    padding-left: 30px;
 }
