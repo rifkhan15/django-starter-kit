@@ -32,17 +32,18 @@
         </div>
     </div>
 
-        <div class="content-header">
-            <h3>{{ model_title_plural }}</h3>
-            <div class="user-info">
-                <p>{% if user.username %}User: {{ user.username }}{% else %}Tom Walter{% endif %}</p>
-                <button type="submit" class="logout-button" form="login-form">Logout</button>
-            </div>
+    <div class="content-header">
+        <div class="user-info">
+            <p>{% if user.username %}User: {{ user.username }}{% else %}Tom Walter{% endif %}</p>
+            <button type="submit" class="logout-button" form="login-form">Logout</button>
         </div>
-        <div class="main-content">
-            {% block content %}
-            {% endblock %}
-        </div>
+        <h3>{{ model_title_plural }}</h3>
+
+    </div>
+    <div class="main-content">
+        {% block content %}
+        {% endblock %}
+    </div>
 
 </body>
 
