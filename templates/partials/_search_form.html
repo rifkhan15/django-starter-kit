@@ -1,4 +1,8 @@
 <form class="list-search" method="get">
     <input type="text" name="q" value="{{ search_query }}" placeholder="Search">
+    {% if not search_query %}
     <button type="submit">Search</button>
+    {% else %}
+    <a href="?">Clear Search</a>
+    {% endif %}
 </form>

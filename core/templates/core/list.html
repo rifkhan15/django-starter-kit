@@ -2,14 +2,13 @@
 
 {% block content %}
 
-<!-- <h3>{{ model_title_plural }}</h3> -->
-
-
+{% if object_list %}
 {% include 'partials/_pagination.html' %}
+{% endif %}
 
 {% if search_query %}
 
-<h4 class="mute-clr">Search results for "{{ search_query }}"</h4>
+<h4 class="search-result-title">Search results for "{{ search_query }}"</h4>
 <a href="?">Clear Search</a>
 {% if not object_list %}
 
