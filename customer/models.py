@@ -21,8 +21,8 @@ class Customer(BaseModel):
     name = models.CharField(max_length=150, unique=True)
     contact_number = models.CharField(max_length=30, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
-    company = models.ForeignKey(Company, on_delete=models.PROTECT, blank=True, null=True)
     designation = models.CharField(max_length=150, blank=True, null=True)
+    company = models.ForeignKey(Company, on_delete=models.PROTECT, blank=True, null=True)
     
     SEARCH_FIELDS = [
         'name',
@@ -31,25 +31,24 @@ class Customer(BaseModel):
     def __str__(self):
         return  f"{self.name} - {self.company}" if self.company else self.name
     
+
 class Inquiry(BaseModel):
-    inquiry_number = models.CharField(max_length=20, unique=True, blank=True)
-    customer = models.ForeignKey(Customer, on_delete=models.PROTECT, verbose_name='Inquired by')
-    company = models.ForeignKey(Company, on_delete=models.PROTECT, null=True, blank=True, editable=False)
+    inquiry_number = models.CharField(max_length=10, unique=True, editable=False)
+    customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
     inquiry_date = models.DateField()
 
     def save(self, *args, **kwargs):
-        self.company = self.customer.company
-        super().save(*args, **kwargs)
+        is_new = self.pk is None
 
-    def save(self, *args, **kwargs):
-        if not self.inquiry_number and self.pk:
-            self.inquiry_number = f"INQ-{self.pk:03d}"
-        super().save(*args, **kwargs)
-    
-    SEARCH_FIELDS = [
-        'inquiry_number',
-    ]
-    
+        super().save(*args, **kwargs)  # first insert → get PK
+
+        if is_new and not self.inquiry_number:
+            self.inquiry_number = f"Q-{self.pk:04d}"
+
+            Inquiry.objects.filter(pk=self.pk).update(
+                inquiry_number=self.inquiry_number
+            )
+
     def __str__(self):
         return self.inquiry_number
     
