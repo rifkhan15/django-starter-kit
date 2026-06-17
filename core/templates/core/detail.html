@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h3>{{ object }}</h3>
+<h4 class="content-subtitle">{{ object }}</h4>
 
 <a href="{% url update_url object.pk %}">Edit</a>
 <a href="{% url delete_url object.pk %}">Delete</a>

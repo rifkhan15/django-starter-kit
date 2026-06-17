@@ -1,3 +1,4 @@
+<h4  class="content-subtitle">
 {% if page_obj.has_previous %}
     <a href="?page=1&q={{ search_query }}">First</a>
     <a href="?page={{ page_obj.previous_page_number }}&q={{ search_query }}">
@@ -15,3 +16,4 @@ Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
         Last
     </a>
 {% endif %}
+</h4>

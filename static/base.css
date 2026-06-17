@@ -123,9 +123,14 @@ body {
 }
 
 .main-content {
-    margin-top: 50px;
+    margin-top: 64px;
     margin-left: 260px;
     padding-left: 30px;
+}
+
+.content-subtitle {
+    margin: 0;
+    padding: 0;
 }
 
 .list-search input {
@@ -144,7 +149,6 @@ body {
     border-radius: 3px;
     font-weight: 500;
 }
-
 
 .search-result-title {
     margin: 0;
