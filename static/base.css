@@ -89,7 +89,7 @@ body {
 .content-title {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 4px;
 }
 
 .content-title h3 {
@@ -104,6 +104,22 @@ body {
     padding: 0 10px 0;
 }
 
+.list-search input {
+    padding: 2px;
+}
+
+.list-search button, .list-search a {
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 2px 5px 3.5px;
+    background-color: #ffffff;
+    color: #121212;
+    text-decoration: none;
+    border: solid #ffffff 1px;
+    border-radius: 3px;
+    font-weight: 500;
+}
 .user-info {
     display: flex;
     align-items: center;
@@ -129,29 +145,46 @@ body {
 }
 
 .content-subtitle {
-    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
     padding: 0;
+    margin: 0;
 }
 
-.list-search input {
-    padding: 2px;
+.content-subtitle h4 {
+    margin: 0 18px 0 0;
 }
 
-.list-search button, .list-search a {
-    font: inherit;
-    font-size: 12px;
-    cursor: pointer;
-    padding: 2px 5px 3.5px;
-    background-color: #ffffff;
-    color: #121212;
+.content-subtitle a {
     text-decoration: none;
-    border: solid #ffffff 1px;
-    border-radius: 3px;
-    font-weight: 500;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-.search-result-title {
-    margin: 0;
-    padding: 0;
+.content-subtitle button {
+    font-size: 18px;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
 }
 
+.cancel-char { 
+    color: orange; 
+}
+
+.delete-char { 
+    color: red; 
+}
+
+.check-char { 
+    color: green; 
+    font-weight: bolder;
+}
+
+.edit-char {
+  color: blue;
+  display: inline-block;
+  transform: scaleX(-1);
+}

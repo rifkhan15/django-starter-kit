@@ -2,16 +2,16 @@
 
 {% block content %}
 
-<h4 class="content-subtitle">Editing {{ view.model_verbose_name }} "{{ object }}"</h4>
-
 <form method="post">
-{% csrf_token %}
+  {% csrf_token %}
 
-<button type="submit">Save</button>
+  <div class="content-subtitle">
+    <h4>Editing {{ view.model_verbose_name }} "{{ object }}"</h4>
+    <button class="check-char" type="submit" title="Save">✔</button>
+    <a class="cancel-char" title="Close" href="{% url list_url %}">✖</a>
+  </div>
 
-<a href="{% url list_url %}">Cancel</a>
-
-  {{ form.as_p }} 
+  {{ form.as_p }}
 
   {% if formset %}
   {{ formset.management_form }}

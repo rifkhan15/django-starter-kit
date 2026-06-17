@@ -2,11 +2,14 @@
 
 {% block content %}
 
-<h4 class="content-subtitle">{{ object }}</h4>
+<div class="content-subtitle">
+    <h4>{{ object }}</h4>
+    <a class="edit-char" title="Edit" href="{% url update_url object.pk %}">✎</a>
+    <a class="delete-char" title="Delete" href="{% url delete_url object.pk %}">🗑</a>
+    <a class="cancel-char" title="Close" href="{{ request.META.HTTP_REFERER }}">✖</a>
+</div>
 
-<a href="{% url update_url object.pk %}">Edit</a>
-<a href="{% url delete_url object.pk %}">Delete</a>
-<a href="javascript:history.back()">Close</a>
+
 
 <ul>
     {% for field_name, verbose_name, value in object.field_attrs %}
@@ -22,7 +25,7 @@
         <strong>{{ child.verbose_name_plural|capfirst }}</strong>:
         <ul>
             {% for obj in child.items %}
-                <li>{{ obj }}</li>
+            <li>{{ obj }}</li>
             {% endfor %}
         </ul>
     </li>
