@@ -37,7 +37,10 @@
         <div class="content-title">
             {% if model_title_plural %}
                 <h3>{{ model_title_plural }}</h3>
+
+                {% if not request.resolver_match.view_name|slice:"-6:" == 'create' %}
                 <a href="{% url create_url %}">+</a>
+                {% endif %}
             {% else %}
             <h3>
                 {{ request.resolver_match.view_name }}

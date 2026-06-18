@@ -112,9 +112,14 @@ body {
 
 .content-title a {
     text-decoration: none;
-    color: inherit;
-    font-size: x-large;
-    padding: 0 10px 0;
+    color: #7f7f7f;
+    font-size: 30px;
+    font-weight: 700;
+    padding: 0 10px 4px;
+}
+
+.content-title a:hover {
+    color: #ffffff;
 }
 
 .list-search input {
@@ -183,6 +188,14 @@ body {
     font-weight: bold;
 }
 
+.content-subtitle a {
+    transition: box-shadow .2s ease;
+}
+
+.content-subtitle a:hover {
+    box-shadow: inset 0 2px 0 currentColor;
+}
+
 .content-subtitle button {
     font-size: 18px;
     background-color: inherit;
@@ -207,12 +220,4 @@ body {
   color: blue;
   display: inline-block;
   transform: scaleX(-1);
-}
-
-.content-subtitle a {
-    transition: box-shadow .2s ease;
-}
-
-.content-subtitle a:hover {
-    box-shadow: inset 0 2px 0 currentColor;
 }
