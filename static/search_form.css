@@ -15,3 +15,9 @@
     border-radius: 3px;
     font-weight: 500;
 }
+
+.search button:hover {
+    background-color: #121212;
+    color: #ffffff;
+    border: solid #ffffff 1px;
+}
