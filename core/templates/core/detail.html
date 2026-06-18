@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/core.css' %}">
+{% endblock %}
 
 {% block content %}
 
@@ -8,8 +13,6 @@
     <a class="delete-char" title="Delete" href="{% url delete_url object.pk %}">🗑</a>
     <a class="cancel-char" title="Close" href="{{ request.META.HTTP_REFERER }}">✖</a>
 </div>
-
-
 
 <ul>
     {% for field_name, verbose_name, value in object.field_attrs %}
