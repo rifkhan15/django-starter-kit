@@ -1,0 +1,17 @@
+.search input {
+    padding: 2px;
+}
+
+.search button, 
+.search a {
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 2px 5px 3.5px;
+    background-color: #ffffff;
+    color: #121212;
+    text-decoration: none;
+    border: solid #ffffff 1px;
+    border-radius: 3px;
+    font-weight: 500;
+}

@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>webdesk</title>
     <link rel="stylesheet" href="{% static 'base.css' %}">
+    {% block extr_css %}{% endblock %}
 </head>
 
 <body>
@@ -42,9 +43,7 @@
                 <a href="{% url create_url %}">+</a>
                 {% endif %}
             {% else %}
-            <h3>
-                {{ request.resolver_match.view_name }}
-            </h3>
+                <h3>{{ request.resolver_match.view_name|capfirst }}</h3>
             {% endif %}
         </div>
         <div>
