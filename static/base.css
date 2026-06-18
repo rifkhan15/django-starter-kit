@@ -63,7 +63,8 @@ body {
     transition: color .2s ease;
 }
 
-.sidebar nav a:hover {
+.sidebar nav a:hover, 
+.sidebar nav a.active {
     color: #ffffff;
 }
 
@@ -117,7 +118,8 @@ body {
     padding: 2px;
 }
 
-.list-search button, .list-search a {
+.list-search button, 
+.list-search a {
     font: inherit;
     font-size: 12px;
     cursor: pointer;

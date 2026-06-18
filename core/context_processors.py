@@ -14,6 +14,7 @@ def crud_menu(request):
             model = apps.get_model(app_label, modelclass_name)
 
             crud_menu.append({
+                "model_name": model._meta.model_name,
                 "label": model._meta.verbose_name_plural.title(),
                 "url": f"{app_label}_{model._meta.model_name}_list",
             })
