@@ -29,8 +29,7 @@ class Customer(BaseModel):
     ]
 
     def __str__(self):
-        return  f"{self.name} - {self.company}" if self.company else self.name
-    
+        return  f"{self.name} | {self.contact_number} | {self.email} | {self.company}" if self.company else self.name
 
 class Inquiry(BaseModel):
     inquiry_number = models.CharField(max_length=10, unique=True, editable=False)

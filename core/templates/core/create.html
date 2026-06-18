@@ -7,23 +7,28 @@
 
 
 {% block content %}
-
-<h4 class="content-subtitle">Creating new {{ model_verbose_name }}</h4>
-
 <form method="post">
-{% csrf_token %}
+  {% csrf_token %}
 
-<button type="submit">
+  <div class="content-subtitle">
+    <h4>Creating new {{ model_verbose_name }}</h4>
+
+    {% if not has_formset %}
+    <button class="check-char" type="submit" title="Save"">
+      ✔
+    </button>
+    {% endif %}
+
+    <a class="cancel-char" title="Cancel" href="{% url list_url %}">✖</a>
+  </div>
+
+  {{ form.as_p }}
+
   {% if has_formset %}
-  Save & Add {{ formset_verbose_name_plural }}
-  {% else %}
-  Save
+  <button class="add-lineitem" type="submit" title="Add inquiry items">
+    + {{ formset_verbose_name_plural }}
+  </button>
   {% endif %}
-</button>
-
-<a href="{% url list_url %}">Cancel</a>
-
-  {{ form.as_p }} 
 
 </form>
 

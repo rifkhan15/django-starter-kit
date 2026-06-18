@@ -54,3 +54,20 @@
   display: inline-block;
   transform: scaleX(-1);
 }
+
+.add-lineitem {
+    border: none;
+    background-color: green;
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: lighter;
+    padding: 4px 6px;
+    cursor: pointer;
+}
+
+.add-lineitem:hover {
+    border: 1.5px solid green;
+    background-color: #ebebeb;
+    color: green;
+}

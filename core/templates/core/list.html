@@ -8,19 +8,19 @@
 {% block content %}
 
 {% if object_list %}
-    {% include 'partials/_pagination.html' %}
+{% include 'partials/_pagination.html' %}
 {% endif %}
 
 {% if search_query %}
-    <h4 class="content-subtitle">Search results for "{{ search_query }}"</h4>
-    <a href="?">Clear Search</a>
-        {% if not object_list %}
+<h4 class="content-subtitle">Search results for "{{ search_query }}"</h4>
+<a href="?">Clear Search</a>
+{% if not object_list %}
 
-        <p>
-            No records found.
-        </p>
+<p>
+    No records found.
+</p>
 
-        {% endif %}
+{% endif %}
 {% endif %}
 
 <ol>
@@ -28,5 +28,25 @@
     <li><a href="{% url detail_url obj.pk %}">{{ obj }}</a></li>
     {% endfor %}
 </ol>
+
+<!-- <table>
+    <thead>
+        <tr>
+            {% for field_name, verbose_name, value in object_list.0.field_attrs %}
+            <th>{{ verbose_name}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for obj in object_list %}
+        <tr>
+            {% for field_name, verbose_name, value in obj.field_attrs %}
+            <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table> -->
 
 {% endblock %}
