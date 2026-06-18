@@ -56,20 +56,20 @@ body {
     /* width: 100%; */
     display: block;
     text-decoration: none;
-    color: inherit;
+    color: #7f7f7f;
+    font-weight: 500;
     padding: 6px 0 6px 60px;
     margin: 6px 0;
-    transition: background-color .2s ease;
+    transition: color .2s ease;
 }
 
 .sidebar nav a:hover {
-    background-color: #ebebeb;
-    color: #121212;
+    color: #ffffff;
 }
 
 .sidebar-footer {
     margin: auto 0 16px 0;
-    color: #b3b3b3;
+    color: #898989;
     font-size: small;
 }
 
@@ -133,6 +133,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    color: #7f7f7f;
 }
 
 .user-info p {
@@ -202,6 +203,6 @@ body {
     transition: box-shadow .2s ease;
 }
 
-a:hover {
+.content-subtitle a:hover {
     box-shadow: inset 0 2px 0 currentColor;
 }
