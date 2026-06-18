@@ -3,23 +3,19 @@
 {% block content %}
 
 {% if object_list %}
-{% include 'partials/_pagination.html' %}
+    {% include 'partials/_pagination.html' %}
 {% endif %}
 
 {% if search_query %}
+    <h4 class="content-subtitle">Search results for "{{ search_query }}"</h4>
+    <a href="?">Clear Search</a>
+        {% if not object_list %}
 
-<h4 class="content-subtitle">Search results for "{{ search_query }}"</h4>
-<a href="?">Clear Search</a>
-{% if not object_list %}
+        <p>
+            No records found.
+        </p>
 
-<p>
-    No records found.
-</p>
-
-{% endif %}
-
-{% else %}
-
+        {% endif %}
 {% endif %}
 
 <ol>

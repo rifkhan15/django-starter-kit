@@ -3,12 +3,9 @@ from django import template
 register = template.Library()
 
 @register.simple_tag(takes_context=True)
-def active(context, model_name):
+def active(context, view_name):
     resolver = context['request'].resolver_match
 
-    view_class = getattr(resolver.func, "view_class", None)
-    if not view_class:
-        return ""
+    current_view_name = resolver.view_name
 
-    current_model_name = view_class.model._meta.model_name
-    return "active" if current_model_name == model_name else ""
+    return "active" if current_view_name == view_name else ""
