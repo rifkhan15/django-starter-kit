@@ -27,6 +27,7 @@
 }
 
 .pagination .active {
+    background-color: #dcdcdc;
     font-weight: 600;
 }
 
