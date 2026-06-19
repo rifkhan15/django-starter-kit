@@ -29,11 +29,13 @@
     {% endfor %}
 </ol>
 
-<!-- <table>
+<table>
     <thead>
         <tr>
             {% for field_name, verbose_name, value in object_list.0.field_attrs %}
-            <th>{{ verbose_name}}</th>
+            {% if field_name != 'created_date' and field_name != 'updated_on' %}
+            <th>{{ verbose_name|capfirst }}</th>
+            {% endif %}
             {% endfor %}
         </tr>
     </thead>
@@ -42,11 +44,19 @@
         {% for obj in object_list %}
         <tr>
             {% for field_name, verbose_name, value in obj.field_attrs %}
-            <td>{{ value }}</td>
+            {% if field_name != 'created_date' and field_name != 'updated_on' %}
+            <td>
+                {% if value == None %}
+                {{ '-' }}
+                {% else %}
+                {{ value }}
+                {% endif %}
+            </td>
+            {% endif %}
             {% endfor %}
         </tr>
         {% endfor %}
     </tbody>
-</table> -->
+</table>
 
 {% endblock %}
