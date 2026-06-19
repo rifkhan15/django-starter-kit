@@ -22,7 +22,7 @@
             <ul>
                 <li><a href="{% url 'dashboard' %}" class="{% active 'dashboard' %}">Dashboard</a></li>
                 {% for menu_item in crud_menu %}
-                <li><a href="{% url menu_item.url %}" class="{% active menu_item.url %}">{{ menu_item.label }}</a></li>
+                <li><a href="{% url menu_item.url %}" class="{% active menu_item.model_name %}">{{ menu_item.model_title }}</a></li>
                 {% endfor %}
             </ul>
         </nav>
