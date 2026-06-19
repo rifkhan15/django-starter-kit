@@ -71,3 +71,20 @@
     background-color: #ebebeb;
     color: green;
 }
+
+table {
+    width: auto;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 6px 12px;
+    word-break: break-word;
+    white-space: normal;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #d6d6d6;
+}
