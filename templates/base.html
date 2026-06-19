@@ -20,7 +20,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="{% url 'dashboard' %}" class="{% active 'dashboard' %}">Dashboard {{ request.resolver_match.app_name}}</a></li>
+                <li><a href="{% url 'dashboard' %}" class="{% active 'dashboard' %}">Dashboard</a></li>
                 {% for menu_item in crud_menu %}
                 <li><a href="{% url menu_item.url %}" class="{% active menu_item.model_name %}">{{ menu_item.model_title }}</a></li>
                 {% endfor %}
@@ -37,13 +37,13 @@
     <div class="content-header">
         <div class="content-header-title">
             {% if model_title_plural %}
-                <h3>{{ model_title_plural }}</h3>
+            <h3>{{ model_title_plural }}</h3>
 
-                {% if not request.resolver_match.view_name|slice:"-6:" == 'create' %}
-                <a href="{% url create_url %}">+</a>
-                {% endif %}
+            {% if not request.resolver_match.view_name|slice:"-6:" == 'create' %}
+            <a href="{% url create_url %}">+</a>
+            {% endif %}
             {% else %}
-                <h3>{{ request.resolver_match.view_name|capfirst }}</h3>
+            <h3>{{ request.resolver_match.view_name|capfirst }}</h3>
             {% endif %}
         </div>
         <div>
@@ -53,12 +53,27 @@
         </div>
         <div class="user-info">
             <p>{% if user.username %}User: {{ user.username }}{% else %}Tom Walter{% endif %}</p>
-            <button type="submit" class="ghf" form="login-form"  title="Logout">⏻</button>
+            <button type="submit" class="ghf" form="login-form" title="Logout">⏻</button>
         </div>
 
     </div>
     <div class="main-content">
         {% block content %}
+
+        sdfdsff
+
+        here
+        <br>
+
+        {{ request.resolver_match.view_name }}
+        <br>
+        {{ request.resolver_match.namespace }}
+        <br>
+
+        {{ request.resolver_match.url_name }}
+        <br>
+
+        {{ request.resolver_match.view_name }}
         {% endblock %}
     </div>
 
