@@ -1,5 +1,54 @@
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'pagination.css' %}">
+{% endblock %}
+
 <h4  class="content-subtitle">
-{% if page_obj.has_previous %}
+<div class="pagination">
+
+    <!-- Previous -->
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}&q={{ search_query }}">&lt;</a>
+    {% else %}
+        <span>&lt;</span>
+    {% endif %}
+
+    <!-- Pages -->
+    {% if page_obj.paginator.num_pages == 1 %}
+
+        <span class="active">1</span>
+
+    {% else %}
+
+        {% for num in page_obj.paginator.page_range %}
+
+            {% if num <= 3 or num == page_obj.paginator.num_pages %}
+
+                {% if num == page_obj.number %}
+                    <span class="active">{{ num }}</span>
+                {% else %}
+                    <a href="?page={{ num }}&q={{ search_query }}">{{ num }}</a>
+                {% endif %}
+
+            {% elif num == 4 %}
+                <span>...</span>
+            {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+
+    <!-- Next -->
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}&q={{ search_query }}">&gt;</a>
+    {% else %}
+        <span>&gt;</span>
+    {% endif %}
+
+</div>
+
+<!-- {% if page_obj.has_previous %}
     <a href="?page=1&q={{ search_query }}">First</a>
     <a href="?page={{ page_obj.previous_page_number }}&q={{ search_query }}">
         Previous
@@ -15,5 +64,5 @@ Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
     <a href="?page={{ page_obj.paginator.num_pages }}&q={{ search_query }}">
         Last
     </a>
-{% endif %}
+{% endif %} -->
 </h4>
