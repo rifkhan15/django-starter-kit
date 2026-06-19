@@ -75,16 +75,17 @@
 table {
     width: auto;
     border-collapse: collapse;
+    margin-top: 16px;
 }
 
 th,
 td {
     text-align: left;
-    padding: 6px 12px;
+    padding: 4px 12px;
     word-break: break-word;
     white-space: normal;
 }
 
-tbody tr:nth-child(even) {
-    background-color: #d6d6d6;
+td a {
+    color: #4d4dff;
 }

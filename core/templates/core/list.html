@@ -12,22 +12,14 @@
 {% endif %}
 
 {% if search_query %}
-<h4 class="content-subtitle">Search results for "{{ search_query }}"</h4>
-<a href="?">Clear Search</a>
-{% if not object_list %}
-
-<p>
-    No records found.
-</p>
-
+    <h4 class="content-subtitle">Search results for "{{ search_query }}"</h4>
+    <a href="?">Clear Search</a>
+        {% if not object_list %}
+            <p>
+                No records found.
+            </p>
+         {% endif %}
 {% endif %}
-{% endif %}
-
-<ol>
-    {% for obj in object_list %}
-    <li><a href="{% url detail_url obj.pk %}">{{ obj }}</a></li>
-    {% endfor %}
-</ol>
 
 <table>
     <thead>
@@ -46,10 +38,12 @@
             {% for field_name, verbose_name, value in obj.field_attrs %}
             {% if field_name != 'created_date' and field_name != 'updated_on' %}
             <td>
-                {% if value == None %}
-                {{ '-' }}
+                {% if forloop.counter == 4 %}
+                <a href="{% url detail_url obj.pk %}">
+                    {{ value }}
+                </a>
                 {% else %}
-                {{ value }}
+                {{ value|default:"-" }}
                 {% endif %}
             </td>
             {% endif %}
