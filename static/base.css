@@ -98,19 +98,19 @@ body {
     height: 32px;
 }
 
-.content-title {
+.content-header-title {
     display: flex;
     align-items: center;
     gap: 4px;
     width: 15%;
 }
 
-.content-title h3 {
+.content-header-title h3 {
     padding: 0;
     margin: 0;
 }
 
-.content-title a {
+.content-header-title a {
     text-decoration: none;
     color: #7f7f7f;
     font-size: 30px;
@@ -118,7 +118,7 @@ body {
     padding: 0 10px 4px;
 }
 
-.content-title a:hover {
+.content-header-title a:hover {
     color: #ffffff;
 }
 
@@ -148,4 +148,10 @@ body {
 
 .user-info button:hover {
     color: #ffffff;
+}
+
+.main-content {
+    margin-top: 64px;
+    margin-left: 260px;
+    padding-left: 30px;
 }

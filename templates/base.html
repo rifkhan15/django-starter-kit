@@ -20,7 +20,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="{% url 'dashboard' %}" class="{% active 'dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'dashboard' %}" class="{% active 'dashboard' %}">Dashboard {{ request.resolver_match.app_name}}</a></li>
                 {% for menu_item in crud_menu %}
                 <li><a href="{% url menu_item.url %}" class="{% active menu_item.model_name %}">{{ menu_item.model_title }}</a></li>
                 {% endfor %}
@@ -35,7 +35,7 @@
     </div>
 
     <div class="content-header">
-        <div class="content-title">
+        <div class="content-header-title">
             {% if model_title_plural %}
                 <h3>{{ model_title_plural }}</h3>
 

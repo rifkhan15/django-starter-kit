@@ -49,7 +49,7 @@ class Inquiry(BaseModel):
             )
 
     def __str__(self):
-        return self.inquiry_number
+        return f"Inquiry No: {self.inquiry_number}"
     
     class Meta:
         verbose_name_plural = 'Inquiries'
