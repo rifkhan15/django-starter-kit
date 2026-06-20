@@ -1,4 +1,4 @@
-.content-subtitle {
+.main-subtitle {
     display: flex;
     align-items: baseline;
     gap: 14px;
@@ -6,23 +6,23 @@
     margin: 0;
 }
 
-.content-subtitle h4 {
+.main-subtitle h4 {
     margin: 0 18px 0 0;
 }
 
-.content-subtitle a {
+.main-subtitle a {
     text-decoration: none;
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
 }
 
-.content-subtitle a:hover,
-.content-subtitle button:hover  {
+.main-subtitle a:hover,
+.main-subtitle button:hover  {
     box-shadow: inset 0 2px 0 currentColor;
 }
 
-.content-subtitle button {
+.main-subtitle button {
     font-size: 18px;
     background-color: inherit;
     border: none;

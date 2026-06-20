@@ -11,7 +11,7 @@
 <form method="post">
   {% csrf_token %}
 
-  <div class="content-subtitle">
+  <div class="main-subtitle">
     <h4>Editing {{ view.model_verbose_name }} "{{ object }}"</h4>
     <button class="check-char" type="submit" title="Save">✔</button>
     <a class="cancel-char" title="Close" href="{% url list_url %}">✖</a>

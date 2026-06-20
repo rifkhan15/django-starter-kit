@@ -83,7 +83,7 @@ body {
     margin: 0 10px;
 }
 
-.content-header {
+.main-header {
     position: fixed;
     top: 0;
     left: 260px;
@@ -98,19 +98,19 @@ body {
     height: 32px;
 }
 
-.content-header-title {
+.main-header-title {
     display: flex;
     align-items: center;
     gap: 4px;
     width: 15%;
 }
 
-.content-header-title h3 {
+.main-header-title h3 {
     padding: 0;
     margin: 0;
 }
 
-.content-header-title a {
+.main-header-title a {
     text-decoration: none;
     color: #7f7f7f;
     font-size: 30px;
@@ -118,7 +118,7 @@ body {
     padding: 0 10px 4px;
 }
 
-.content-header-title a:hover {
+.main-header-title a:hover {
     color: #ffffff;
 }
 
