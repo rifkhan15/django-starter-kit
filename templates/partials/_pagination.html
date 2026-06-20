@@ -4,18 +4,19 @@
 <link rel="stylesheet" href="{% static 'pagination.css' %}">
 {% endblock %}
 
-<h4  class="main-subtitle">
 <div class="pagination">
-
-    <!-- Previous -->
+    <a href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}&q={{ search_query }}{% endif %}">&lt;</a>
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    <a href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}&q={{ search_query }}{% endif %}">&gt;</a>
+</div>
+        <!-- 
     {% if page_obj.has_previous %}
         <a href="?page={{ page_obj.previous_page_number }}&q={{ search_query }}">&lt;</a>
     {% else %}
         <span>&lt;</span>
     {% endif %}
 
-    <!-- Pages -->
-    {% if page_obj.paginator.num_pages == 1 %}
+{% if page_obj.paginator.num_pages == 1 %}
 
         <span class="active">1</span>
 
@@ -39,14 +40,12 @@
 
     {% endif %}
 
-    <!-- Next -->
     {% if page_obj.has_next %}
         <a href="?page={{ page_obj.next_page_number }}&q={{ search_query }}">&gt;</a>
     {% else %}
         <span>&gt;</span>
     {% endif %}
-
-</div>
+-->
 
 <!-- {% if page_obj.has_previous %}
     <a href="?page=1&q={{ search_query }}">First</a>
@@ -65,4 +64,3 @@ Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
         Last
     </a>
 {% endif %} -->
-</h4>

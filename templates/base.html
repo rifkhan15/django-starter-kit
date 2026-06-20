@@ -22,15 +22,15 @@
             <ul>
                 <li><a href="{% url 'dashboard' %}" class="{% active 'dashboard' %}">Dashboard</a></li>
                 {% for menu_item in crud_menu %}
-                <li><a href="{% url menu_item.url %}" class="{% active menu_item.model_name %}">{{ menu_item.model_title }}</a></li>
+                <li><a href="{% url menu_item.url %}" class="{% active menu_item.model_name %}">{{ menu_item.model_title}}</a></li>
                 {% endfor %}
             </ul>
         </nav>
 
         <div class="sidebar-footer">
             <hr>
-            <p>Powerd by WEBDESK</p>
-            <p>Operations Management Solution</p>
+            <div>Powerd by WEBDESK</div>
+            <div>Operations Management Solution</div>
         </div>
     </div>
 
@@ -52,12 +52,17 @@
                     {% include 'partials/_search_form.html' %}
                     {% endif %}
                 </div>
-                <div class="user-info">
-                    <p>{% if user.username %}User: {{ user.username }}{% else %}Tom Walter{% endif %}</p>
+                <div>
+                    <span>{% if user.username %}User: {{ user.username }}{% else %}Tom Walter{% endif %}</span>
                     <button type="submit" class="ghf" form="login-form" title="Logout">⏻</button>
                 </div>
             </div>
+            <div class="main-subta">
+                {% block main_subtitle %}
+                {% endblock %}
+            </div>
         </div>
+
         <!-- <div class="main-header">
             <div class="main-header-title">
                 {% if model_title_plural %}

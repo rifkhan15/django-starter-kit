@@ -5,12 +5,7 @@
 <link rel="stylesheet" href="{% static 'core/core.css' %}">
 {% endblock %}
 
-{% block content %}
-
-{% if object_list %}
-{% include 'partials/_pagination.html' %}
-{% endif %}
-
+{% block main_subtitle %}
 {% if search_query %}
     <h4 class="main-subtitle">Search results for "{{ search_query }}"</h4>
     <a href="?">Clear Search</a>
@@ -19,7 +14,15 @@
                 No records found.
             </p>
          {% endif %}
+{% else %}
 {% endif %}
+
+{% if object_list %}
+    {% include 'partials/_pagination.html' %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
 
 <table>
     <thead>

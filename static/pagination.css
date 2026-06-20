@@ -1,10 +1,32 @@
 .pagination {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 3px;
-    border-radius: 4px;
+    background: #ffffff;
+    font-size: 14px;
+    color: #121212;
 }
 
+.pagination a {
+    height: 22px;
+    width: 22px;
+    border: 1px solid #7f7f7f;
+    border-radius: 4px;
+    text-decoration: none;
+    padding: 1px;
+    text-align: center;
+}
+
+.pagination span {
+    height: 22px;
+    width: auto;
+    border: 1px solid #7f7f7f;
+    border-radius: 4px;
+    padding: 1px 8px;
+}
+
+/* 
 .pagination a,
 .pagination span {
     width: 22px;
@@ -20,7 +42,7 @@
     background: #ffffff;
     font-size: 14px;
     padding-bottom: 2.5px;
-}
+} */
 
 .pagination a:hover {
     background: #f7f7f7;
@@ -29,8 +51,4 @@
 .pagination .active {
     background-color: #dcdcdc;
     font-weight: 600;
-}
-
-.pagination span {
-    cursor: pointer;
 }
