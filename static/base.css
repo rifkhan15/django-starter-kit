@@ -81,12 +81,18 @@ body {
 
 .sidebar-footer p {
     margin: 0 10px;
+    font-size: 12px;
+}
+
+.main-section {
+    margin-left: 260px;
 }
 
 .main-header {
     position: fixed;
     top: 0;
-    width: 100%;
+    right: 0;
+    left: 260px;
     margin: 0;
     height: 60px;
 }
@@ -106,6 +112,7 @@ body {
 } */
 
 .main-title {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -147,7 +154,7 @@ body {
     padding-bottom: 2px;
 }
 
-.main-header-title a:hover {
+.main-title a:hover {
     color: #ffffff;
 }
 
@@ -162,6 +169,7 @@ body {
 .user-info p {
     margin: 0;
     padding: 0;
+    color: #7f7f7f;
     font-size: 14px;
 }
 
@@ -177,10 +185,6 @@ body {
 
 .user-info button:hover {
     color: #ffffff;
-}
-
-.main-section {
-    margin-left: 260px;
 }
 
 .main-content {

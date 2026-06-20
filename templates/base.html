@@ -37,12 +37,12 @@
     <div class="main-section">
         <div class="main-header">
             <div class="main-title">
-                <div class="asdf">
+                <div>
                     {% if model_title_plural %}
-                        <h3>{{ model_title_plural }}</h3>
-                        {% if not request.resolver_match.view_name|slice:"-6:" == 'create' %}
-                        <a href="{% url create_url %}">+</a>
-                        {% endif %}
+                    <h3>{{ model_title_plural }}</h3>
+                    {% if not request.resolver_match.view_name|slice:"-6:" == 'create' %}
+                    <a href="{% url create_url %}">+</a>
+                    {% endif %}
                     {% else %}
                     <h3>{{ request.resolver_match.view_name|capfirst }}</h3>
                     {% endif %}
