@@ -5,9 +5,13 @@
 {% endblock %}
 
 <div class="pagination">
-    <a href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}&q={{ search_query }}{% endif %}">&lt;</a>
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}&q={{ search_query }}">&lt;</a>
+    {% endif %}
     <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
-    <a href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}&q={{ search_query }}{% endif %}">&gt;</a>
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}&q={{ search_query }}">&gt;</a>
+    {% endif %}
 </div>
         <!-- 
     {% if page_obj.has_previous %}

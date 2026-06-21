@@ -184,7 +184,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 6px 0;
+    padding: 8px 0;
     /* justify-content: space-between; */
     background-color: #ebebeb;
     margin-left: 32px;
