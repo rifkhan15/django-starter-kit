@@ -15,7 +15,7 @@ class Company(BaseModel):
         return self.company_name
     
     class Meta:
-        verbose_name_plural = 'Companies'
+        verbose_name_plural = 'companies'
 
 class Customer(BaseModel):
     name = models.CharField(max_length=150, unique=True)
@@ -52,7 +52,7 @@ class Inquiry(BaseModel):
         return f"Inquiry No: {self.inquiry_number}"
     
     class Meta:
-        verbose_name_plural = 'Inquiries'
+        verbose_name_plural = 'inquiries'
 
 class InquiryItem(BaseModel):
     inquiry_number = models.ForeignKey(Inquiry, on_delete=models.PROTECT)

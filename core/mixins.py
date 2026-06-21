@@ -11,6 +11,7 @@ class CommonLabelsMixin:
             "app_label": self.app_label,
             "model_name": model_name,
             "model_verbose_name": model._meta.verbose_name,
+            "model_verbose_plural": model._meta.verbose_name_plural,
             "model_title_plural": model._meta.verbose_name_plural.title(),
 
             "list_url": f"{self.app_label}_{model_name}_list",

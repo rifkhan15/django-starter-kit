@@ -8,13 +8,14 @@
 {% block main_subtitle %}
 {% if search_query %}
     <h4 class="main-subtitle">Search results for "{{ search_query }}"</h4>
-    <a href="?">Clear Search</a>
+    <a class="clear-search2" href="?">Clear Search</a>
         {% if not object_list %}
             <p>
                 No records found.
             </p>
          {% endif %}
 {% else %}
+    <h4 class="main-subtitle">Showing {{ page_obj.start_index }}-{{ page_obj.end_index }} of {{ page_obj.paginator.count }} {{ model_verbose_plural }}</h4>
 {% endif %}
 
 {% if object_list %}

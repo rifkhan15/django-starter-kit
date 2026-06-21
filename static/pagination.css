@@ -5,13 +5,13 @@
     gap: 3px;
     background: #ffffff;
     font-size: 14px;
-    color: #121212;
+    color: #555555;
 }
 
 .pagination a {
     height: 22px;
     width: 22px;
-    border: 1px solid #7f7f7f;
+    border: 1px solid #555555;
     border-radius: 4px;
     text-decoration: none;
     padding: 1px;
@@ -21,7 +21,7 @@
 .pagination span {
     height: 22px;
     width: auto;
-    border: 1px solid #7f7f7f;
+    border: 1px solid #555555;
     border-radius: 4px;
     padding: 2px 8px 1px;
 }

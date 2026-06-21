@@ -1,9 +1,9 @@
-.search input {
+.search-form input {
     padding: 2px;
 }
 
-.search button, 
-.search a {
+.search-form button, 
+.search-form a {
     font: inherit;
     font-size: 12px;
     cursor: pointer;
@@ -16,7 +16,7 @@
     font-weight: 500;
 }
 
-.search button:hover {
+.search-form button:hover {
     background-color: #121212;
     color: #ffffff;
     border: solid #ffffff 1px;
