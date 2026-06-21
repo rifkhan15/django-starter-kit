@@ -84,7 +84,6 @@ body {
     margin-left: 260px;
 }
 
-
 .main-header {
     position: fixed;
     top: 0;
@@ -147,6 +146,10 @@ body {
 }
 
 .page-title {
+    position: fixed;
+    top: 46px;
+    right: 0;
+    left: 260px;
     display: flex;
     align-items: center;
     gap: 10px;

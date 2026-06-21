@@ -14,6 +14,21 @@
     <a class="cancel-char" title="Close" href="{{ request.META.HTTP_REFERER }}">✖</a>
 </div>
 
+{% if object_list %}
+Yes object_list
+{% else %}
+No object_list
+{% endif %}
+
+<br>
+app_name: {{ request.resolver_match.app_name}}
+<br>
+view_name: {{ request.resolver_match.view_name }}
+<br>
+namespace: {{ request.resolver_match.namespace }}
+<br>
+url_name: {{ request.resolver_match.url_name }}
+<br>
 <ul>
     {% for field_name, verbose_name, value in object.field_attrs %}
     <li>
