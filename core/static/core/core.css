@@ -1,27 +1,22 @@
-.main-subta h4 {
+.page-title h4 {
     margin: 0;
     padding: 0;
 }
 
-.main-subta .search-results {
+.page-title .search-results {
     display: flex;
     gap: 12px;
 }
 
-.main-subta .search-results span {
+.page-title .search-results span {
     color: orange;
-    font-weight: bold;
+    font-weight: 600;
 } 
 
-.main-subta .search-results a {
-    text-decoration: none;
-} 
-
-.main-subta .clear-search2 {
-    text-decoration: none;
-    cursor: pointer;
-    /* font-size: 4px; */
-    /* font-weight: bold; */
+.orange-text,
+.orange-text a {
+    color: orange;
+    font-weight: 600;
 }
 
 
@@ -97,13 +92,13 @@
 table {
     width: auto;
     border-collapse: collapse;
-    margin-top: 16px;
+    margin-top: 12px;
 }
 
 th,
 td {
     text-align: left;
-    padding: 4px 12px;
+    padding: 4px 24px 4px 0;
     word-break: break-word;
     white-space: normal;
 }

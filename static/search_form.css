@@ -16,8 +16,13 @@
     font-weight: 500;
 }
 
+.search-form a {
+    background-color: orange;
+}
+
 .search-form button:hover {
     background-color: #121212;
     color: #ffffff;
     border: solid #ffffff 1px;
 }
+

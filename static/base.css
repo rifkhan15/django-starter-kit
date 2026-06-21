@@ -178,7 +178,7 @@ body {
     color: #ffffff;
 }
 
-.main-subta {
+.page-title {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -191,6 +191,5 @@ body {
 
 .main-content {
     margin-top: 64px;
-    /* margin-left: 260px; */
-    padding-left: 30px;
+    margin-left: 40px;
 }

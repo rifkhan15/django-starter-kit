@@ -10,7 +10,7 @@
     <div class="search-results">
         <h4>Search results for "{{ search_query }}":</h4>
         <span>{{ page_obj.paginator.count }} records found.</span>
-        <a class="cancel-char" href="?" title="Close search">✖</a>
+        <!-- <a class="cancel-char" href="?" title="Close search">✖</a> -->
     </div>
     {% else %}
     <h4>Showing {{ page_obj.start_index }}-{{ page_obj.end_index }} of {{ page_obj.paginator.count }} {{ model_verbose_plural }}</h4>
@@ -23,7 +23,7 @@
 
 {% block content %}
     {% if not object_list %}
-        <p>No records found.</p>
+        <p>No records.</p>
     {% else %}
     <table>
         <thead>
@@ -38,7 +38,7 @@
 
         <tbody>
             {% for obj in object_list %}
-            <tr>
+            <tr class="{% if search_query %}orange-text{% endif %}">
                 {% for field_name, verbose_name, value in obj.field_attrs %}
                 {% if field_name != 'created_date' and field_name != 'updated_on' %}
                 <td>
