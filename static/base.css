@@ -1,6 +1,7 @@
 body {
     display: flex;
-    /* height: 100vh; */
+    height: 100vh;
+    overflow: hidden;
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     background-color: #ebebeb;
     color: #121212;
@@ -24,12 +25,13 @@ body {
 }
 
 .client-branding h1{
+    font-size: 28px;
     margin-bottom: 0;
     margin-top: 14px;
 }
 
 .client-branding h2{
-    font-size: smaller;
+    font-size: 14px;
     font-weight: lighter;
     margin-top: 4px;
     margin-bottom: 0;
@@ -49,10 +51,6 @@ body {
     padding: 0;
 }
 
-/* .sidebar nav ul li {
-    margin-bottom: 10px;
-} */
-
 .sidebar nav a {
     display: block;
     text-decoration: none;
@@ -71,7 +69,6 @@ body {
 .sidebar-footer {
     margin: auto 0 16px 0;
     color: #7f7f7f;
-    font-size: small;
 }
 
 .sidebar-footer hr {
@@ -87,83 +84,55 @@ body {
     margin-left: 260px;
 }
 
+
 .main-header {
     position: fixed;
     top: 0;
     right: 0;
     left: 260px;
-    margin: 0;
-    /* height: 68px; */
-}
-
-/* .main-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
+    /* margin-left: 32px; */
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: #121212;
     color: #ffffff;
-    padding: 6px 10px 6px 32px;
-    margin: 0;
-    height: 32px;
-} */
-
-.main-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #121212;
-    color: #ffffff;
-    height: 36px;
-    padding: 0 0 2px 32px;
+    padding: 0 12px 2px 32px;
 }
 
-.main-title div {
+.main-header div {
     display: flex;
     align-items: center;
     /* gap: 10px; */
 }
 
-.main-title h3 {
+.main-header h3 {
+    font-size: 18px;
+    font-weight: 500;
     padding: 0;
     margin: 0;
 }
 
-/* .main-header-title {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    width: 15%;
-} */
-
-/* .main-header-title h3 {
-    padding: 0;
-    margin: 0;
-} */
-
-.main-title a {
+.main-header a {
     text-decoration: none;
     color: #7f7f7f;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 700;
     padding-bottom: 2px;
     margin-left: 10px;
 }
 
-.main-title a:hover {
+.main-header a:hover {
     color: #ffffff;
 }
 
-.main-title span {
+.main-header span {
     margin: 0;
     padding: 0;
     color: #7f7f7f;
     font-size: 14px;
 }
 
-.main-title button {
+.main-header button {
     font: inherit;
     background-color: #121212;
     color: #7f7f7f;
@@ -173,7 +142,7 @@ body {
     margin: 0 12px 0 6px;
 }
 
-.main-title button:hover {
+.main-header button:hover {
     color: #ffffff;
 }
 
@@ -191,4 +160,6 @@ body {
 .main-content {
     margin-top: 64px;
     margin-left: 40px;
+    height: 80vh;      /* or calc(100vh - headerHeight) */
+    overflow-y: auto;   /* scroll happens here */
 }

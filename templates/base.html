@@ -36,32 +36,31 @@
 
     <div class="main-section">
         <div class="main-header">
-            <div class="main-title">
-                <div>
-                    {% if model_title_plural %}
-                    <h3>{{ model_title_plural }}</h3>
-                    {% if not request.resolver_match.view_name|slice:"-6:" == 'create' %}
-                    <a href="{% url create_url %}">+</a>
-                    {% endif %}
-                    {% else %}
-                    <h3>{{ request.resolver_match.view_name|capfirst }}</h3>
-                    {% endif %}
-                </div>
-                <div>
-                    {% if request.resolver_match.view_name|slice:"-4:" == 'list' %}
-                    {% include 'partials/_search_form.html' %}
-                    {% endif %}
-                </div>
-                <div>
-                    <span>{% if user.username %}User: {{ user.username }}{% else %}Tom Walter{% endif %}</span>
-                    <button type="submit" class="ghf" form="login-form" title="Logout">⏻</button>
-                </div>
+            <div>
+                {% if model_title_plural %}
+                <h3>{{ model_title_plural }}</h3>
+                {% if not request.resolver_match.view_name|slice:"-6:" == 'create' %}
+                <a href="{% url create_url %}">+</a>
+                {% endif %}
+                {% else %}
+                <h3>{{ request.resolver_match.view_name|capfirst }}</h3>
+                {% endif %}
             </div>
+            <div>
+                {% if request.resolver_match.view_name|slice:"-4:" == 'list' %}
+                {% include 'partials/_search_form.html' %}
+                {% endif %}
+            </div>
+            <div>
+                <span>{% if user.username %}User: {{ user.username }}{% else %}Tom Walter{% endif %}</span>
+                <button type="submit" class="ghf" form="login-form" title="Logout">⏻</button>
+            </div>
+        </div>
+
             <div class="page-title">
                 {% block page_title %}
                 {% endblock %}
             </div>
-        </div>
 
         <!-- <div class="main-header">
             <div class="main-header-title">
