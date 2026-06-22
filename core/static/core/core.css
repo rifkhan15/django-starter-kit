@@ -89,16 +89,21 @@
     color: green;
 }
 
+.list-table {
+
+    /* height: calc(100vh - 34px - 46px - 20px); */
+    /* overflow-y: auto; */
+}
+
 table {
     border-collapse: collapse;
-    margin-top: 8px;
+    margin-top: 0;
     width: auto;
 }
 
 thead tr {
     position: sticky;
-    width: 100%;
-    top: 8px;
+    top: 0;
     /* padding: 16px 0 2px 0; */
     background-color: #ebebeb;
 }
