@@ -7,16 +7,15 @@
 
 
 {% block content %}
-
-<form method="post">
+<div class="content-div">
+<form id="update-forms" method="post">
   {% csrf_token %}
 
-  <div class="main-subtitle">
+  <!-- <div class="main-subtitle">
     <h4>Editing {{ view.model_verbose_name }} "{{ object }}"</h4>
     <button class="check-char" type="submit" title="Save">✔</button>
     <a class="cancel-char" title="Close" href="{% url list_url %}">✖</a>
-  </div>
-
+  </div> -->
   {{ form.as_p }}
 
   {% if formset %}
@@ -28,6 +27,5 @@
   {% endif %}
 
 </form>
-
-
+</div>
 {% endblock %}

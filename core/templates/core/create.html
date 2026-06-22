@@ -7,10 +7,11 @@
 
 
 {% block content %}
-<form method="post">
-  {% csrf_token %}
+<div class="content-div">
+  <form id="create-form" method="post">
+    {% csrf_token %}
 
-  <div class="main-subtitle">
+    <!-- <div class="main-subtitle">
     <h4>Creating new {{ model_verbose_name }}</h4>
 
     {% if not has_formset %}
@@ -20,16 +21,16 @@
     {% endif %}
 
     <a class="cancel-char" title="Cancel" href="{% url list_url %}">✖</a>
-  </div>
+  </div> -->
 
-  {{ form.as_p }}
+    {{ form.as_p }}
 
-  {% if has_formset %}
-  <button class="add-lineitem" type="submit" title="Add inquiry items">
-    + {{ formset_verbose_name_plural }}
-  </button>
-  {% endif %}
+    {% if has_formset %}
+    <button class="add-lineitem" type="submit" title="Add inquiry items">
+      + {{ formset_verbose_name_plural }}
+    </button>
+    {% endif %}
 
-</form>
-
+  </form>
+</div>
 {% endblock %}
