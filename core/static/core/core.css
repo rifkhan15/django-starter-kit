@@ -22,7 +22,6 @@
 
 
 
-
 .main-subtitle {
     display: flex;
     align-items: baseline;
@@ -92,14 +91,14 @@
 
 table {
     border-collapse: collapse;
-    margin-top: 16px;
+    margin-top: 28px;
 }
 
 thead tr {
     position: sticky;
     width: 100%;
-    top: 88px;
-    padding: 2px 0;
+    top: 28px;
+    /* padding: 16px 0 2px 0; */
     background-color: #ebebeb;
 }
 
