@@ -7,29 +7,15 @@
 
 {% block content %}
 
-<div class="main-subtitle">
+<!-- <div class="main-subtitle">
     <h4>{{ object }}</h4>
     <a class="edit-char" title="Edit" href="{% url update_url object.pk %}">✎</a>
     <a class="delete-char" title="Delete" href="{% url delete_url object.pk %}">🗑</a>
     <a class="cancel-char" title="Close" href="{{ request.META.HTTP_REFERER }}">✖</a>
-</div>
+</div> -->
 
-{% if object_list %}
-Yes object_list
-{% else %}
-No object_list
-{% endif %}
+<div class="content-div">
 
-<br>
-app_name: {{ request.resolver_match.app_name}}
-<br>
-view_name: {{ request.resolver_match.view_name }}
-<br>
-namespace: {{ request.resolver_match.namespace }}
-<br>
-url_name: {{ request.resolver_match.url_name }}
-<br>
-<ul>
     {% for field_name, verbose_name, value in object.field_attrs %}
     <li>
         <strong>{{ verbose_name|capfirst }}</strong>:
@@ -51,6 +37,6 @@ url_name: {{ request.resolver_match.url_name }}
     {% endfor %}
 
 </ul>
-
+</div>
 
 {% endblock %}

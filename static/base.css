@@ -149,13 +149,13 @@ body {
 
 .page-title {
     position: fixed;
-    top: 46px;
+    top: 36px;
     right: 0;
     left: 260px;
     height: 46px;
     display: flex;
     gap: 10px;
-    padding: 8px 16px 0 16px;
+    padding: 18px 16px 0 16px;
     justify-content: space-between;
     background-color: #ebebeb;
     color: #555555;
@@ -163,12 +163,8 @@ body {
 }
 
 .main-content {
-    margin-top: 60px;
+    margin-top: 72px;
     margin-left: 40px;
     height: calc(100vh - 46px - 24px);
     overflow-y: auto;
-}
-
-.main-content p {
-    padding-top: 12px;
 }

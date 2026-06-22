@@ -91,14 +91,14 @@
 
 table {
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 8px;
     width: auto;
 }
 
 thead tr {
     position: sticky;
     width: 100%;
-    top: 20px;
+    top: 8px;
     /* padding: 16px 0 2px 0; */
     background-color: #ebebeb;
 }
@@ -113,4 +113,8 @@ td {
 
 td a {
     color: #4d4dff;
+}
+
+.content-div {
+    padding-top: 16px;
 }
