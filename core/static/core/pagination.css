@@ -3,7 +3,7 @@
     /* align-items: center; */
     justify-content: center;
     gap: 3px;
-    /* background-color: #ebebeb; */
+    background-color: #ebebeb;
     font-size: 14px;
     color: #555555;
 }
@@ -12,7 +12,7 @@
     height: 22px;
     width: 22px;
     border: 1px solid #555555;
-    border-radius: 4px;
+    border-radius: 50%;
     text-decoration: none;
     text-align: center;
     padding: 0;
@@ -21,34 +21,12 @@
 .pagination span {
     height: 22px;
     width: auto;
-    border: 1px solid #555555;
-    border-radius: 4px;
+    border-top: 1px solid #555555;
+    border-bottom: 1px solid #555555;
+    border-radius: 30%;
     padding: 0px 8px;
 }
 
-/* 
-.pagination a,
-.pagination span {
-    width: 22px;
-    height: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #7f7f7f;
-    border-radius: 4px;
-    margin-left: -1px;
-    text-decoration: none;
-    color: #121212;
-    background: #ffffff;
-    font-size: 14px;
-    padding-bottom: 2.5px;
-} */
-
 .pagination a:hover {
-    background: #f7f7f7;
-}
-
-.pagination .active {
-    background-color: #dcdcdc;
-    font-weight: 600;
+    background-color: #c2c2c2
 }
