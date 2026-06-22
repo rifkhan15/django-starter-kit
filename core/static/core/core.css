@@ -19,34 +19,29 @@
     font-weight: 600;
 }
 
-
-
-
-.main-subtitle {
+.page-title .crud-title {
     display: flex;
     align-items: baseline;
     gap: 14px;
-    padding: 0;
-    margin: 0;
 }
 
-.main-subtitle h4 {
+.page-title .crud-title h4 {
     margin: 0 18px 0 0;
 }
 
-.main-subtitle a {
+.page-title .crud-title a {
     text-decoration: none;
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
 }
 
-.main-subtitle a:hover,
-.main-subtitle button:hover  {
+.page-title .crud-title a:hover,
+.page-title .crud-title button:hover  {
     box-shadow: inset 0 2px 0 currentColor;
 }
 
-.main-subtitle button {
+.page-title .crud-title button {
     font-size: 18px;
     background-color: inherit;
     border: none;
