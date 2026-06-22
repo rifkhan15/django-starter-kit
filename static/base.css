@@ -162,8 +162,9 @@ body {
 }
 
 .main-content {
-    margin-top: 78px;
+    margin-top: 40px;
     margin-left: 40px;
-    height: calc(100vh - 34px - 46px - 20px);
-    overflow-y: auto;
+    overflow-y: hidden;
+    /* height: calc(100vh - 34px - 46px - 20px);
+    overflow-y: auto; */
 }

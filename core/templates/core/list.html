@@ -6,43 +6,43 @@
 {% endblock %}
 
 {% block content %}
-{% if not object_list %}
 <div class="content-div">
+{% if not object_list %}
     <p>No records.</p>
-</div>
-{% else %}
-<div class="list-table">
-    <table>
-        <thead>
-            <tr>
-                {% for field_name, verbose_name, value in object_list.0.field_attrs %}
-                {% if field_name != 'created_date' and field_name != 'updated_on' %}
-                <th>{{ verbose_name|capfirst }}</th>
-                {% endif %}
-                {% endfor %}
-            </tr>
-        </thead>
-
-        <tbody>
-            {% for obj in object_list %}
-            <tr class="{% if search_query %}orange-text{% endif %}">
-                {% for field_name, verbose_name, value in obj.field_attrs %}
-                {% if field_name != 'created_date' and field_name != 'updated_on' %}
-                <td>
-                    {% if forloop.counter == 4 %}
-                    <a href="{% url detail_url obj.pk %}">
-                        {{ value }}
-                    </a>
-                    {% else %}
-                    {{ value|default:"-" }}
+    {% else %}
+    <div class="list-table">
+        <table>
+            <thead>
+                <tr>
+                    {% for field_name, verbose_name, value in object_list.0.field_attrs %}
+                    {% if field_name != 'created_date' and field_name != 'updated_on' %}
+                    <th>{{ verbose_name|capfirst }}</th>
                     {% endif %}
-                </td>
-                {% endif %}
+                    {% endfor %}
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for obj in object_list %}
+                <tr class="{% if search_query %}orange-text{% endif %}">
+                    {% for field_name, verbose_name, value in obj.field_attrs %}
+                    {% if field_name != 'created_date' and field_name != 'updated_on' %}
+                    <td>
+                        {% if forloop.counter == 4 %}
+                        <a href="{% url detail_url obj.pk %}">
+                            {{ value }}
+                        </a>
+                        {% else %}
+                        {{ value|default:"-" }}
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
                 {% endfor %}
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
 {% endif %}
+</div>
 {% endblock %}

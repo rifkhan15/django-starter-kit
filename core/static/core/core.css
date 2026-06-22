@@ -90,21 +90,17 @@
 }
 
 .list-table {
-
-    /* height: calc(100vh - 34px - 46px - 20px); */
-    /* overflow-y: auto; */
+    /* margin-top: 0px; */
 }
 
 table {
     border-collapse: collapse;
-    margin-top: 0;
     width: auto;
 }
 
 thead tr {
     position: sticky;
-    top: 0;
-    /* padding: 16px 0 2px 0; */
+    top: 0px;
     background-color: #ebebeb;
 }
 
@@ -121,5 +117,7 @@ td a {
 }
 
 .content-div {
-    padding-top: 14px;
+    margin-top: 40px;
+    height: calc(100vh - 34px - 46px - 20px);
+    overflow-y: auto;
 }
