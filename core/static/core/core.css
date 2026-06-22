@@ -91,13 +91,14 @@
 
 table {
     border-collapse: collapse;
-    margin-top: 28px;
+    margin-top: 20px;
+    width: auto;
 }
 
 thead tr {
     position: sticky;
     width: 100%;
-    top: 28px;
+    top: 20px;
     /* padding: 16px 0 2px 0; */
     background-color: #ebebeb;
 }
