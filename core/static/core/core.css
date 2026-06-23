@@ -75,7 +75,7 @@
     font-size: 16px;
     font-weight: lighter;
     padding: 4px 6px;
-    margin-left: 16px;
+    margin-left: 4px;
     cursor: pointer;
 }
 
@@ -85,11 +85,13 @@
     color: green;
 }
 
-.list-table {
-    /* margin-top: 0px; */
+.content-div {
+    margin-top: 40px;
+    height: calc(100vh - 34px - 46px - 20px);
+    overflow-y: auto;
 }
 
-.list-table table {
+.list-table {
     border-collapse: collapse;
     width: auto;
 }
@@ -112,7 +114,7 @@
     color: #4d4dff;
 }
 
-.content-div {
+.detail-div {
     margin-top: 40px;
     height: calc(100vh - 34px - 46px - 20px);
     overflow-y: auto;
@@ -123,13 +125,13 @@
     margin-left: 14px;
 }
 
-.form-div td {
+.form-div table td {
     vertical-align: top;
     padding-right: 24px;
     padding-bottom: 14px;
 }
 
-.form-div textarea {
+.form-div table textarea {
     height: 48px;
 }
 

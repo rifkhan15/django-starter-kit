@@ -15,27 +15,27 @@
 </div> -->
 
 <div class="content-div">
-    {% for field_name, verbose_name, value in object.field_attrs %}
-    <li>
-        <strong>{{ verbose_name|capfirst }}</strong>:
-        {{ value }}
-    </li>
-    {% endfor %}
+    <ul class="detail-ul">
+        {% for field_name, verbose_name, value in object.field_attrs %}
+        <li>
+            <strong>{{ verbose_name|capfirst }}</strong>:
+            {{ value }}
+        </li>
+        {% endfor %}
 
-    {% for child in children %}
-    {% if child.items %}
-    <li>
-        <strong>{{ child.verbose_name_plural|capfirst }}</strong>:
-        <ul>
-            {% for obj in child.items %}
-            <li>{{ obj }}</li>
-            {% endfor %}
-        </ul>
-    </li>
-    {% endif %}
-    {% endfor %}
-
-</ul>
+        {% for child in children %}
+        {% if child.items %}
+        <li>
+            <strong>{{ child.verbose_name_plural|capfirst }}</strong>:
+            <ul>
+                {% for obj in child.items %}
+                <li>{{ obj }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
 </div>
 
 {% endblock %}
