@@ -7,19 +7,16 @@
 
 
 {% block content %}
-<div class="content-div">
+<div class="form-div">
   <form id="core-form" method="post">
     {% csrf_token %}
 
-    <div class="form-div">
       {% include 'core/partials/_form.html' %}
 
       {% if formset %}
       {{ formset.management_form }}
       {% include 'core/partials/_formset.html' %}
       {% endif %}
-    </div>
-
   </form>
 </div>
 {% endblock %}

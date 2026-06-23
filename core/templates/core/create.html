@@ -7,15 +7,11 @@
 
 
 {% block content %}
-<div class="content-div">
+<div class="form-div">
   <form id="core-form" method="post">
     {% csrf_token %}
 
-    <!-- {{ form.as_p }} -->
-
-    <div class="form-div">
       {% include 'core/partials/_form.html' %}
-    </div>
 
       {% if has_formset %}
       <button class="add-lineitem" type="submit" title="Add inquiry items">
