@@ -8,21 +8,21 @@
 
 {% block content %}
 <div class="content-div">
-<form id="update-forms" method="post">
+<form id="core-form" method="post">
   {% csrf_token %}
 
-  <!-- <div class="main-subtitle">
-    <h4>Editing {{ view.model_verbose_name }} "{{ object }}"</h4>
-    <button class="check-char" type="submit" title="Save">✔</button>
-    <a class="cancel-char" title="Close" href="{% url list_url %}">✖</a>
-  </div> -->
-  {{ form.as_p }}
+  <div class="form-div">
+    {% include 'core/partials/_form.html' %}
+  </div>
+  <!-- {{ form.as_p }} -->
 
   {% if formset %}
   {{ formset.management_form }}
 
-  {% for f in formset %}
-  {{ f.as_p }}
+  {% for form in formset %}
+
+  {{ form.as_p }}
+
   {% endfor %}
   {% endif %}
 

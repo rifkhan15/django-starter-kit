@@ -8,12 +8,12 @@
 
 {% block content %}
 <div class="content-div">
-  <form id="create-form" method="post">
+  <form id="core-form" method="post">
     {% csrf_token %}
 
     <!-- {{ form.as_p }} -->
 
-    <div class="form-table">
+    <div class="form-div">
       {% include 'core/partials/_form.html' %}
     </div>
 

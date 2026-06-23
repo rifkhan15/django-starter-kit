@@ -75,7 +75,7 @@
     font-size: 16px;
     font-weight: lighter;
     padding: 4px 6px;
-    margin-left: 30px;
+    margin-left: 16px;
     cursor: pointer;
 }
 
@@ -118,12 +118,19 @@
     overflow-y: auto;
 }
 
-.form-table {
-    margin: 8px 0 14px 14px;
+.form-div {
+    margin-top: 10px;
+    margin-left: 12px;
 }
-.form-table td {
+
+.form-div td {
     vertical-align: top;
-    padding: 6px 14px;
+    padding-right: 24px;
+    padding-bottom: 14px;
+}
+
+.form-div textarea {
+    height: 48px;
 }
 
 /* input,

@@ -1,0 +1,38 @@
+<table>
+    <tbody>
+        {% for field in form %}
+        <tr>
+            <td>{{ field.label }}</td>
+            <td>:</td>
+            <td>{{ field }}</td>
+        </tr>
+        {% endfor %}
+        <!-- {% if formset %}
+        {{ formset.management_form }}
+        <tr>
+            <td>{{ formset_verbose_name_plural|capfirst }}</td>
+            <td>:</td>
+            <td>
+                <table>
+                    <thead>
+                        <tr>
+                            {% for field in formset.0.visible_fields %}
+                            <td>{{ field.label }}</td>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for f in formset %}
+                        <tr>
+                            {% for field in f.visible_fields %}
+                            <td>{{ field }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        {% endif %} -->
+    </tbody>
+</table>
