@@ -11,25 +11,17 @@
   <form id="create-form" method="post">
     {% csrf_token %}
 
-    <!-- <div class="main-subtitle">
-    <h4>Creating new {{ model_verbose_name }}</h4>
+    <!-- {{ form.as_p }} -->
 
-    {% if not has_formset %}
-    <button class="check-char" type="submit" title="Save"">
-      ✔
-    </button>
-    {% endif %}
+    <div class="form-table">
+      {% include 'core/partials/_form.html' %}
+    </div>
 
-    <a class="cancel-char" title="Cancel" href="{% url list_url %}">✖</a>
-  </div> -->
-
-    {{ form.as_p }}
-
-    {% if has_formset %}
-    <button class="add-lineitem" type="submit" title="Add inquiry items">
-      + {{ formset_verbose_name_plural }}
-    </button>
-    {% endif %}
+      {% if has_formset %}
+      <button class="add-lineitem" type="submit" title="Add inquiry items">
+        + {{ formset_verbose_name_plural }}
+      </button>
+      {% endif %}
 
   </form>
 </div>

@@ -75,6 +75,7 @@
     font-size: 16px;
     font-weight: lighter;
     padding: 4px 6px;
+    margin-left: 30px;
     cursor: pointer;
 }
 
@@ -88,26 +89,26 @@
     /* margin-top: 0px; */
 }
 
-table {
+.list-table table {
     border-collapse: collapse;
     width: auto;
 }
 
-thead tr {
+.list-table thead tr {
     position: sticky;
     top: 0px;
     background-color: #ebebeb;
 }
 
-th,
-td {
+.list-table th,
+.list-table td {
     text-align: left;
     padding: 4px 24px 4px 0;
     word-break: break-word;
     white-space: normal;
 }
 
-td a {
+.list-table td a {
     color: #4d4dff;
 }
 
@@ -116,3 +117,17 @@ td a {
     height: calc(100vh - 34px - 46px - 20px);
     overflow-y: auto;
 }
+
+.form-table {
+    margin: 8px 0 14px 14px;
+}
+.form-table td {
+    vertical-align: top;
+    padding: 6px 14px;
+}
+
+/* input,
+select,
+textarea {
+    width: 100%;
+} */
