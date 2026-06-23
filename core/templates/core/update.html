@@ -8,24 +8,18 @@
 
 {% block content %}
 <div class="content-div">
-<form id="core-form" method="post">
-  {% csrf_token %}
+  <form id="core-form" method="post">
+    {% csrf_token %}
 
-  <div class="form-div">
-    {% include 'core/partials/_form.html' %}
-  </div>
-  <!-- {{ form.as_p }} -->
+    <div class="form-div">
+      {% include 'core/partials/_form.html' %}
 
-  {% if formset %}
-  {{ formset.management_form }}
+      {% if formset %}
+      {{ formset.management_form }}
+      {% include 'core/partials/_formset.html' %}
+      {% endif %}
+    </div>
 
-  {% for form in formset %}
-
-  {{ form.as_p }}
-
-  {% endfor %}
-  {% endif %}
-
-</form>
+  </form>
 </div>
 {% endblock %}

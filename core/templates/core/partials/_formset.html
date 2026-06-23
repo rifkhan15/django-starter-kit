@@ -1,3 +1,10 @@
+  {% for f in formset %}
+  {% for field in f %}
+  {{ field }}
+  {% endfor %}
+  {% endfor %}
+
+<!--
 <table>
     <tbody>
         {% for field in form %}
@@ -7,7 +14,7 @@
             <td>{{ field }}</td>
         </tr>
         {% endfor %}
-        <!-- {% if formset %}
+        {% if formset %}
         {{ formset.management_form }}
         <tr>
             <td>{{ formset_verbose_name_plural|capfirst }}</td>
