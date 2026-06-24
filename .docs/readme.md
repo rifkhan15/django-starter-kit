@@ -36,6 +36,9 @@
 - sidemenu items
   menu items are dynamically generated using the contextprocessor.crud_menu(). if a model class need excluding from menu, defin it in app_config.py.
 
+- dashboard
+  dashboard must be fully custmized according to business apps. there is no automaric system.
+
 
 # 🚀 Dynamic Django Business Application Framework
 

@@ -5,21 +5,20 @@
 {% endblock %}
 
 {% block content %}
-<p>Dashboard content</p>
-sdfdsff
 
-here
-<br>
-{{ request.resolver_match.app_name}}
+<p>{{ total_companies }} business clients.</p>
+<p>{{ total_customers }} contacts.</p>
+<p>{{ new_customer_count }} new contacts in last 14 days:</p>
+<ul>
+{% for customer in new_customer_list %}
+<li>{{ customer }}</li>
+{% endfor %}
+</ul>
 
-<br>
-{{ request.resolver_match.view_name }}
-<br>
-{{ request.resolver_match.namespace }}
-<br>
-
-{{ request.resolver_match.url_name }}
-<br>
-
-{{ request.resolver_match.view_name }}
+<p>Recent inquiries:</p>
+<ul>
+{% for inq in recent_inquiries %}
+<li>{{ inq }}</li>
+{% endfor %}
+</ul>
 {% endblock %}
