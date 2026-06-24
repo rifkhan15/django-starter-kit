@@ -111,7 +111,12 @@
 }
 
 .list-table td a {
-    color: #4d4dff;
+    color: #4545f5;
+    text-decoration: none;
+}
+
+.list-table td a:hover {
+    color: #1717b8;
 }
 
 .detail-div {
