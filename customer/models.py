@@ -64,4 +64,4 @@ class InquiryItem(BaseModel):
     ]
 
     def __str__(self):
-        return self.item_description
+        return f"{self.item_description} : {self.special_notes}"
