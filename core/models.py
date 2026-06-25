@@ -6,7 +6,6 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True
-        ordering = ["-id"]
 
     @property
     def field_attrs(self):

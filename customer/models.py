@@ -16,6 +16,7 @@ class Company(BaseModel):
     
     class Meta:
         verbose_name_plural = 'companies'
+        ordering = ["id"]
 
 class Customer(BaseModel):
     name = models.CharField(max_length=150, unique=True)
@@ -30,6 +31,9 @@ class Customer(BaseModel):
 
     def __str__(self):
         return  f"{self.name} - {self.company}" if self.company else self.name
+    
+    class Meta:
+        ordering = ["-created_date"]
 
 class Inquiry(BaseModel):
     inquiry_number = models.CharField(max_length=10, unique=True, editable=False)
@@ -65,3 +69,6 @@ class InquiryItem(BaseModel):
 
     def __str__(self):
         return f"{self.item_description} : {self.special_notes}"
+    
+    class Meta:
+        ordering = ["-inquiry_number", "id", "-created_date"]

@@ -13,7 +13,7 @@
   dashboard app can be coded accroding to business requirement.
 
 - core app 
-  works as a fully automatic views and urlpattern generator.
+  works as a fully automatic views and urlpattern generator. list view queryset is set up to access related objects (object_list > object > related_list).
 
 - your new apps
   once a new app is started, make an app_config.py file and define the class names of crud model and models that need navigation. 
@@ -41,7 +41,7 @@
 
 - templates
   default templates are in core/tempaltes/core. 
-  any custom template must be saved in app/templates/app_label/ and the file name should be e.g. {model_name}_list.html. core/views will handle automatically.
+  any custom template must be saved in app/templates/app_label/ and the file name should be e.g. {model_name}_list.html. core/views will handle automatically. e.g. inauiry_list.html in the sample app.
 
 - navs
   nav items are dynamically generated using the contextprocessor.crud_menu(). if a model class need excluding from menu, defin it in app_config.py.
