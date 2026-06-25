@@ -30,10 +30,13 @@
                             {{ obj.inquiry_number }}
                         </a>
                     </td>
-                    <td>{{ item.pk }}</td>
+                    <td>
+                        <a href="{% url 'customer_inquiryitem_detail' item.pk %}">
+                        {{ item.pk }}</a>
+                    </td>
                     <td>{{ item.created_date }}</td>
                     <td>{{ item.item_description }}</td>
-                    <td>pending</td>
+                    <td>{{ item.get_status_display }}</td>
                 </tr>
                 {% endfor %}
                 {% endfor %}

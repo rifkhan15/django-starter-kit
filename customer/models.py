@@ -7,9 +7,7 @@ class Company(BaseModel):
     contact_number = models.CharField(max_length=30, blank=True, null=True)
     address = models.TextField()
 
-    SEARCH_FIELDS = [
-        'company_name',
-    ]
+    SEARCH_FIELDS = ['company_name',]
 
     def __str__(self):
         return self.company_name
@@ -25,9 +23,7 @@ class Customer(BaseModel):
     designation = models.CharField(max_length=150, blank=True, null=True)
     company = models.ForeignKey(Company, on_delete=models.PROTECT, blank=True, null=True)
     
-    SEARCH_FIELDS = [
-        'name',
-    ]
+    SEARCH_FIELDS = ['name',]
 
     def __str__(self):
         return  f"{self.name} - {self.company}" if self.company else self.name
@@ -53,7 +49,7 @@ class Inquiry(BaseModel):
             )
 
     def __str__(self):
-        return f"Inquiry No: {self.inquiry_number}"
+        return self.inquiry_number
     
     class Meta:
         verbose_name_plural = 'inquiries'
@@ -62,13 +58,12 @@ class InquiryItem(BaseModel):
     inquiry_number = models.ForeignKey(Inquiry, on_delete=models.PROTECT)
     item_description = models.CharField(max_length=255) 
     special_notes = models.TextField(blank=True, null=True)
+    status = models.CharField(choices=[("pending", "Pending"), ("completed", "Completed")], default="pending")
 
-    SEARCH_FIELDS = [
-        'item_description',
-    ]
+    SEARCH_FIELDS = ['item_description',]
 
     def __str__(self):
-        return f"{self.item_description} : {self.special_notes}"
+        return f"Item no: {self.id} : {self.item_description}"
     
     class Meta:
         ordering = ["-inquiry_number", "id", "-created_date"]

@@ -114,7 +114,7 @@ def make_views(*, model, app_label, model_name):
             ]
 
         def get_success_url(self):
-            return f"/{app_label}/{model_name}/"
+            return f"/{app_label}/{model_name}/{self.object.pk}/"
 
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
