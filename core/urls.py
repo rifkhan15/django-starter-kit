@@ -13,7 +13,7 @@ def generate_core_urls():
 
     for app_label, config in configs.items():
 
-        for mc_name in config["modelclass_names"]:
+        for mc_name in config["crud_models"]:
 
             model = apps.get_model(app_label, mc_name)
 

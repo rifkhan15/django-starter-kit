@@ -16,25 +16,35 @@
   works as a fully automatic views and urlpattern generator.
 
 - your new apps
-  once a new app is started, make an app_config.py file and define the app label, model names and extra_context as follows. 
-        APP_CONFIG = {
-            "modelclass_names": ["Order", "Customer"]
-        }
-    *app_config is the main source for automatic creation of view and core navs. core navs are made in core/context_processors.py.
+  once a new app is started, make an app_config.py file and define the class names of crud model and models that need navigation. 
+  app_config is the main source for automatic creation of view and core navs. core navs are made in core/context_processors.py.
+ 
 
-- templates
-  default templates are in core/tempaltes/core. 
-  any custom template must be saved in same file name in app/templates/app_label and core/views will handle automatically.
-
+       APP_CONFIG = {
+          "crud_models": [
+              "Customer",
+              "Company",
+              "Inquiry",
+              "InquiryItem",
+          ],
+          "nav_excludes": [
+              "Inquiry",
+          ]
+}
+    
 - children
   core/mixins.ChildrenMixin exposes child items with model labels. core/detail template has basic rendering.
 
 - inlineformset
   if a formset is needed, define it inindivual forms.py (e.g. customer/forms.py)
-  create success url of models with inlineformset set to udaate_url so after saving parent, the formset will render. 
+  create success url of models with inlineformset set to update_url so after saving parent, the formset will render. 
 
-- sidemenu items
-  menu items are dynamically generated using the contextprocessor.crud_menu(). if a model class need excluding from menu, defin it in app_config.py.
+- templates
+  default templates are in core/tempaltes/core. 
+  any custom template must be saved in app/templates/app_label/ and the file name should be e.g. {model_name}_list.html. core/views will handle automatically.
+
+- navs
+  nav items are dynamically generated using the contextprocessor.crud_menu(). if a model class need excluding from menu, defin it in app_config.py.
 
 - dashboard
   dashboard must be fully custmized according to business apps. there is no automaric system.
@@ -83,7 +93,7 @@ Define models in a simple config:
 
 ```python
 APP_CONFIG = {
-    "modelclass_names": [
+    "crud_models": [
         "Customer",
         "Company",
         "Inquiry",

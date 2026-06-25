@@ -5,13 +5,13 @@ def crud_menu(request):
     crud_menu = []
 
     for app_label, config in load_app_configs().items():
-        nav_exclude = config.get("nav_exclude", [])
+        nav_excludes = config.get("nav_excludes", [])
 
-        for modelclass_name in config["modelclass_names"]:
-            if modelclass_name in nav_exclude:
+        for crud_model in config["crud_models"]:
+            if crud_model in nav_excludes:
                 continue
 
-            model = apps.get_model(app_label, modelclass_name)
+            model = apps.get_model(app_label, crud_model)
 
             crud_menu.append({
                 "model_name": model._meta.model_name,

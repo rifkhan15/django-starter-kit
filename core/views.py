@@ -55,7 +55,7 @@ def make_views(*, model, app_label, model_name):
 
         def get_template_names(self):
             return [
-                f"{app_label}/list.html",
+                f"{app_label}/{model_name}_list.html",
                 "core/list.html",
             ]
 
@@ -72,7 +72,7 @@ def make_views(*, model, app_label, model_name):
 
         def get_template_names(self):
             return [
-                f"{app_label}/detail.html",
+                f"{app_label}/{model_name}_detail.html",
                 "core/detail.html",
             ]
 
@@ -87,7 +87,7 @@ def make_views(*, model, app_label, model_name):
 
         def get_template_names(self):
             return [
-                f"{app_label}/create.html",
+                f"{app_label}/{model_name}_create.html",
                 "core/create.html",
             ]
 
@@ -105,7 +105,7 @@ def make_views(*, model, app_label, model_name):
 
         def get_template_names(self):
             return [
-                f"{app_label}/update.html",
+                f"{app_label}/{model_name}_update.html",
                 "core/update.html",
             ]
 
@@ -147,7 +147,7 @@ def make_views(*, model, app_label, model_name):
 
         def get_template_names(self):
             return [
-                f"{app_label}/confirm_delete.html",
+                f"{app_label}/{model_name}_confirm_delete.html",
                 "core/confirm_delete.html",
             ]
 

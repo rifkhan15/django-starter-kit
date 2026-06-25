@@ -1,11 +1,13 @@
+#defin the class names of the crud models and models that need navigation.
+
 APP_CONFIG = {
-    "modelclass_names": [
+    "crud_models": [
         "Customer",
         "Company",
         "Inquiry",
         "InquiryItem",
     ],
-    "nav_exclude": [
+    "nav_excludes": [
         "InquiryItem",
     ]
 }
