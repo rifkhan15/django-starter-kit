@@ -7,7 +7,7 @@ from django.views.generic import (
     DeleteView,
 )
 
-from core.mixins import CommonLabelsMixin, ChildrenMixin, InlineFormsetLabelsMixin
+from core.mixins import CommonLabelsMixin, RelatedObjectsMixin, InlineFormsetLabelsMixin
 from core.config_loader import load_app_configs
 
 configs = load_app_configs()
@@ -68,18 +68,13 @@ def make_views(*, model, app_label, model_name):
             return ctx
 
     # ---------------- DETAIL VIEW ----------------
-    class D(BaseView, ChildrenMixin, DetailView):
+    class D(BaseView, RelatedObjectsMixin, DetailView):
 
         def get_template_names(self):
             return [
                 f"{app_label}/{model_name}_detail.html",
                 "core/detail.html",
             ]
-
-        def get_context_data(self, **kwargs):
-            ctx = super().get_context_data(**kwargs)
-            ctx["children"] = self.get_children(self.object)
-            return ctx
 
     # ---------------- CREATE VIEW ----------------
     class C(BaseView, InlineFormsetLabelsMixin, CreateView):

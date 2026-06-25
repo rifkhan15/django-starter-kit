@@ -7,13 +7,6 @@
 
 {% block content %}
 
-<!-- <div class="main-subtitle">
-    <h4>{{ object }}</h4>
-    <a class="edit-char" title="Edit" href="{% url update_url object.pk %}">✎</a>
-    <a class="delete-char" title="Delete" href="{% url delete_url object.pk %}">🗑</a>
-    <a class="cancel-char" title="Close" href="{{ request.META.HTTP_REFERER }}">✖</a>
-</div> -->
-
 <div class="content-div">
     <ul class="detail-ul">
         {% for field_name, verbose_name, value in object.field_attrs %}
@@ -23,12 +16,12 @@
         </li>
         {% endfor %}
 
-        {% for child in children %}
-        {% if child.items %}
+        {% for data in related_data %}
+        {% if data.items %}
         <li>
-            <strong>{{ child.verbose_name_plural|capfirst }}</strong>:
+            <strong>{{ data.related_verbose_name_plural|capfirst }}</strong>:
             <ul>
-                {% for obj in child.items %}
+                {% for obj in data.items %}
                 <li>{{ obj }}</li>
                 {% endfor %}
             </ul>

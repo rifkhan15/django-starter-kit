@@ -27,28 +27,30 @@ class CommonLabelsMixin:
         return ctx
 
 #child context for accessing children in detail template
-class ChildrenMixin:
-    def get_children(self, obj):
-        children = []
+class RelatedObjectsMixin:
+    def get_related_data(self, obj):
+        related_data = []
 
         for rel in obj._meta.related_objects:
 
-            manager = getattr(
-                obj,
-                rel.get_accessor_name(),
-                None,
-            )
+            accessor = rel.get_accessor_name()
+            manager = getattr(obj, accessor, None)
 
             if manager is None:
                 continue
 
-            children.append({
-                "verbose_name": rel.related_model._meta.verbose_name,
-                "verbose_name_plural": rel.related_model._meta.verbose_name_plural,
+            related_data.append({
+                "related_verbose_name_plural": rel.related_model._meta.verbose_name_plural,
                 "items": manager.all(),
             })
 
-        return children
+        return related_data
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx["related_data"] = self.get_related_data(self.object)
+        return ctx
+
         
 #inlineformset lables
 class InlineFormsetLabelsMixin:
