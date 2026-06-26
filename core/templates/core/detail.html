@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="content-div">
     <ul class="detail-ul">
         {% for field_name, verbose_name, value in object.field_attrs %}
@@ -16,19 +15,14 @@
         </li>
         {% endfor %}
 
-        {% for data in related_data %}
-        {% if data.items %}
         <li>
-            <strong>{{ data.related_verbose_name_plural|capfirst }}</strong>:
+            <strong>{{ object.related_model_verbose_plural|capfirst }}</strong>:
             <ul>
-                {% for obj in data.items %}
-                <li>{{ obj }}</li>
+                {% for item in object.items.all %}
+                <li>{{ item }}</li>
                 {% endfor %}
             </ul>
         </li>
-        {% endif %}
-        {% endfor %}
     </ul>
 </div>
-
 {% endblock %}

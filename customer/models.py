@@ -21,10 +21,10 @@ class Customer(BaseModel):
     contact_number = models.CharField(max_length=30, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     designation = models.CharField(max_length=150, blank=True, null=True)
-    company = models.ForeignKey(Company, on_delete=models.PROTECT, blank=True, null=True)
+    company = models.ForeignKey(Company, on_delete=models.PROTECT, blank=True, null=True, related_name="items")
     
     SEARCH_FIELDS = ['name',]
-
+    
     def __str__(self):
         return  f"{self.name} - {self.company}" if self.company else self.name
     
@@ -33,7 +33,7 @@ class Customer(BaseModel):
 
 class Inquiry(BaseModel):
     inquiry_number = models.CharField(max_length=10, unique=True, editable=False)
-    customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
+    customer = models.ForeignKey(Customer, on_delete=models.PROTECT, related_name="items")
     inquiry_date = models.DateField()
 
     def save(self, *args, **kwargs):
@@ -55,7 +55,7 @@ class Inquiry(BaseModel):
         verbose_name_plural = 'inquiries'
 
 class InquiryItem(BaseModel):
-    inquiry_number = models.ForeignKey(Inquiry, on_delete=models.PROTECT)
+    inquiry_number = models.ForeignKey(Inquiry, on_delete=models.PROTECT, related_name="items")
     item_description = models.CharField(max_length=255) 
     special_notes = models.TextField(blank=True, null=True)
     status = models.CharField(choices=[("pending", "Pending"), ("completed", "Completed")], default="pending")

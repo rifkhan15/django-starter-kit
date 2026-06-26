@@ -8,12 +8,13 @@ class BaseModel(models.Model):
         abstract = True
 
     @property
+    def related_model_verbose_plural(self):
+        return self.items.model._meta.verbose_name_plural
+
+    @property
     def field_attrs(self):
         return [
             (f.name, f.verbose_name, getattr(self, f.name))
             for f in self._meta.fields
         ]
     
-    @property
-    def object_set_title(self):
-        return self.object_set.model._meta.verbose_name_plural.title()

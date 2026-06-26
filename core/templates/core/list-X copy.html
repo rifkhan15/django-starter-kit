@@ -23,7 +23,7 @@
 
             <tbody>
                 {% for obj in object_list %}
-                {% for item in obj.inquiryitem_set.all %}
+                {% for item in obj.items.all %}
                 <tr class="{% if search_query %}orange-text{% endif %}">
                     <td>
                         <a href="{% url detail_url obj.pk %}">

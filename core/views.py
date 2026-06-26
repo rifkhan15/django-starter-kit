@@ -7,7 +7,7 @@ from django.views.generic import (
     DeleteView,
 )
 
-from core.mixins import CommonLabelsMixin, RelatedObjectsMixin, InlineFormsetLabelsMixin
+from core.mixins import CommonLabelsMixin, InlineFormsetLabelsMixin
 from core.config_loader import load_app_configs
 
 configs = load_app_configs()
@@ -77,7 +77,7 @@ def make_views(*, model, app_label, model_name):
             return ctx
 
     # ---------------- DETAIL VIEW ----------------
-    class D(BaseView, RelatedObjectsMixin, DetailView):
+    class D(BaseView, DetailView):
 
         def get_template_names(self):
             return [
