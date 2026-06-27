@@ -16,6 +16,7 @@
                 <th>Date</th>
                 <th>Inquiry no.</th>
                 <th>Customer</th>
+                <th>Inquiry items</th>
             </tr>
         </thead>
 
@@ -23,8 +24,72 @@
             {% for obj in object_list %}
             <tr>
                 <td>{{ obj.inquiry_date|date:"d-m-Y" }}</td>
-                <td>{{ obj.inquiry_number }}</td>
+                <td><a href="">{{ obj.inquiry_number }}</a></td>
                 <td>{{ obj.customer }}</td>
+                <td>count inquiry items</td>
+            </tr>
+
+            {% for item in obj.items.all %}
+            <tr>
+                <td colspan="3">
+                    {{ item.item_description }} — {{ item.get_status_display }}
+                </td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <hr>
+
+    <table class="list-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Inquiry no.</th>
+                <th>Customer</th>
+                <th>Inquiry items</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for obj in object_list %}
+            <tr>
+                <td>{{ obj.inquiry_date|date:"d-m-Y" }}</td>
+                <td><a href="">{{ obj.inquiry_number }}</a></td>
+                <td>{{ obj.customer }}</td>
+
+                <td>
+                    <details>
+                        <summary>
+                            {{ obj.items.count }} item{{ obj.items.count|pluralize }}
+                        </summary>
+
+                        <table class="hidden-items">
+                            <thead>
+                                <tr>
+                                    <th>Item no.</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for item in obj.items.all %}
+                                <tr>
+                                    <td>00{{ item.id }}</td>
+                                    <td>{{ item.item_description }}</td>
+                                    <td >{{ item.get_status_display }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="2">No items</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </details>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

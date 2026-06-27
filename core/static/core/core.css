@@ -130,7 +130,8 @@
     margin-left: 14px;
 }
 
-.form-div table td {
+.form-div table td, 
+.form-div table th {
     vertical-align: top;
     padding-right: 24px;
     padding-bottom: 14px;

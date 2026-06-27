@@ -65,11 +65,24 @@ def make_views(*, model, app_label, model_name):
             related = [
                 rel.get_accessor_name()
                 for rel in self.model._meta.related_objects
+                if rel.one_to_many or rel.many_to_many
             ]
 
-            qs = qs.prefetch_related(*related)
+            return self.apply_search(
+                qs.prefetch_related(*related)
+            )
 
-            return self.apply_search(qs)
+        # def get_queryset(self):
+        #     qs = super().get_queryset()
+
+        #     related = [
+        #         rel.get_accessor_name()
+        #         for rel in self.model._meta.related_objects
+        #     ]
+
+        #     qs = qs.prefetch_related(*related)
+
+        #     return self.apply_search(qs)
 
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
