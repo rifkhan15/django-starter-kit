@@ -91,19 +91,19 @@
     overflow-y: auto;
 }
 
-.list-table {
+.object-list-table {
     border-collapse: collapse;
     width: auto;
 }
 
-.list-table thead tr {
+.object-list-table thead tr {
     position: sticky;
     top: 0px;
     background-color: #ebebeb;
 }
 
-.list-table th,
-.list-table td {
+.object-list-table th,
+.object-list-table td {
     text-align: left;
     vertical-align: top;
     padding: 4px 24px 4px 0;
@@ -111,12 +111,12 @@
     white-space: normal;
 }
 
-.list-table td a {
+.object-list-table td a {
     color: #4545f5;
     text-decoration: none;
 }
 
-.list-table td a:hover {
+.object-list-table td a:hover {
     color: #1717b8;
 }
 

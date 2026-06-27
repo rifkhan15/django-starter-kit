@@ -10,7 +10,7 @@
     {% if not object_list %}
     <p>No records.</p>
     {% else %}
-    <table class="list-table">
+    <table class="object-list-table">
         <thead>
             <tr>
                 {% for field_name, verbose_name, value in object_list.0.field_attrs %}
