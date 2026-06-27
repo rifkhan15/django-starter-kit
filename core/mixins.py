@@ -14,11 +14,11 @@ class CommonLabelsMixin:
             "model_verbose_plural": model._meta.verbose_name_plural,
             "model_title_plural": model._meta.verbose_name_plural.title(),
 
-            "list_url": f"{self.app_label}_{model_name}_list",
-            "create_url": f"{self.app_label}_{model_name}_create",
-            "detail_url": f"{self.app_label}_{model_name}_detail",
-            "update_url": f"{self.app_label}_{model_name}_update",
-            "delete_url": f"{self.app_label}_{model_name}_delete",
+            "list_url": f"{self.app_label}{model_name}_list",
+            "create_url": f"{self.app_label}{model_name}_create",
+            "detail_url": f"{self.app_label}{model_name}_detail",
+            "update_url": f"{self.app_label}{model_name}_update",
+            "delete_url": f"{self.app_label}{model_name}_delete",
         }
 
     def get_context_data(self, **kwargs):

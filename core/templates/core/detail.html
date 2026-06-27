@@ -14,7 +14,7 @@
             {{ value }}
         </li>
         {% endfor %}
-
+        {% if object.items.all %}
         <li>
             <strong>{{ object.related_model_verbose_plural|capfirst }}</strong>:
             <ul>
@@ -23,6 +23,7 @@
                 {% endfor %}
             </ul>
         </li>
+        {% endif %}
     </ul>
 </div>
 {% endblock %}

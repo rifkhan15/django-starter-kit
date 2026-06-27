@@ -37,8 +37,8 @@ body {
     margin-bottom: 0;
 }
 
-.client-branding hr {
-    margin-top: 2px;
+.sidebar hr {
+    margin: 2px 0;
 }
 
 .sidebar nav {
@@ -68,16 +68,12 @@ body {
 }
 
 .sidebar-footer {
-    margin: auto 0 16px 0;
-    color: #7f7f7f;
+    margin: auto 0 10px 0;
 }
 
-.sidebar-footer hr {
-    margin-bottom: 4px;
-}
-
-.sidebar-footer div {
+.sidebar-footer h2 {
     margin: 0 10px;
+    color: #7f7f7f;
     font-size: 12px;
 }
 

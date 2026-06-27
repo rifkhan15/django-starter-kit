@@ -16,7 +16,7 @@ def crud_menu(request):
             crud_menu.append({
                 "model_name": model._meta.model_name,
                 "model_title": model._meta.verbose_name_plural.title(),
-                "url": f"{app_label}_{model._meta.model_name}_list",
+                "url": f"{app_label}{model._meta.model_name}_list",
             })
 
     return {

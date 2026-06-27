@@ -26,7 +26,7 @@ def generate_core_urls():
             )
 
             basepath = f"{app_label.lower()}/{model_name}"
-            basename = f"{app_label.lower()}_{model_name}"
+            basename = f"{app_label.lower()}{model_name}"
 
             core_urlpatterns += [
                 path(f"{basepath}/", ListV.as_view(), name=f"{basename}_list"),

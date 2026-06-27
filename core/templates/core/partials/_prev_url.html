@@ -1,0 +1,12 @@
+<a 
+    class="cancel-char" title="Close" 
+    {% if request.GET.prev_url %} 
+        {% with request.GET.prev_url as prev_url %}
+            href="{% url prev_url %}" 
+            {% endwith %} 
+    {% else %} 
+        href="{% url list_url %}" 
+    {% endif %}
+    >
+    ✖
+</a>
