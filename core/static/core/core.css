@@ -105,6 +105,7 @@
 .list-table th,
 .list-table td {
     text-align: left;
+    vertical-align: top;
     padding: 4px 24px 4px 0;
     word-break: break-word;
     white-space: normal;
