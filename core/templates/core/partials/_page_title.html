@@ -32,7 +32,7 @@
     <div class="crud-title">
         <h4>Editing {{ view.model_verbose_name }} "{{ object }}"</h4>
         <button form="core-form" class="check-char" type="submit" title="Save">✔</button>
-        <a class="cancel-char" title="Close" href="{% url list_url object.pk %}">✖</a>
+        <a class="cancel-char" title="Close" href="{% url detail_url object.pk %}">✖</a>
     </div>
 {% endif %}
 

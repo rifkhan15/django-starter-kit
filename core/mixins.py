@@ -1,21 +1,41 @@
 from importlib import import_module
 from django.forms.models import BaseInlineFormSet
+from core.config_loader import load_app_configs
 
 #name of common labels of models, urls, etc
 class CommonLabelsMixin:
+
     def get_common_lables(self):
         model = self.model
-        model_name = model._meta.model_name
         app_label = model._meta.app_label
+        model_name = model._meta.model_name
+
+        configs = load_app_configs()
+
+        # default = itself
+        list_model = model
+
+        # check config override
+        for config in configs.values():
+            redirects = config.get("list_redirects", {})
+
+            if model in redirects:
+                list_model = redirects[model]
+                break
+
+        list_model_name = list_model._meta.model_name
 
         return {
             "app_label": app_label,
+
             "model_name": model_name,
             "model_verbose_name": model._meta.verbose_name,
             "model_verbose_plural": model._meta.verbose_name_plural,
             "model_title_plural": model._meta.verbose_name_plural.title(),
 
-            "list_url": f"{app_label}{model_name}_list",
+            # 🔥 only this is overridden
+            "list_url": f"{app_label}{list_model_name}_list",
+
             "create_url": f"{app_label}{model_name}_create",
             "detail_url": f"{app_label}{model_name}_detail",
             "update_url": f"{app_label}{model_name}_update",
@@ -26,7 +46,6 @@ class CommonLabelsMixin:
         ctx = super().get_context_data(**kwargs)
         ctx.update(self.get_common_lables())
         return ctx
-
         
 #inlineformset lables
 class InlineFormsetLabelsMixin:

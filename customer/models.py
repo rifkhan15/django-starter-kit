@@ -53,6 +53,7 @@ class Inquiry(BaseModel):
     
     class Meta:
         verbose_name_plural = 'inquiries'
+        ordering = ['-inquiry_date']
 
 class InquiryItem(BaseModel):
     inquiry_number = models.ForeignKey(Inquiry, on_delete=models.PROTECT, related_name="items")
@@ -64,6 +65,3 @@ class InquiryItem(BaseModel):
 
     def __str__(self):
         return f"Item no: {self.id} : {self.item_description}"
-    
-    class Meta:
-        ordering = ["-inquiry_number", "id", "-created_date"]

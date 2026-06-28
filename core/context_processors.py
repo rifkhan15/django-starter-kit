@@ -3,14 +3,16 @@ from core.config_loader import load_app_configs
 def crud_menu(request):
     crud_menu = []
 
-    for app_label, config in load_app_configs().items():
+    configs = load_app_configs()
 
-        nav_excludes = config.get("nav_excludes", {})
+    for app_label, config in configs.items():
+
+        nav_hidden = config.get("nav_hidden", [])
 
         for model in config["crud_models"]:
 
-            # skip excluded models
-            if model in nav_excludes:
+            # skip hidden models
+            if model in nav_hidden:
                 continue
 
             crud_menu.append({
