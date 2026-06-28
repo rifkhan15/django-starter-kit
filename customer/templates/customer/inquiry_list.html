@@ -79,11 +79,9 @@
                                 {% for item in obj.items.all %}
                                 <tr>
                                     <td>
-                                        {% with request.resolver_match.url_name as return_url %}
-                                        <a href="{% url 'customerinquiryitem_detail' item.pk %}?return_url={{ return_url }}">
+                                        <a href="{% url 'customerinquiryitem_detail' item.pk %}">
                                             00{{ item.id }}
                                         </a>
-                                        {% endwith %}
                                     </td>
                                     <td>{{ item.item_description }}</td>
                                     <td>{{ item.get_status_display }}</td>

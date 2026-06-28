@@ -3,7 +3,7 @@ from django.forms.models import BaseInlineFormSet
 
 #name of common labels of models, urls, etc
 class CommonLabelsMixin:
-    def get_common_context(self):
+    def get_common_lables(self):
         model = self.model
         model_name = model._meta.model_name
 
@@ -23,7 +23,7 @@ class CommonLabelsMixin:
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        ctx.update(self.get_common_context())
+        ctx.update(self.get_common_lables())
         return ctx
 
 #child context for accessing children in detail template
@@ -80,13 +80,13 @@ class InlineFormsetLabelsMixin:
         if not formset:
             return {"has_formset": False}
 
-        child = formset.model
+        rel_item = formset.model
 
         return {
             "has_formset": True,
             "formset": formset,
-            "formset_verbose_name": child._meta.verbose_name,
-            "formset_verbose_name_plural": child._meta.verbose_name_plural,
+            "formset_verbose_name": rel_item._meta.verbose_name,
+            "formset_verbose_name_plural": rel_item._meta.verbose_name_plural,
         }
 
     def has_formset(self):
