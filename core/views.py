@@ -7,10 +7,11 @@ from django.views.generic import (
     DeleteView,
 )
 
-from core.mixins import CommonLabelsMixin, InlineFormsetLabelsMixin
-from core.config_loader import load_app_configs
+from core.mixins import (
+    CommonLabelsMixin,
+    InlineFormsetLabelsMixin,
+)
 
-configs = load_app_configs()
 
 # ---------------------------
 # BASE VIEW
@@ -32,7 +33,9 @@ class BaseView(CommonLabelsMixin):
         filters = Q()
 
         for field in self.get_search_fields():
-            filters |= Q(**{f"{field}__icontains": q})
+            filters |= Q(**{
+                f"{field}__icontains": q
+            })
 
         return queryset.filter(filters)
 
@@ -45,11 +48,12 @@ class BaseView(CommonLabelsMixin):
 # ---------------------------
 # VIEW FACTORY
 # ---------------------------
-def make_views(*, model, app_label, model_name):
+def make_views(*, model):
 
+    app_label = model._meta.app_label
     model_name = model._meta.model_name
 
-    # ---------------- LIST VIEW ----------------
+    # ---------------- LIST ----------------
     class L(BaseView, ListView):
         paginate_by = 25
 
@@ -77,7 +81,7 @@ def make_views(*, model, app_label, model_name):
             ctx.update(self.get_search_context())
             return ctx
 
-    # ---------------- DETAIL VIEW ----------------
+    # ---------------- DETAIL ----------------
     class D(BaseView, DetailView):
 
         def get_template_names(self):
@@ -86,7 +90,7 @@ def make_views(*, model, app_label, model_name):
                 "core/detail.html",
             ]
 
-    # ---------------- CREATE VIEW ----------------
+    # ---------------- CREATE ----------------
     class C(BaseView, InlineFormsetLabelsMixin, CreateView):
         fields = "__all__"
 
@@ -97,14 +101,17 @@ def make_views(*, model, app_label, model_name):
             ]
 
         def get_success_url(self):
-            model_name = self.model._meta.model_name
 
             if self.has_formset():
-                return f"/{app_label}/{model_name}/{self.object.pk}/update/"
+                return (
+                    f"/{app_label}/"
+                    f"{model_name}/"
+                    f"{self.object.pk}/update/"
+                )
 
             return f"/{app_label}/{model_name}/"
 
-    # ---------------- UPDATE VIEW ----------------
+    # ---------------- UPDATE ----------------
     class U(BaseView, InlineFormsetLabelsMixin, UpdateView):
         fields = "__all__"
 
@@ -115,7 +122,11 @@ def make_views(*, model, app_label, model_name):
             ]
 
         def get_success_url(self):
-            return f"/{app_label}/{model_name}/{self.object.pk}/"
+            return (
+                f"/{app_label}/"
+                f"{model_name}/"
+                f"{self.object.pk}/"
+            )
 
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
@@ -136,7 +147,10 @@ def make_views(*, model, app_label, model_name):
             formset = self.get_inline_formset()
 
             if formset:
-                fs = formset(self.request.POST, instance=self.object)
+                fs = formset(
+                    self.request.POST,
+                    instance=self.object,
+                )
 
                 if fs.is_valid():
                     fs.save()
@@ -147,7 +161,7 @@ def make_views(*, model, app_label, model_name):
 
             return super().form_valid(form)
 
-    # ---------------- DELETE VIEW ----------------
+    # ---------------- DELETE ----------------
     class X(BaseView, DeleteView):
 
         def get_template_names(self):
@@ -162,6 +176,5 @@ def make_views(*, model, app_label, model_name):
     # ---------------- ATTACH ----------------
     for view in (L, D, C, U, X):
         view.model = model
-        view.app_label = app_label
 
     return L, D, C, U, X
