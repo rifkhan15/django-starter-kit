@@ -22,8 +22,9 @@
 {% if request.resolver_match.url_name|slice:"-6:" == 'detail' %}
     <div class="crud-title">
         <h4>{{ object }}</h4>
-        {% with request.resolver_match.}
-        <a class="edit-char" title="Edit" href="{% url update_url object.pk %}">✎</a>
+        {% with request.resolver_match.url_name as return_url %}
+        <a class="edit-char" title="Edit" href="{% url update_url object.pk %}?return_url={{ return_url }}">✎</a>
+        {% endwith %}
         <a class="delete-char" title="Delete" href="{% url delete_url object.pk %}">🗑</a>
         {% with request.GET.return_url|default:list_url as return_url %}
         <a class="cancel-char" title="Close" href="{% url return_url %}">✖</a>
@@ -35,8 +36,9 @@
     <div class="crud-title">
         <h4>Editing {{ view.model_verbose_name }} "{{ object }}"</h4>
         <button form="core-form" class="check-char" type="submit" title="Save">✔</button>
-
-        <a class="cancel-char" title="Close" href="{{ HTTP_REFFERER }}">✖</a>
+        {% with request.GET.return_url|default:detail_url as return_url %}
+        <a class="cancel-char" title="Close" href="{% url return_url object.pk %}">✖</a>
+        {% endwith %}
     </div>
 {% endif %}
 
