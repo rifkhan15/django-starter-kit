@@ -25,11 +25,11 @@
             {% for obj in object_list %}
             <tr class="{% if search_query %}orange-text{% endif %}">
                 {% for field_name, verbose_name, value in obj.field_attrs %}
-                {% if field_name != 'created_date' and field_name != 'updated_on' %}
+                {% if field_name != "created_date" and field_name != "updated_on" %}
                 <td>
-                    {% if forloop.counter == 4 %}
+                    {% if field_name == "id" %}
                     <a href="{% url detail_url obj.pk %}">
-                        {{ value }}
+                        {{ obj.id }}
                     </a>
                     {% else %}
                     {{ value|default:"-" }}

@@ -1,4 +1,4 @@
-{% if request.resolver_match.view_name|slice:"-4:" == 'list' %}
+{% if request.resolver_match.url_name|slice:"-4:" == 'list' %}
     {% if search_query %}
     <div class="search-results">
         <h4>Search results for "{{ search_query }}":</h4>
@@ -19,36 +19,28 @@
     {% endif %}
 {% endif %}
 
-{% if request.resolver_match.view_name|slice:"-6:" == 'detail' %}
+{% if request.resolver_match.url_name|slice:"-6:" == 'detail' %}
     <div class="crud-title">
         <h4>{{ object }}</h4>
-        {{ request.GET.prev_url }}
+        {% with request.resolver_match.}
         <a class="edit-char" title="Edit" href="{% url update_url object.pk %}">✎</a>
         <a class="delete-char" title="Delete" href="{% url delete_url object.pk %}">🗑</a>
-        <a 
-            class="cancel-char" title="Close" 
-            {% if request.GET.prev_url %}
-            {% with request.GET.prev_url as prev_url  %}
-            href="{% url prev_url %}"
-            {% endwith %}
-            {% else %}
-            href="{% url list_url %}"
-            {% endif %}
-            >
-            ✖
-        </a>
+        {% with request.GET.return_url|default:list_url as return_url %}
+        <a class="cancel-char" title="Close" href="{% url return_url %}">✖</a>
+        {% endwith %}
     </div>
 {% endif %}
 
-{% if request.resolver_match.view_name|slice:"-6:" == 'update' %}
+{% if request.resolver_match.url_name|slice:"-6:" == 'update' %}
     <div class="crud-title">
         <h4>Editing {{ view.model_verbose_name }} "{{ object }}"</h4>
         <button form="core-form" class="check-char" type="submit" title="Save">✔</button>
-        <a class="cancel-char" title="Close" href="{% url list_url %}">✖</a>
+
+        <a class="cancel-char" title="Close" href="{{ HTTP_REFFERER }}">✖</a>
     </div>
 {% endif %}
 
-{% if request.resolver_match.view_name|slice:"-6:" == 'create' %}
+{% if request.resolver_match.url_name|slice:"-6:" == 'create' %}
     <div class="crud-title">
         <h4>Creating new {{ model_verbose_name }}</h4>
         {% if not has_formset %}

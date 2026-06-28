@@ -43,7 +43,6 @@
 
     <hr> -->
 
-    view_nam: {{ request.resolver_match.view_name }}
     <table class="object-list-table">
         <thead>
             <tr>
@@ -80,8 +79,8 @@
                                 {% for item in obj.items.all %}
                                 <tr>
                                     <td>
-                                        {% with request.resolver_match.url_name as current_url %}
-                                        <a href="{% url 'customerinquiryitem_detail' item.pk %}?prev_url={{ current_url }}">
+                                        {% with request.resolver_match.url_name as return_url %}
+                                        <a href="{% url 'customerinquiryitem_detail' item.pk %}?return_url={{ return_url }}">
                                             00{{ item.id }}
                                         </a>
                                         {% endwith %}
