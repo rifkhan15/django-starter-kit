@@ -31,9 +31,6 @@
               "Inquiry",
           ]
 }
-    
-- children
-  core/mixins.ChildrenMixin exposes child items with model labels. core/detail template has basic rendering.
 
 - inlineformset
   if a formset is needed, define it inindivual forms.py (e.g. customer/forms.py)

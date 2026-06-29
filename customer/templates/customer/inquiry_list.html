@@ -80,7 +80,7 @@
                                 <tr>
                                     <td>
                                         <a href="{% url 'customerinquiryitem_detail' item.pk %}">
-                                            00{{ item.id }}
+                                            00{{ forloop.counter }}
                                         </a>
                                     </td>
                                     <td>{{ item.item_description }}</td>
