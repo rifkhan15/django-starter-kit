@@ -2,16 +2,21 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from datetime import timedelta
-from customer.models import Customer, Company, Inquiry
+from customer.models import Customer, Company, Inquiry, InquiryItem
 
 def DashboardView(request):
-    last_14_days = timezone.now() - timedelta(days=14)
+    last_30_days = timezone.now() - timedelta(days=30)
 
     new_customers = Customer.objects.filter(
-        created_date__gte=last_14_days
+        created_date__gte=last_30_days
     ).order_by("-created_date")
 
+    new_inquiries = InquiryItem.objects.filter(
+        created_date__gte=last_30_days
+    ).order_by("created_date")
+
     context = {
+        "new_inquiries": new_inquiries.count(),
         "total_companies": Company.objects.count(),
         "total_customers": Customer.objects.count(),
         "new_customer_count": new_customers.count(), 

@@ -2,23 +2,46 @@
 {% load static %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'base.css' %}">
+<link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
 {% endblock %}
 
 {% block content %}
+<div class="dashboard-container">
+    <div class="stat-card-grid">
+        <div class="stat-card">
+            <p>13</p> 
+            <p>Pending inquiries</p>
+        </div>
+        <div class="stat-card">
+            <p>{{ new_inquiries }}</p> 
+            <p>New inquiries this month</p>
+        </div>
+         <div class="stat-card">
+            <p>{{ new_customer_count }}</p> 
+            <p>New contacts this month</p>
+        </div>
+        <div class="stat-card">
+            <p>{{ total_companies }}</p> 
+            <p>New business clients</p>
+        </div>
+        <div class="stat-card">
+            <p>{{ total_customers }}</p> 
+            <p>total contacts</p>
+        </div>
+    </div>
 
-<p>{{ total_companies }} business clients.</p>
-<p>{{ total_customers }} contacts.</p>
-<p>{{ new_customer_count }} new contacts in last 14 days:</p>
-<ul>
-{% for customer in new_customer_list %}
-<li>{{ customer }}</li>
-{% endfor %}
-</ul>
+    <ul>
+        {% for customer in new_customer_list %}
+        <li>{{ customer }}</li>
+        {% endfor %}
+    </ul>
 
-<p>Recent inquiries:</p>
-<ul>
-{% for inq in recent_inquiries %}
-<li>{{ inq }}</li>
-{% endfor %}
-</ul>
+    <p>Recent inquiries:</p>
+    <ul>
+        {% for inq in recent_inquiries %}
+        <li>{{ inq }}</li>
+        {% endfor %}
+    </ul>
+
+</div>
 {% endblock %}
