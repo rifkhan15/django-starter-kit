@@ -23,7 +23,7 @@
 
         <tbody>
             {% for obj in object_list %}
-            <tr class="{% if search_query %}orange-text{% endif %}">
+            <tr class="{% if search_query %}search-results{% endif %}">
                 {% for field_name, verbose_name, value in obj.field_attrs %}
                 {% if field_name != "created_date" and field_name != "updated_on" %}
                 <td>

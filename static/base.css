@@ -166,3 +166,20 @@ body {
     /* height: calc(100vh - 34px - 46px - 20px);
     overflow-y: auto; */
 }
+
+.color-orange { 
+    color: orange !important; 
+}
+
+.color-red { 
+    color: red; 
+}
+
+.color-green { 
+    color: green; 
+    font-weight: bolder;
+}
+
+.color-blue {
+  color: #4545f5;
+}

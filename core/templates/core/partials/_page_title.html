@@ -22,17 +22,17 @@
 {% if request.resolver_match.url_name|slice:"-6:" == 'detail' %}
     <div class="crud-title">
         <h4>{{ object }}</h4>
-        <a class="edit-char" title="Edit" href="{% url update_url object.pk %}">✎</a>
-        <a class="delete-char" title="Delete" href="{% url delete_url object.pk %}">🗑</a>
-        <a class="cancel-char" title="Close" href="{% url list_url %}">✖</a>
+        <a class="edit-icon color-blue" title="Edit" href="{% url update_url object.pk %}">✎</a>
+        <a class="color-red" title="Delete" href="{% url delete_url object.pk %}">🗑</a>
+        <a class="color-orange" title="Close" href="{% url list_url %}">✖</a>
     </div>
 {% endif %}
 
 {% if request.resolver_match.url_name|slice:"-6:" == 'update' %}
     <div class="crud-title">
         <h4>Editing {{ view.model_verbose_name }} "{{ object }}"</h4>
-        <button form="core-form" class="check-char" type="submit" title="Save">✔</button>
-        <a class="cancel-char" title="Close" href="{% url detail_url object.pk %}">✖</a>
+        <button form="core-form" class="color-green" type="submit" title="Save">✔</button>
+        <a class="color-orange" title="Close" href="{% url detail_url object.pk %}">✖</a>
     </div>
 {% endif %}
 
@@ -40,16 +40,16 @@
     <div class="crud-title">
         <h4>Creating new {{ model_verbose_name }}</h4>
         {% if not has_formset %}
-        <button form="core-form" class="check-char" type="submit" title="Save">
+        <button form="core-form" class="color-green" type="submit" title="Save">
             ✔
         </button>
         {% endif %}
-        <a class=" cancel-char" title="Cancel" href="{% url list_url %}">✖</a>
+        <a class=" color-orange" title="Cancel" href="{% url list_url %}">✖</a>
     </div>
 {% endif %}
 
 {% if request.resolver_match.url_name|slice:"-6:" == 'delete' %}
     <div class="crud-title">
-        <h4 class="delete-char">Are you sure to delete {{ model_verbose_name }} {{ object }} ?</h4>
+        <h4 class="color-red">Are you sure to delete {{ model_verbose_name }} {{ object }} ?</h4>
     </div>
 {% endif %}

@@ -1,3 +1,5 @@
+
+
 .page-title h4 {
     margin: 0;
     padding: 0;
@@ -13,8 +15,8 @@
     font-weight: 600;
 } 
 
-.orange-text,
-.orange-text a {
+.search-results,
+.search-results a {
     color: orange;
     font-weight: 600;
 }
@@ -48,21 +50,7 @@
     cursor: pointer;
 }
 
-.cancel-char { 
-    color: orange; 
-}
-
-.delete-char { 
-    color: red; 
-}
-
-.check-char { 
-    color: green; 
-    font-weight: bolder;
-}
-
-.edit-char {
-  color: blue;
+.edit-icon {
   display: inline-block;
   transform: scaleX(-1);
 }
@@ -117,7 +105,7 @@
 }
 
 .object-list-table td a:hover {
-    color: #1717b8;
+    border-top: 1px solid #4545f5;
 }
 
 .detail-div {
