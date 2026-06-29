@@ -15,18 +15,18 @@ def DashboardView(request):
         created_date__gte=last_30_days
     ).order_by("-created_date")
 
-    new_inquiries = InquiryItem.objects.filter(
+    new_inquiryitems = InquiryItem.objects.filter(
         created_date__gte=last_30_days
     ).order_by("created_date")
 
     context = {
         "new_companies_count": new_companies.count(),
         "new_customers_count": new_customers.count(), 
-        "new_inquiries_count": new_inquiries.count(),
+        "new_inquiryitems_count": new_inquiryitems.count(),
         "total_companies": Company.objects.count(),
         "total_customers": Customer.objects.count(),
         "total_inquiries": InquiryItem.objects.count(),
-        "recent_inquiries": InquiryItem.objects.order_by("-created_date")[:10],
+        "recent_inquiries": Inquiry.objects.order_by("-inquiry_date")[:10],
         "recent_customers": Customer.objects.order_by("-created_date")[:10],
     }
 
