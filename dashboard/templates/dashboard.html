@@ -9,19 +9,19 @@
 <div class="dashboard-container">
     <div class="stat-card-grid">
         <div class="stat-card">
-            <p>13</p> 
+            <p>13</p>
             <p>Pending inquiries</p>
         </div>
         <div class="stat-card">
-            <p>{{ new_inquiries_count }}</p> 
+            <p>{{ new_inquiries_count }}</p>
             <p>New inquiries this month</p>
         </div>
-         <div class="stat-card">
-            <p>{{ new_customers_count }}</p> 
+        <div class="stat-card">
+            <p>{{ new_customers_count }}</p>
             <p>New contacts this month</p>
         </div>
         <div class="stat-card">
-            <p>{{ new_companies_count }}</p> 
+            <p>{{ new_companies_count }}</p>
             <p>New business clients</p>
         </div>
     </div>
@@ -31,18 +31,27 @@
         <p>Total contacts: {{ total_customers }}</p>
         <p>Total inquiries: {{ total_inquiries }}</p>
     </div>
-    <ul>
-        {% for customer in new_customer_list %}
-        <li>{{ customer }}</li>
-        {% endfor %}
-    </ul>
 
-    <p>Recent inquiries:</p>
-    <ul>
-        {% for inq in recent_inquiries %}
-        <li>{{ inq }}</li>
-        {% endfor %}
-    </ul>
+    <div class="recent-data">
+        <div>
+            <h4>Recent Inquiries</h4>
+            <ul>
+                {% for inq in recent_inquiries %}
+                <li>{{ inq }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <h4>Recent Customers</h4>
+            <ul>
+                {% for customer in recent_customers %}
+                <li>{{ customer }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+
 
 </div>
 {% endblock %}

@@ -26,7 +26,7 @@ def DashboardView(request):
         "total_companies": Company.objects.count(),
         "total_customers": Customer.objects.count(),
         "total_inquiries": InquiryItem.objects.count(),
-        "recent_inquiries": Inquiry.objects.order_by("-created_date")[:10],
+        "recent_inquiries": InquiryItem.objects.order_by("-created_date")[:10],
         "recent_customers": Customer.objects.order_by("-created_date")[:10],
     }
 
