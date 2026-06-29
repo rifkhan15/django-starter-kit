@@ -47,3 +47,9 @@
         <a class=" cancel-char" title="Cancel" href="{% url list_url %}">✖</a>
     </div>
 {% endif %}
+
+{% if request.resolver_match.url_name|slice:"-6:" == 'delete' %}
+    <div class="crud-title">
+        <h4 class="delete-char">Are you sure to delete {{ model_verbose_name }} {{ object }} ?</h4>
+    </div>
+{% endif %}

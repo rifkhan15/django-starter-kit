@@ -147,3 +147,23 @@ select,
 textarea {
     width: 100%;
 } */
+
+.content-div .delete-form button,
+.content-div .delete-form a {
+    border: 1px solid #121212;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #121212;
+    padding: 2px 14px;
+    font-family: inherit;
+    font-size: 14px;
+    margin: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.content-div .delete-form button:hover,
+.content-div .delete-form a:hover {
+    background-color: #121212;
+    color: #ffffff;
+}
