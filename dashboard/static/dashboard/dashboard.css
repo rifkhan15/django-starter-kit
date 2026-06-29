@@ -6,6 +6,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
+    margin-bottom: 30px;
 }
 
 .stat-card {
@@ -31,4 +32,29 @@
     font-size: 16px;
     font-weight: 500;
     margin-top: 12px;
+}
+
+.stat-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-top: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+    padding: 4px 0;
+}
+
+.stat-bar p {
+    display: grid;
+    place-content: center;
+    text-align: center;
+    width: max-content;
+    /* height: 30px; */
+    padding: 0 16px;
+    /* background-color: #ffffff; */
+    /* border: 1px solid #555555; */
+    border-radius: 4px;
+    color: #121212;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
 }

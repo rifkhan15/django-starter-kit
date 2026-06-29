@@ -13,23 +13,24 @@
             <p>Pending inquiries</p>
         </div>
         <div class="stat-card">
-            <p>{{ new_inquiries }}</p> 
+            <p>{{ new_inquiries_count }}</p> 
             <p>New inquiries this month</p>
         </div>
          <div class="stat-card">
-            <p>{{ new_customer_count }}</p> 
+            <p>{{ new_customers_count }}</p> 
             <p>New contacts this month</p>
         </div>
         <div class="stat-card">
-            <p>{{ total_companies }}</p> 
+            <p>{{ new_companies_count }}</p> 
             <p>New business clients</p>
-        </div>
-        <div class="stat-card">
-            <p>{{ total_customers }}</p> 
-            <p>total contacts</p>
         </div>
     </div>
 
+    <div class="stat-bar">
+        <p>Total busienss clients: {{ total_companies }}</p>
+        <p>Total contacts: {{ total_customers }}</p>
+        <p>Total inquiries: {{ total_inquiries }}</p>
+    </div>
     <ul>
         {% for customer in new_customer_list %}
         <li>{{ customer }}</li>
