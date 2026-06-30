@@ -35,7 +35,7 @@
     <div class="recent-data">
         <div>
             <h4>Recent Inquiries</h4>
-            <table class="object-list-table">
+            <table>
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -58,21 +58,16 @@
                     {% endfor %}
                 </tbody>
             </table>
-
-
-            <ul>
-                {% for inq in recent_inquiries %}
-                <li>{{ inq }}</li>
-                {% endfor %}
-            </ul>
         </div>
         <div>
             <h4>Recent Customers</h4>
-            <ul>
-                {% for customer in recent_customers %}
-                <li>{{ customer }}</li>
-                {% endfor %}
-            </ul>
+            {% for customer in recent_customers %}
+            <div>
+                <p>{{ customer.name }}</p>
+                <p>{{ customer.company }}</p>
+                <hr>
+            </div>
+            {% endfor %}
         </div>
     </div>
 

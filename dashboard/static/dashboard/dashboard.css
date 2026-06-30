@@ -20,10 +20,10 @@
     padding: 12px;
     background-color: #ffffff;
     border-radius: 10px;
-    color: #121212;
 }
 
 .stat-card p:first-child {
+    color: #121212;
     font-size: 36px;
     font-weight: 700;
     margin-top: 18px;
@@ -31,6 +31,7 @@
 }
 
 .stat-card p:last-child {
+    color: #555555;
     font-size: 16px;
     font-weight: 500;
     margin-top: 12px;
@@ -65,6 +66,7 @@
     display: flex;
     gap: 30px;
     margin: 20px 0;
+    min-height: 55vh;
 }
 
 .recent-data div {
@@ -82,7 +84,38 @@
 }
 
 .recent-data h4 {
-    color: #555555;
-    font-weight: 600;
+    color: #121212;
+    font-weight: 700;
     margin: 0;
+}
+
+.recent-data table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.recent-data table th {
+    font-weight: 600;
+    text-align: start;
+}
+
+.recent-data table th,
+.recent-data table td {
+    padding: 2px 8px;
+}
+
+.recent-data div:last-child p:first-child {
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+.recent-data div:last-child p:last-child {
+    font-size: 16px;
+    color: #555555;
+    margin: 0;
+}
+
+.recent-data div:last-child hr {
+    margin: 0;
+    padding: 0;
 }
