@@ -55,6 +55,10 @@
   transform: scaleX(-1);
 }
 
+.save-icon {
+    font-weight: 700;
+}
+
 .add-lineitem {
     border: none;
     background-color: green;

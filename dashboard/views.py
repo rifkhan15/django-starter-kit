@@ -7,6 +7,10 @@ from customer.models import Customer, Company, Inquiry, InquiryItem
 def DashboardView(request):
     last_30_days = timezone.now() - timedelta(days=30)
 
+    pending_inquiries = InquiryItem.objects.filter(
+        status='pending'
+    )
+    
     new_companies = Company.objects.filter(
         created_date__gte=last_30_days
     ).order_by("-created_date")
@@ -19,7 +23,9 @@ def DashboardView(request):
         created_date__gte=last_30_days
     ).order_by("created_date")
 
+
     context = {
+        "pending_inquiries" : pending_inquiries.count(),
         "new_companies_count": new_companies.count(),
         "new_customers_count": new_customers.count(), 
         "new_inquiryitems_count": new_inquiryitems.count(),

@@ -31,7 +31,7 @@
 {% if request.resolver_match.url_name|slice:"-6:" == 'update' %}
     <div class="crud-title">
         <h4>Editing {{ view.model_verbose_name }} "{{ object }}"</h4>
-        <button form="core-form" class="color-green" type="submit" title="Save">✔</button>
+        <button form="core-form" class="save-icon color-green" type="submit" title="Save">✔</button>
         <a class="color-orange" title="Close" href="{% url detail_url object.pk %}">✖</a>
     </div>
 {% endif %}
@@ -40,7 +40,7 @@
     <div class="crud-title">
         <h4>Creating new {{ model_verbose_name }}</h4>
         {% if not has_formset %}
-        <button form="core-form" class="color-green" type="submit" title="Save">
+        <button form="core-form" class="save-icon color-green" type="submit" title="Save">
             ✔
         </button>
         {% endif %}

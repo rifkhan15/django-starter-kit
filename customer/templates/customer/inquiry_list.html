@@ -36,7 +36,9 @@
                     </a>
                 </td>
                 <td>{{ item.item_description }}</td>
-                <td>{{ item.get_status_display }}</td>
+                <td class="{% if item.status == 'pending' %}color-orange{% else %}color-green{% endif %}">
+                    {{ item.get_status_display }}
+                </td>
             </tr>
             {% endfor %}
             {% endfor %}

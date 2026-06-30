@@ -9,7 +9,7 @@
 <div class="dashboard-container">
     <div class="stat-card-grid">
         <div class="stat-card">
-            <p>13</p>
+            <p>{{ pending_inquiries }}</p>
             <p>Pending inquiries</p>
         </div>
         <div class="stat-card">
@@ -52,7 +52,9 @@
                         <td>{{ obj.inquiry_date|date:"d-m-Y" }}</td>
                         <td>{{ obj.customer }}</td>
                         <td>{{ item.item_description }}</td>
-                        <td>{{ item.get_status_display }}</td>
+                        <td class="{% if item.status == 'pending' %}color-orange{% else %}color-green{% endif %}">
+                            {{ item.get_status_display }}
+                        </td>
                     </tr>
                     {% endfor %}
                     {% endfor %}
