@@ -64,23 +64,25 @@
 
 .recent-data {
     display: flex;
-    gap: 30px;
-    margin: 20px 0;
+    gap: 50px;
+    margin: 20px auto;
     min-height: 55vh;
 }
 
 .recent-data div {
     background-color: #ffffff;
-    border-radius: 10px;
-    padding: 12px;
 }
 
-.recent-data div:first-child {
+.recent-data > div:nth-child(1) {
     width: 60%;
+    border-radius: 10px;
+    padding: 16px;
 }
 
-.recent-data div:last-child {
-    width: 30%;
+.recent-data > div:nth-child(2) {
+    width: 20%;
+    border-radius: 10px;
+    padding: 16px;
 }
 
 .recent-data h4 {
@@ -91,7 +93,7 @@
 
 .recent-data table {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 12px;
 }
 
 .recent-data table th {
@@ -104,18 +106,17 @@
     padding: 2px 8px;
 }
 
-.recent-data div:last-child p:first-child {
-    font-size: 18px;
+.recent-data > div:nth-child(2) div {
+    margin: 10px;
+}
+
+.recent-data > div:nth-child(2) p:first-child {
+    /* font-size: 18px; */
     margin-bottom: 0;
 }
 
-.recent-data div:last-child p:last-child {
-    font-size: 16px;
+.recent-data > div:nth-child(2) p:last-child {
+    font-size: 14px;
     color: #555555;
-    margin: 0;
-}
-
-.recent-data div:last-child hr {
-    margin: 0;
-    padding: 0;
+    margin: 2px 0;
 }
