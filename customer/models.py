@@ -60,7 +60,7 @@ class Inquiry(BaseModel):
 class InquiryItem(BaseModel):
     inquiry_number = models.ForeignKey(Inquiry, on_delete=models.PROTECT, related_name="items")
     item_description = models.CharField(max_length=255) 
-    special_notes = models.TextField(blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
     status = models.CharField(choices=[("pending", "Pending"), ("completed", "Completed")], default="pending")
 
     SEARCH_FIELDS = ['item_description',]

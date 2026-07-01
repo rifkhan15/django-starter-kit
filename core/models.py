@@ -13,8 +13,23 @@ class BaseModel(models.Model):
 
     @property
     def field_attrs(self):
-        return [
-            (f.name, f.verbose_name, getattr(self, f.name))
-            for f in self._meta.fields
-        ]
+        attrs = []
+
+        for f in self._meta.fields:
+            value = getattr(self, f.name)
+
+            attrs.append(
+                (
+                    f.name,
+                    f.verbose_name,
+                    value,
+                    (f"{value._meta.app_label}"f"{value._meta.model_name}""_detail")
+                    if f.is_relation and value
+                    else None,
+                )
+            )
+
+        return attrs
+    
+
     

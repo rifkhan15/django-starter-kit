@@ -8,10 +8,16 @@
 {% block content %}
 <div class="content-div">
     <ul class="detail-ul">
-        {% for field_name, verbose_name, value in object.field_attrs %}
+        {% for field_name, verbose_name, value, fk_detail_url in object.field_attrs %}
         <li>
             <strong>{{ verbose_name|capfirst }}</strong>:
+            {% if value.pk %}
+            <a href="{% url fk_detail_url value.pk %}">
+                {{ value }}
+            </a>
+            {% else %}
             {{ value }}
+            {% endif %}
         </li>
         {% endfor %}
         {% if object.items.all %}
