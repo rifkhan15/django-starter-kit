@@ -14,11 +14,11 @@
         </div>
         <div class="stat-card">
             <p>{{ new_inquiryitems_count }}</p>
-            <p>New inquiries this month</p>
+            <p>New inquiries last week</p>
         </div>
         <div class="stat-card">
             <p>{{ new_customers_count }}</p>
-            <p>New contacts this month</p>
+            <p>New contacts last week</p>
         </div>
         <div class="stat-card">
             <p>{{ new_companies_count }}</p>
@@ -46,17 +46,15 @@
                 </thead>
 
                 <tbody>
-                    {% for obj in recent_inquiries %}
-                    {% for item in obj.items.all %}
+                    {% for item in recent_inquiryitems %}
                     <tr>
-                        <td class="date-field">{{ obj.inquiry_date|date:"d-m-Y" }}</td>
-                        <td>{{ obj.customer }}</td>
+                        <td class="date-field">{{ item.inquiry_number.inquiry_date|date:"d-m-Y" }}</td>
+                        <td>{{ item.inquiry_number.customer }}</td>
                         <td>{{ item.item_description }}</td>
                         <td class="{% if item.status == 'pending' %}color-orange{% else %}color-green{% endif %}">
                             {{ item.get_status_display }}
                         </td>
                     </tr>
-                    {% endfor %}
                     {% endfor %}
                 </tbody>
             </table>
