@@ -109,7 +109,8 @@
 }
 
 .object-list-table td a:hover {
-    border-top: 1px solid #4545f5;
+    font-weight: 600;
+    /* border-top: 1px solid #4545f5; */
 }
 
 .detail-div {

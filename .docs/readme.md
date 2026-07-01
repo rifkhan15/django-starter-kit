@@ -1,159 +1,84 @@
-- webdesk 
-  webdesk is a django template to build crud apps, and extinsible for non-crud logic as well.
+# Django Starter Kit (CRUD + UI)
+  Reusable Django starter kit for building CRUD applications using Class-Based Views and server-side rendering via Django templates. Includes dynamic navigation, dashboard components, and a minimal built-in UI.
 
-- what's inside?
-  default apps: login, dashboard and core.
-  base templates are in webdesk/templates
+## Features
+- Django authentication (login/logout via built-in auth. user creation via django admin)
+- Auto-generated CRUD system for registered models
+- Dynamic navigation based on model configuration
+- Template-based UI (no frontend framework dependency)
+- Inline formset handling for related objects
+- Simple dashboard system (customizable per project)
 
-- login
-  user management to be prformed via django admin/ portal. 
-  the login app is a basic design for login/logout functionality.
+## Project Structure
 
-- dashboard
-  dashboard app can be coded accroding to business requirement.
+### Apps included
+- authentication: login/logout flow using Django auth
+- dashboard: custom dashboard layer
+- core: dynamic CRUD engine and routing system
 
-- core app 
-  works as a fully automatic views and urlpattern generator. list view queryset is set up to access related objects (object_list > object > related_list).
+## Core System
+The core app powers automatic CRUD generation, routing and crud templates.
 
-- your new apps
-  once a new app is started, make an app_config.py file and define the class names of crud model and models that need navigation. 
-  app_config is the main source for automatic creation of view and core navs. core navs are made in core/context_processors.py.
- 
+### Features
+- Auto-generates CRUD views from registered models
+- Handles object relationships (parent → child models)
+- Supports list, detail, update, and redirect flows
 
-       APP_CONFIG = {
-          "crud_models": [
-              "Customer",
-              "Company",
-              "Inquiry",
-              "InquiryItem",
-          ],
-          "nav_excludes": [
-              "Inquiry",
-          ]
-}
+## App Configuration
+Each app registers models through app_config.py.
 
-- inlineformset
-  if a formset is needed, define it inindivual forms.py (e.g. customer/forms.py)
-  create success url of models with inlineformset set to update_url so after saving parent, the formset will render. 
-
-- templates
-  default templates are in core/tempaltes/core. 
-  any custom template must be saved in app/templates/app_label/ and the file name should be e.g. {model_name}_list.html. core/views will handle automatically. e.g. inauiry_list.html in the sample app.
-
-- navs
-  nav items are dynamically generated using the contextprocessor.crud_menu(). if a model class need excluding from menu, defin it in app_config.py.
-
-- dashboard
-  dashboard must be fully custmized according to business apps. there is no automaric system.
-
-
-# 🚀 Dynamic Django Business Application Framework
-
-A lightweight, configuration-driven Django backend system for rapidly building internal business applications with minimal boilerplate.
-
-## 📌 Overview
-
-This project is a reusable backend framework designed to speed up the development of business systems such as:
-
-- Customer management systems
-- Inquiry / workflow tracking systems
-- Admin dashboards
-- Internal operational tools
-
-It eliminates repetitive CRUD development by generating views, URLs, context data, and formset handling dynamically from configuration.
-
----
-
-## ⚙️ Key Features
-
-### 🔹 Dynamic CRUD Generation
-Automatically generates:
-- ListView
-- DetailView
-- CreateView
-- UpdateView
-- DeleteView
-
-based on model configuration.
-
----
-
-### 🔹 Inline Formset Support
-- Automatic detection of inline formsets
-- Context-aware formset injection
-- Smart handling of parent-child relationships
-
----
-
-### 🔹 Config-Driven Architecture
-Define models in a simple config:
-
-```python
 APP_CONFIG = {
     "crud_models": [
-        "Customer",
-        "Company",
-        "Inquiry",
-        "InquiryItem",
-    ]
+        Customer,
+        Company,
+        Inquiry,
+        InquiryItem,
+    ],
+
+    "nav_hidden": [
+        InquiryItem,
+    ],
+
+    "list_redirects": {
+        InquiryItem: Inquiry,
+    },
 }
-```
 
-The system automatically builds:
-- Views
-- URLs
-- Menus
-- Context variables
+### Options
+- crud_models: models enabled for automatic CRUD generation  
+- nav_hidden: models hidden from navigation  
+- list_redirects: redirects child models to parent nav link (list view) 
 
----
+## Forms & Inline Formsets
+- Crud forms are defined in core
+- Inline formsets are handled manually using Django inline formsets. Defined in app/forms.py
+- Parent-child saving flows are managed through update_url
 
-### 🔹 Automatic URL & Context System
-No manual wiring required for:
-- URL patterns
-- Model-based navigation
-- Template context variables
+## Templates
+- Uses Django template engine only
+- custom templates can be defind as e.g. app_name/templates/app_name/{app_label}{model_name}_list.html. Core app auto-resolve templates using this pattern.
 
----
+## Navigation System
+- Navigation is generated dynamically
+- Built from crud_models in app_config.py
+- Hidden models are filtered via nav_hidden
 
-### 🔹 Smart Context Processors
-Global menu and UI context generation for all apps.
+## Dashboard
+- Fully custom implementation
+- No automatic logic included
+- Designed per business requirement
 
----
+## Purpose
+This starter kit is designed for building:
 
-## 🧠 Design Philosophy
+- CRM systems  
+- Order management systems  
+- Sales tracking tools  
+- Internal business applications  
+- Custom CRUD admin panels  
+- And, similar operations systems
 
-- Reduce Django boilerplate
-- Enable rapid business app development
-- Centralize logic
-- Keep configuration separate from implementation
-
----
-
-## 🏗️ Tech Stack
-
-- Python
-- Django
-- Class-Based Views
-- Dynamic imports
-- Meta-programming with Django apps/forms
-
----
-
-## 📦 Use Cases
-
-- CRM systems
-- Internal business tools
-- Workflow tracking systems
-- Rapid MVP backends
-
----
-
-## 🚀 Status
-
-Prototype / evolving framework for production-style business systems.
-
----
-
-## 👤 Author
-
-Built by a Python/Django backend developer focused on business automation systems and scalable backend architecture.
+## Notes
+- Lightweight and template-driven
+- No frontend framework required
+- Designed for rapid backend-heavy development
