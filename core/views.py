@@ -23,7 +23,7 @@ class BaseView(CommonLabelsMixin):
 
     def get_search_fields(self):
         return getattr(self.model, "SEARCH_FIELDS", [])
-
+    
     def apply_search(self, queryset):
         q = self.request.GET.get("q", "").strip()
 
@@ -33,11 +33,13 @@ class BaseView(CommonLabelsMixin):
         filters = Q()
 
         for field in self.get_search_fields():
-            filters |= Q(**{
-                f"{field}__icontains": q
-            })
+            filters |= Q(
+                **{
+                    f"{field}__icontains": q
+                }
+            )
 
-        return queryset.filter(filters)
+        return queryset.filter(filters).distinct()
 
     def get_search_context(self):
         return {

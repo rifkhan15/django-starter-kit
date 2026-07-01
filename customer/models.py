@@ -36,6 +36,8 @@ class Inquiry(BaseModel):
     customer = models.ForeignKey(Customer, on_delete=models.PROTECT, related_name="items")
     inquiry_date = models.DateField()
 
+    SEARCH_FIELDS = ['inquiry_number', 'items__item_description']
+
     def save(self, *args, **kwargs):
         is_new = self.pk is None
 

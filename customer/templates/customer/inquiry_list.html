@@ -17,7 +17,7 @@
                 <th>Date</th>
                 <th>Customer</th>
                 <th>Inquiry no.</th>
-                <th>Items no.</th>
+                <th>Item no.</th>
                 <th>Description</th>
                 <th>Status</th>
             </tr>
@@ -26,7 +26,7 @@
         <tbody>
             {% for obj in object_list %}
             {% for item in obj.items.all %}
-            <tr>
+            <tr">
                 <td>{{ obj.inquiry_date|date:"d-m-Y" }}</td>
                 <td>{{ obj.customer }}</td>
                 <td><a href="{% url detail_url obj.pk %}">{{ obj.inquiry_number }}</a></td>
