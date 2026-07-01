@@ -1,11 +1,9 @@
-
-
 .page-title h4 {
     margin: 0;
     padding: 0;
 }
 
-.page-title .search-results {
+/* .page-title .search-results {
     display: flex;
     gap: 12px;
 }
@@ -14,14 +12,15 @@
     color: orange;
     font-weight: 600;
 } 
+*/
 
 .search-results,
 .search-results a {
-    color: orange;
-    font-weight: 600;
-}
+    color: #4545f5;
+    /* font-weight: 600; */
+} 
 
-.page-title .crud-title {
+.crud-title {
     display: flex;
     align-items: baseline;
     gap: 14px;

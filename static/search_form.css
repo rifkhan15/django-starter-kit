@@ -17,7 +17,8 @@
 }
 
 .search-form a {
-    background-color: orange;
+    background-color: #4545f5;
+    color: #ffffff;
 }
 
 .search-form button:hover {

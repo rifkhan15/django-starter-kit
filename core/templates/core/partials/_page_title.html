@@ -1,8 +1,10 @@
 {% if request.resolver_match.url_name|slice:"-4:" == 'list' %}
     {% if search_query %}
-    <div class="search-results">
-        <h4>Search results for "{{ search_query }}":</h4>
+    <div class="crud-title color-blue">
+        <h4>Search results for "{{ search_query }}:"</h4>
+        {% if object_list %}
         <span>{{ page_obj.paginator.count }} records found.</span>
+        {% endif %}
     </div>
     {% else %}
     <h4>
