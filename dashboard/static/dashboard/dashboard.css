@@ -94,6 +94,7 @@
 .recent-data table {
     width: 100%;
     margin-top: 12px;
+    font-size: 14px;
 }
 
 .recent-data table th {
@@ -106,17 +107,21 @@
     padding: 2px 8px;
 }
 
+.date-field {
+    white-space: nowrap;
+}
+
 .recent-data > div:nth-child(2) div {
     margin: 10px;
 }
 
 .recent-data > div:nth-child(2) p:first-child {
-    /* font-size: 18px; */
+    font-size: 16px;
     margin-bottom: 0;
 }
 
 .recent-data > div:nth-child(2) p:last-child {
-    font-size: 14px;
+    font-size: 12px;
     color: #555555;
     margin: 2px 0;
 }
