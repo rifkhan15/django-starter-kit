@@ -1,5 +1,5 @@
 .dashboard-container {
-    margin-top: 20px;
+    padding-top: 20px;
     height: calc(100vh - 34px - 46px - 20px);
     overflow-y: auto;
 }

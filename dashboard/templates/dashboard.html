@@ -2,6 +2,7 @@
 {% load static %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'base.css' %}">
+<link rel="stylesheet" href="{% static 'core/core.css' %}">
 <link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
 {% endblock %}
 
@@ -50,7 +51,7 @@
                     <tr>
                         <td class="date-field">{{ item.inquiry_number.inquiry_date|date:"d-m-Y" }}</td>
                         <td>{{ item.inquiry_number.customer }}</td>
-                        <td>{{ item.item_description }}</td>
+                        <td><a href="{% url 'customerinquiryitem_detail' item.pk %}">{{ item.item_description }}</a></td>
                         <td class="{% if item.status == 'pending' %}color-orange{% else %}color-green{% endif %}">
                             {{ item.get_status_display }}
                         </td>

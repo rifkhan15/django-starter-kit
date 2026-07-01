@@ -105,13 +105,15 @@
 }
 
 .object-list-table td a,
-.detail-ul li a {
+.detail-ul li a,
+.recent-data td a {
     color: #4545f5;
     text-decoration: none;
 }
 
 .object-list-table td a:hover,
-.detail-ul li a:hover {
+.detail-ul li a:hover,
+.recent-data td a:hover {
     text-decoration: underline;
     /* font-weight: 600; */
     /* border-top: 1px solid #4545f5; */
