@@ -86,6 +86,7 @@
 .object-list-table {
     border-collapse: collapse;
     width: auto;
+    font-size: 15px;
 }
 
 .object-list-table thead tr {

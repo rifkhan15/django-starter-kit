@@ -12,7 +12,7 @@ APP_CONFIG = {
         InquiryItem,
     ],
 
-    "list_redirects": {
-        InquiryItem: Inquiry,
-    },
+    # "list_redirects": {
+    #     InquiryItem: Inquiry,
+    # },
 }

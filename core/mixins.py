@@ -13,29 +13,27 @@ class CommonLabelsMixin:
         configs = load_app_configs()
 
         # default = itself
-        list_model = model
+        # list_model = model
 
         # check config override
-        for config in configs.values():
-            redirects = config.get("list_redirects", {})
+        # for config in configs.values():
+        #     redirects = config.get("list_redirects", {})
 
-            if model in redirects:
-                list_model = redirects[model]
-                break
+        #     if model in redirects:
+        #         list_model = redirects[model]
+        #         break
 
-        list_model_name = list_model._meta.model_name
+        # list_model_name = list_model._meta.model_name
 
         return {
             "app_label": app_label,
-
             "model_name": model_name,
             "model_verbose_name": model._meta.verbose_name,
             "model_verbose_plural": model._meta.verbose_name_plural,
             "model_title_plural": model._meta.verbose_name_plural.title(),
 
             # 🔥 only this is overridden
-            "list_url": f"{app_label}{list_model_name}_list",
-
+            "list_url": f"{app_label}{model_name}_list",
             "create_url": f"{app_label}{model_name}_create",
             "detail_url": f"{app_label}{model_name}_detail",
             "update_url": f"{app_label}{model_name}_update",
