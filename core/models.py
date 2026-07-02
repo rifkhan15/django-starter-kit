@@ -25,7 +25,7 @@ class BaseModel(models.Model):
                     f.name,
                     f.verbose_name,
                     value,
-                    getattr(f, "is_link", False),
+                    f.primary_key,
                     #detail url name of fk model below
                     (f"{value._meta.app_label}"f"{value._meta.model_name}""_detail") 
                     if f.is_relation and value

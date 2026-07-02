@@ -50,6 +50,7 @@ mixin_planner.md
 core/templates/unused
 
 #docs
-.dics/
+.docs/
 users.md
 users.md
+readme.md

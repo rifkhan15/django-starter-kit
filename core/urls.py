@@ -26,7 +26,7 @@ def generate_core_urls():
             core_urlpatterns += [
                 path(f"{basepath}/", ListV.as_view(), name=f"{basename}_list"),
                 path(f"{basepath}/create/", CreateV.as_view(), name=f"{basename}_create"),
-                path(f"{basepath}/<int:pk>/", DetailV.as_view(), name=f"{basename}_detail"),
-                path(f"{basepath}/<int:pk>/update/", UpdateV.as_view(), name=f"{basename}_update"),
-                path(f"{basepath}/<int:pk>/delete/", DeleteV.as_view(), name=f"{basename}_delete")
+                path(f"{basepath}/<str:pk>/", DetailV.as_view(), name=f"{basename}_detail"),
+                path(f"{basepath}/<str:pk>/update/", UpdateV.as_view(), name=f"{basename}_update"),
+                path(f"{basepath}/<str:pk>/delete/", DeleteV.as_view(), name=f"{basename}_delete")
             ]
