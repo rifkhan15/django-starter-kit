@@ -8,7 +8,7 @@
 {% block content %}
 <div class="content-div">
     <ul class="detail-ul">
-        {% for field_name, verbose_name, value, fk_detail_url in object.field_attrs %}
+        {% for field_name, verbose_name, value, is_link, fk_detail_url in object.field_attrs %}
         <li>
             <strong>{{ verbose_name|capfirst }}</strong>:
             {% if value.pk %}

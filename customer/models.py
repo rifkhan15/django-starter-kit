@@ -16,6 +16,8 @@ class Company(BaseModel):
         verbose_name_plural = 'companies'
         ordering = ["id"]
 
+Company._meta.get_field("company_name").is_link=True
+
 class Customer(BaseModel):
     name = models.CharField(max_length=150, unique=True)
     contact_number = models.CharField(max_length=30, blank=True, null=True)
@@ -27,9 +29,8 @@ class Customer(BaseModel):
     
     def __str__(self):
         return  f"{self.name} - {self.company}" if self.company else self.name
-    
-    class Meta:
-        ordering = ["-created_date"]
+
+Customer._meta.get_field("name").is_link=True
 
 class Inquiry(BaseModel):
     inquiry_number = models.CharField(max_length=10, unique=True, editable=False)
@@ -37,6 +38,7 @@ class Inquiry(BaseModel):
     inquiry_date = models.DateField()
 
     SEARCH_FIELDS = ['inquiry_number', 'items__item_description']
+    PAGINATE_BY_RELATED = "items"
 
     def save(self, *args, **kwargs):
         is_new = self.pk is None

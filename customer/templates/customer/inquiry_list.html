@@ -14,10 +14,9 @@
     <table class="object-list-table">
         <thead>
             <tr>
+                <th>Inquiry no.</th>
                 <th>Date</th>
                 <th>Customer</th>
-                <th>Inquiry no.</th>
-                <th>Item no.</th>
                 <th>Description</th>
                 <th>Status</th>
             </tr>
@@ -27,14 +26,14 @@
             {% for obj in object_list %}
             {% for item in obj.items.all %}
             <tr">
+                <td>
+                    <a href="{% url detail_url obj.pk %}">{{ obj.inquiry_number }}</a>
+                    -
+                    <a href="{% url 'customerinquiryitem_detail' item.pk %}">{{ item.id }}</a>
+                </td>
                 <td>{{ obj.inquiry_date|date:"d-m-Y" }}</td>
                 <td>{{ obj.customer }}</td>
-                <td><a href="{% url detail_url obj.pk %}">{{ obj.inquiry_number }}</a></td>
-                <td>
-                    <a href="{% url 'customerinquiryitem_detail' item.pk %}">
-                        00{{ forloop.counter }}
-                    </a>
-                </td>
+                
                 <td>{{ item.item_description }}</td>
                 <td class="{% if item.status == 'pending' %}color-orange{% else %}color-green{% endif %}">
                     {{ item.get_status_display }}

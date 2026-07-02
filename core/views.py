@@ -12,6 +12,9 @@ from core.mixins import (
     InlineFormsetLabelsMixin,
 )
 
+from django.core.paginator import Paginator
+from django.core.paginator import Page
+
 
 # ---------------------------
 # BASE VIEW
@@ -77,6 +80,36 @@ def make_views(*, model):
             return self.apply_search(
                 qs.prefetch_related(*related)
             )
+
+        def paginate_queryset(self, queryset, page_size):
+            related = getattr(self.model, "PAGINATE_BY_RELATED", None)
+
+            if not related:
+                return super().paginate_queryset(queryset, page_size)
+
+            page_number = int(self.request.GET.get(self.page_kwarg, 1))
+
+            visible = []
+            rows = 0
+
+            start = (page_number - 1) * page_size
+            end = page_number * page_size
+            total = 0
+
+            for obj in queryset:
+                count = getattr(obj, related).count()
+                count = max(count, 1)
+
+                if (total < end and total + count > start):
+                    visible.append(obj)
+
+                total += count
+
+            paginator = Paginator(range(total), page_size)
+
+            page = Page(visible, page_number, paginator)
+
+            return (paginator, page, visible, page.has_other_pages())
 
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)

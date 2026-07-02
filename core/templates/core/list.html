@@ -13,7 +13,7 @@
     <table class="object-list-table">
         <thead>
             <tr>
-                {% for field_name, verbose_name, value, fk_detail_url in object_list.0.field_attrs %}
+                {% for field_name, verbose_name, value, is_link, fk_detail_url in object_list.0.field_attrs %}
                 {% if field_name != 'created_date' and field_name != 'updated_on' %}
                 <th>{{ verbose_name|capfirst }}</th>
                 {% endif %}
@@ -24,12 +24,12 @@
         <tbody>
             {% for obj in object_list %}
             <tr">
-                {% for field_name, verbose_name, value, fk_detail_url in obj.field_attrs %}
+                {% for field_name, verbose_name, value, is_link, fk_detail_url in obj.field_attrs %}
                 {% if field_name != "created_date" and field_name != "updated_on" %}
                 <td>
-                    {% if field_name == "id" %}
+                    {% if is_link %}
                     <a href="{% url detail_url obj.pk %}">
-                        {{ obj.id }}
+                        {{ value|default:"-" }}
                     </a>
                     {% else %}
                     {{ value|default:"-" }}
@@ -37,8 +37,8 @@
                 </td>
                 {% endif %}
                 {% endfor %}
-            </tr>
-            {% endfor %}
+                </tr>
+                {% endfor %}
         </tbody>
     </table>
     {% endif %}

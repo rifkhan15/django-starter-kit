@@ -3,7 +3,9 @@ from django.db import models
 class BaseModel(models.Model):
     created_date = models.DateField(auto_now_add=True)
     updated_on = models.DateField(auto_now=True)
-
+    
+    PAGINATE_BY_RELATED = None
+    
     class Meta:
         abstract = True
 
@@ -23,13 +25,12 @@ class BaseModel(models.Model):
                     f.name,
                     f.verbose_name,
                     value,
-                    (f"{value._meta.app_label}"f"{value._meta.model_name}""_detail")
+                    getattr(f, "is_link", False),
+                    #detail url name of fk model below
+                    (f"{value._meta.app_label}"f"{value._meta.model_name}""_detail") 
                     if f.is_relation and value
                     else None,
                 )
             )
 
         return attrs
-    
-
-    
