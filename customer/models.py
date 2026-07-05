@@ -60,7 +60,7 @@ class InquiryItem(BaseModel):
     notes = models.TextField(blank=True, null=True)
     status = models.CharField(choices=[("pending", "Pending"), ("completed", "Completed")], default="pending")
 
-    SEARCH_FIELDS = ['item_description',]
+    SEARCH_FIELDS = ['inquiry_number__inquiry_number', 'item_description', 'status']
 
     def __str__(self):
         return f"Item no: {self.id} : {self.item_description}"
