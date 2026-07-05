@@ -13,15 +13,15 @@ def DashboardView(request):
     
     new_companies = Company.objects.filter(
         created_date__gte=last_7_days
-    ).order_by("-created_date")
+    )
 
     new_customers = Customer.objects.filter(
         created_date__gte=last_7_days
-    ).order_by("-created_date")
+    )
 
     new_inquiryitems = InquiryItem.objects.filter(
         created_date__gte=last_7_days
-    ).order_by("created_date")
+    )
 
 
     context = {
@@ -32,7 +32,7 @@ def DashboardView(request):
         "total_companies": Company.objects.count(),
         "total_customers": Customer.objects.count(),
         "total_inquiries": InquiryItem.objects.count(),
-        "recent_inquiryitems": InquiryItem.objects.order_by("-id")[:15],
+        "recent_inquiryitems": InquiryItem.objects.order_by("id")[:15],
         "recent_customers": Customer.objects.order_by("-created_date")[:7],
     }
 

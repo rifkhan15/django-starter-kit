@@ -3,16 +3,14 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'core/core.css' %}">
+<link rel="stylesheet" href="{% static 'customer/list.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="content-div">
-
     {% if not object_list %}
     <p>No records.</p>
     {% else %}
-
-    {% if filter %}
     <form method="get">
         {% for field in filter.form %}
         <div class="mb-3">
@@ -21,41 +19,39 @@
             {{ field.errors }}
         </div>
         {% endfor %}
+
         <button type="submit">Filter</button>
     </form>
-    {% endif %}
     <table class="object-list-table">
         <thead>
             <tr>
-                {% for field_name, verbose_name, value, is_pk, fk_detail_url in object_list.0.field_attrs %}
-                {% if field_name != 'created_date' and field_name != 'updated_on' %}
-                <th>{{ verbose_name|capfirst }}</th>
-                {% endif %}
-                {% endfor %}
+                <th>Inquiry no.</th>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Description</th>
+                <th>Status</th>
             </tr>
         </thead>
 
         <tbody>
             {% for obj in object_list %}
             <tr>
-                {% for field_name, verbose_name, value, is_pk, fk_detail_url in obj.field_attrs %}
-                {% if field_name != "created_date" and field_name != "updated_on" %}
                 <td>
-                    {% if is_pk %}
-                    <a href="{% url detail_url obj.pk %}">
-                        {{ value|default:"-" }}
-                    </a>
-                    {% else %}
-                    {{ value|default:"-" }}
-                    {% endif %}
+                    <a href="{% url 'customerinquiry_detail' obj.inquiry_number.pk %}">{{ obj.inquiry_number }}</a>
+                    -
+                    <a href="{% url 'customerinquiryitem_detail' obj.pk %}">{{ obj.id }}</a>
                 </td>
-                {% endif %}
+                <td>{{ obj.inquiry_number.inquiry_date|date:"d-m-Y" }}</td>
+                <td>{{ obj.inquiry_number.customer }}</td>
+
+                <td>{{ obj.item_description }}</td>
+                <td class="{% if obj.status == 'pending' %}color-orange{% else %}color-green{% endif %}">
+                    {{ obj.get_status_display }}
+                </td>
+                </tr>
                 {% endfor %}
-            </tr>
-            {% endfor %}
         </tbody>
     </table>
     {% endif %}
-
 </div>
 {% endblock %}
