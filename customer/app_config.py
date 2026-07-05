@@ -9,6 +9,6 @@ APP_CONFIG = {
     ],
 
     "nav_hidden": [
-        InquiryItem,
+        # InquiryItem,
     ],
 }

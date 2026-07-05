@@ -18,6 +18,9 @@ class BaseModel(models.Model):
         attrs = []
 
         for f in self._meta.fields:
+            if isinstance(f, models.TextField):
+                continue
+
             value = getattr(self, f.name)
 
             attrs.append(
@@ -26,10 +29,11 @@ class BaseModel(models.Model):
                     f.verbose_name,
                     value,
                     f.primary_key,
-                    #detail url name of fk model below
-                    (f"{value._meta.app_label}"f"{value._meta.model_name}""_detail") 
-                    if f.is_relation and value
-                    else None,
+                    (
+                        f"{value._meta.app_label}_{value._meta.model_name}_detail"
+                        if f.is_relation and value
+                        else None
+                    ),
                 )
             )
 
