@@ -2,12 +2,13 @@
   Reusable Django starter kit for building CRUD applications using Class-Based Views and server-side rendering via Django templates. Includes dynamic navigation, dashboard components, and a minimal built-in UI.
 
 ## Features
-- Django authentication (login/logout via built-in auth. user creation via django admin)
-- Auto-generated CRUD system for registered models
-- Dynamic navigation based on model configuration
-- Template-based UI (no frontend framework dependency)
-- Inline formset handling for related objects
-- Simple dashboard system (customizable per project)
+- Django authentication (login/logout via built-in auth. user creation via django admin).
+- Auto-generated CRUD system for registered models.
+- Dynamic navigation based on model configuration.
+- Template-based UI (no frontend framework dependency).
+- Inline formset handling for related objects.
+- Filtering via app level filters.py scanned automatically by starterkit.views.
+- Simple dashboard system (customizable per project).
 
 ## Project Structure
 
@@ -37,11 +38,7 @@ APP_CONFIG = {
 
     "nav_hidden": [
         InquiryItem,
-    ],
-
-    "list_redirects": {
-        InquiryItem: Inquiry,
-    },
+    ]
 }
 
 ### Options
@@ -56,7 +53,7 @@ APP_CONFIG = {
 
 ## Templates
 - Uses Django template engine only
-- custom templates can be defind as e.g. app_name/templates/app_name/{app_label}{model_name}_list.html. Core app auto-resolve templates using this pattern.
+- custom templates configures in app_name/templates/app_name/{app_label}{model_name}_list.html will override base templates.
 
 ## Navigation System
 - Navigation is generated dynamically

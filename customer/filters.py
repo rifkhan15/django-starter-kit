@@ -1,8 +1,8 @@
 import django_filters
 
-from .models import Inquiry
+from .models import InquiryItem
 
-class InquiryFilter(django_filters.FilterSet):
+class InquiryItemFilter(django_filters.FilterSet):
     class Meta:
-        model = Inquiry
+        model = InquiryItem
         fields = ["status", "inquiry_number"]
