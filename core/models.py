@@ -4,8 +4,6 @@ class BaseModel(models.Model):
     created_date = models.DateField(auto_now_add=True)
     updated_on = models.DateField(auto_now=True)
     
-    PAGINATE_BY_RELATED = None
-    
     class Meta:
         abstract = True
 
@@ -30,7 +28,7 @@ class BaseModel(models.Model):
                     value,
                     f.primary_key,
                     (
-                        f"{value._meta.app_label}_{value._meta.model_name}_detail"
+                        f"{value._meta.app_label}{value._meta.model_name}_detail"
                         if f.is_relation and value
                         else None
                     ),

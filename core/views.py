@@ -96,10 +96,7 @@ def make_views(*, model):
             return qs
 
         def paginate_queryset(self, queryset, page_size):
-            related = getattr(self.model, "PAGINATE_BY_RELATED", None)
-
-            if not related:
-                return super().paginate_queryset(queryset, page_size)
+            return super().paginate_queryset(queryset, page_size)
 
             page_number = int(self.request.GET.get(self.page_kwarg, 1))
 
