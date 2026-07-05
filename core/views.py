@@ -14,7 +14,7 @@ from core.mixins import (
 
 from django.core.paginator import Paginator
 from django.core.paginator import Page
-
+from importlib import import_module
 
 # ---------------------------
 # BASE VIEW
@@ -58,6 +58,13 @@ def make_views(*, model):
     app_label = model._meta.app_label
     model_name = model._meta.model_name
 
+    # Find FilterSet once
+    try:
+        module = import_module(f"{app_label}.filters")
+        filterset_class = getattr(module, f"{model.__name__}Filter", None)
+    except ModuleNotFoundError:
+        filterset_class = None
+
     # ---------------- LIST ----------------
     class L(BaseView, ListView):
         paginate_by = 25
@@ -77,9 +84,16 @@ def make_views(*, model):
                 if rel.one_to_many or rel.many_to_many
             ]
 
-            return self.apply_search(
-                qs.prefetch_related(*related)
-            )
+            qs = self.apply_search(qs.prefetch_related(*related))
+
+            if filterset_class:
+                self.filterset = filterset_class(
+                    self.request.GET,
+                    queryset=qs,
+                )
+                qs = self.filterset.qs
+
+            return qs
 
         def paginate_queryset(self, queryset, page_size):
             related = getattr(self.model, "PAGINATE_BY_RELATED", None)
@@ -114,6 +128,10 @@ def make_views(*, model):
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
             ctx.update(self.get_search_context())
+            
+            if filterset_class:
+                ctx["filter"] = self.filterset
+            
             return ctx
 
     # ---------------- DETAIL ----------------
