@@ -11,6 +11,17 @@
     {% if not object_list %}
     <p>No records.</p>
     {% else %}
+    <form method="get">
+        {% for field in filter.form %}
+        <div class="mb-3">
+            {{ field.label_tag }}
+            {{ field }}
+            {{ field.errors }}
+        </div>
+        {% endfor %}
+
+        <button type="submit">Filter</button>
+    </form>
     <table class="object-list-table">
         <thead>
             <tr>
@@ -33,14 +44,14 @@
                 </td>
                 <td>{{ obj.inquiry_date|date:"d-m-Y" }}</td>
                 <td>{{ obj.customer }}</td>
-                
+
                 <td>{{ item.item_description }}</td>
                 <td class="{% if item.status == 'pending' %}color-orange{% else %}color-green{% endif %}">
                     {{ item.get_status_display }}
                 </td>
-            </tr>
-            {% endfor %}
-            {% endfor %}
+                </tr>
+                {% endfor %}
+                {% endfor %}
         </tbody>
     </table>
     {% endif %}

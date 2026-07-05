@@ -11,8 +11,4 @@ APP_CONFIG = {
     "nav_hidden": [
         InquiryItem,
     ],
-
-    "list_redirects": {
-        InquiryItem: Inquiry, #requesting inquiryitem_lit will actually render inauiry_list.
-    },
 }
