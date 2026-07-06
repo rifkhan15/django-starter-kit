@@ -11,6 +11,22 @@
     {% if not object_list %}
     <p>No records.</p>
     {% else %}
+    <form method="get">
+    <label>
+        <input type="radio" name="q" value="pending" onchange="this.form.submit()">
+        Pending
+    </label>
+
+    <label>
+        <input type="radio" name="q" value="completed" onchange="this.form.submit()">
+        Completed
+    </label>
+
+    <label>
+        <input type="radio" name="q" value="all" onchange="this.form.submit()">
+        All
+    </label>
+</form>
     <table class="object-list-table">
         <thead>
             <tr>
