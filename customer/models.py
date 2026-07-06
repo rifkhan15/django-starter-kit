@@ -64,3 +64,6 @@ class InquiryItem(BaseModel):
 
     def __str__(self):
         return f"Item no: {self.id} : {self.item_description}"
+    
+    class Meta:
+        ordering = ['-inquiry_number__inquiry_date', 'inquiry_number__inquiry_number']
