@@ -3,7 +3,7 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'core/core.css' %}">
-<link rel="stylesheet" href="{% static 'customer/list.css' %}">
+<link rel="stylesheet" href="{% static 'customer/styles.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -11,22 +11,42 @@
     {% if not object_list %}
     <p>No records.</p>
     {% else %}
-    <form method="get">
-    <label>
-        <input type="radio" name="q" value="pending" onchange="this.form.submit()">
-        Pending
-    </label>
+    <div class="custom-search">
+        <form method="get">
+            <form method="get">
+                <form method="get">
+                    <label>
+                        <input type="radio" name="q" value="all" 
+                        {% if not request.GET.q or request.GET.q == "all" %}
+                        checked
+                        {% endif %} 
+                        onclick="window.location='?';">
+                        All
+                    </label>
+                    <label>
+                        <input 
+                        type="radio" name="q" value="pending" 
+                        {% if request.GET.q == "pending" %}
+                        checked
+                        {% endif %}
+                        onchange="this.form.submit()">
+                        Pending
+                    </label>
 
-    <label>
-        <input type="radio" name="q" value="completed" onchange="this.form.submit()">
-        Completed
-    </label>
+                    <label>
+                        <input 
+                        type="radio" name="q" value="completed" 
+                        {% if request.GET.q == "completed" %}
+                        checked
+                        {% endif %} 
+                        onchange="this.form.submit()">
+                        Completed
+                    </label>
+                </form>
+            </form>
+        </form>
+    </div>
 
-    <label>
-        <input type="radio" name="q" value="all" onchange="this.form.submit()">
-        All
-    </label>
-</form>
     <table class="object-list-table">
         <thead>
             <tr>
@@ -53,8 +73,8 @@
                 <td class="{% if obj.status == 'pending' %}color-orange{% else %}color-green{% endif %}">
                     {{ obj.get_status_display }}
                 </td>
-                </tr>
-                {% endfor %}
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
     {% endif %}
