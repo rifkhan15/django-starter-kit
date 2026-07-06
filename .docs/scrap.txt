@@ -1,4 +1,23 @@
-company_________
-   |            |
-   |            |
-contact______inquiry
+webdesk/django-starter-kit (project folder)
+|__startproject config . (setings.py)
+|__startapp starterkit (core app. move base templates and css here)
+     
+     DJANGO-STARTER-KIT (later WEBDESK)
+     |
+     |
+     |__config/
+     |
+     |
+     |__starterkit/
+     |             templates/base
+     |             templates/crud
+     |             static/base.css, crud.css
+     |__login/
+     |
+     |
+     |__dashboard/
+     |
+     |
+     |__customer/
+                templates/customer
+                static/customer/styles.css

@@ -45,6 +45,7 @@ APP_CONFIG = {
 - crud_models: models enabled for automatic CRUD generation  
 - nav_hidden: models hidden from navigation  
 - list_redirects: redirects child models to parent nav link (list view) 
+- basic filtering for fk and choice fields.
 
 ## Forms & Inline Formsets
 - Crud forms are defined in core
