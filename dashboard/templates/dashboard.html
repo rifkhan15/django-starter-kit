@@ -3,16 +3,18 @@
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'base.css' %}">
 <link rel="stylesheet" href="{% static 'core/core.css' %}">
-<link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'dashboard/styles.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="dashboard-container">
     <div class="stat-card-grid">
-        <div class="stat-card">
-            <p>{{ pending_inquiries }}</p>
-            <p>Pending inquiries</p>
-        </div>
+        <a href="{% url 'customerinquiryitem_list' %}?q=pending">
+            <div class="stat-card">
+                <p>{{ pending_inquiries }}</p>
+                <p>Pending inquiries</p>
+            </div>
+        </a>
         <div class="stat-card">
             <p>{{ new_inquiryitems_count }}</p>
             <p>New inquiries last week</p>
@@ -51,7 +53,8 @@
                     <tr>
                         <td class="date-field">{{ item.inquiry_number.inquiry_date|date:"d-m-Y" }}</td>
                         <td>{{ item.inquiry_number.customer }}</td>
-                        <td><a href="{% url 'customerinquiryitem_detail' item.pk %}">{{ item.item_description }}</a></td>
+                        <td><a href="{% url 'customerinquiryitem_detail' item.pk %}">{{ item.item_description }}</a>
+                        </td>
                         <td class="{% if item.status == 'pending' %}color-orange{% else %}color-green{% endif %}">
                             {{ item.get_status_display }}
                         </td>

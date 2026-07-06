@@ -37,6 +37,22 @@
     margin-top: 12px;
 }
 
+.stat-card-grid a {
+    text-decoration: none;
+}
+
+.stat-card-grid a:hover .stat-card > p {
+    text-shadow: 2px 2px 5px #555555;
+}
+
+.stat-card-grid a:hover .stat-card {
+    box-shadow: 2px 2px 5px #555555;
+}
+
+.stat-card-grid > a > .stat-card > p {
+    color: #4545f5;
+}
+
 .stat-bar {
     display: flex;
     flex-wrap: wrap;
@@ -125,3 +141,4 @@
     color: #555555;
     margin: 2px 0;
 }
+
