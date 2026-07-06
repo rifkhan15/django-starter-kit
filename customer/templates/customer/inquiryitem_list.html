@@ -11,16 +11,6 @@
     {% if not object_list %}
     <p>No records.</p>
     {% else %}
-    <form method="get">
-        {% for field in filter.form %}
-        <div class="mb-3">
-            {{ field.label_tag }}
-            {{ field }}
-            {{ field.errors }}
-        </div>
-        {% endfor %}
-        <!-- <button type="submit">Filter</button> -->
-    </form>
     <table class="object-list-table">
         <thead>
             <tr>
